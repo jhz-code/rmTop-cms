@@ -1,0 +1,268 @@
+{include file="/app/rmcore/view/public/hearder" /}
+
+<body  style="overflow: auto;border-radius: 3px;">
+
+
+<div class="tab-contain" style="margin-top: 10px;">
+    <!-- tab栏 -->
+    <ul id="tabs">
+        <li class="current"><span title="tab1">常规选项</span></li>
+        <li><span  title="tab2">其他选项</span></li>
+    </ul>
+
+    <div style="height: 1px;background-color: gainsboro"></div>
+    <!-- 对应显示内容 -->
+
+    <div id="contents">
+        <form action="{$actions.recruitment_request_add}"  method="post">
+            <div id="tab1" class="item show">
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <div class="ax-form-label">标题：</div>
+                        <div class="ax-form-input"><input type="text" name="title"  value="{$list.title}" ></div>
+                    </div>
+                </div>
+                <div class="ax-break-lg"></div>
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <div class="ax-form-label">在线应聘：</div>
+                        <div class="ax-flex-block">
+                            <div class="ax-row">
+                                <div class="ax-col ax-col-6"><label class="ax-radio"><input name="online" value="1"  checked="" type="radio"><span>开启</span></label></div>
+                                <div class="ax-col ax-col-6"><label class="ax-radio"><input name="online" value="0" type="radio"><span>关闭</span></label></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ax-break-lg"></div>
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <div class="ax-form-label">工作地点：</div>
+                        <div class="ax-form-input"><input type="text" name="jod_place" value="{$list.jod_place}" ></div>
+                    </div>
+                </div>
+                <div class="ax-break-lg"></div>
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <div class="ax-form-label">学历要求：</div>
+                        <div class="ax-form-input"><input type="text" name="edu" value="{$list.edu}"></div>
+                    </div>
+                </div>
+                <div class="ax-break-lg"></div>
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <div class="ax-form-label">薪资待遇：</div>
+                        <div class="ax-form-input"><input type="text" name="salary" value="{$list.salary}" ></div>
+                    </div>
+                </div>
+                <div class="ax-break-lg"></div>
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <div class="ax-form-label">工作性质：</div>
+                        <div class="ax-form-input"><input type="text" name="jod_nature" value="{$list.jod_nature}" ></div>
+                    </div>
+                </div>
+                <div class="ax-break-lg"></div>
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <div class="ax-form-label">工作年限：</div>
+                        <div class="ax-form-input"><input type="text" name="jod_years" value="{$list.jod_years}" ></div>
+                    </div>
+                </div>
+                <div class="ax-break-lg"></div>
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <div class="ax-form-label">招聘人数：</div>
+                        <div class="ax-form-input"><input type="text" name="people" value="{$list.people}"></div>
+                    </div>
+                </div>
+
+                <div class="ax-break-lg"></div>
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <div class="ax-form-label">排序：</div>
+                        <div class="ax-form-input"><input type="text" name="sort" value="{$list.sort}"></div>
+                    </div>
+                </div>
+
+
+                <div class="ax-break-lg"></div>
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <div class="ax-form-label">内容详情：</div>
+                        <div style="position: relative;width:700px ">
+                            <div id="content" class=""></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ax-break-lg"></div>
+                <div class="ax-break-lg"></div>
+
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <div class="ax-form-label"></div>
+                        <div class="ax-flex-block">
+                            <div class="ax-form-input"><button type="submit" class="ax-btn ax-primary ax-full">确认提交</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="tab2" class="item">
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <span class="ax-form-label">TGA标签：</span>
+                        <div class="ax-form-input"><input type="text"  name="tags"  value="{$list.tags}" ></div>
+                    </div>
+                </div>
+                <div class="ax-break-lg"></div>
+
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <span class="ax-form-label">SEO标题：</span>
+                        <div class="ax-form-input"><input type="text"  name="seo_title"  value="{$list.seo_title}" ></div>
+                    </div>
+                </div>
+                <div class="ax-break-lg"></div>
+
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <span class="ax-form-label">SEO关键词：</span>
+                        <div class="ax-form-input"><input type="text" name="seo_key"  value="{$list.seo_key}" ></div>
+                    </div>
+                </div>
+                <div class="ax-break-lg"></div>
+
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <span class="ax-form-label">SEO描述：</span>
+                        <div class="ax-form-input">
+                            <textarea name="seo_des" cols="" rows="" placeholder="描述"> {$list.seo_des}"</textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="ax-break-lg"></div>
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <span class="ax-form-label">浏览量：</span>
+                        <div class="ax-form-input"><input type="text"></div>
+                    </div>
+                </div>
+                <div class="ax-break-lg"></div>
+
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <div class="ax-form-label">文档模板：</div>
+                        <div class="ax-form-con">
+                            <div class="ax-form-input">
+                                <select name="view_path">
+                                    <option value="0">模板1</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ax-break-lg"></div>
+                <div class="ax-break-lg"></div>
+
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <input name="col_id" value="{$column_id}" type="hidden">
+                        <input name="id" value="{$list.id}" type="hidden">
+                        <div class="ax-form-label"></div>
+                        <div class="ax-flex-block">
+                            <div class="ax-form-input"><button type="button" class="ax-btn ax-primary ax-full">确认提交</button></div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+<style>
+    #tabs {  overflow: hidden;  width: 80%;  margin: 0;  padding: 0;  list-style: none;  }
+    #tabs li {  float: left;  margin-left: 14px;  height: 40px;  line-height: 40px;  width: 100px;cursor: pointer  }
+    li span {  position: relative;  font-size: 16px;  }
+    .current li{  outline: 0;  color: #3398cc;  border-bottom: 1px solid #3398cc;    }
+    .current span{  outline: 0;  color: #3398cc;  border-bottom: 1px solid #3398cc;  }
+    .current span:before{content: '';position: absolute;bottom: 0;left: 2px;width: 95%;
+        height: 2px;background: #3398cc;border-radius: 30px;}
+    #contents {  background: #fff;  padding: 30px 0 25px;  position: relative;  }
+    .item{  display: none;  }
+    .show{  display: block;  }
+
+</style>
+
+<script type="text/javascript">
+    if ($.cookie('rec_edit_tab_current')!= null){
+        let num = $.cookie("rec_edit_tab_current");
+        $('#tabs li').removeClass("current").removeClass("hoverItem");
+        $("#tabs li ").find("span").eq(num).parent().addClass("current");
+        $("#contents div").removeClass("show");
+        if(num == 1){
+            $("#tab2").addClass('show')
+        }else{
+            $("#tab1").addClass('show')
+        }
+    }else{
+        let num = 0;
+        $('#tabs li').removeClass("current").removeClass("hoverItem");
+        $("#tabs li ").find("span").eq(num).parent().addClass("current");
+        $("#contents div").removeClass("show");
+        $("#tab1").addClass('show')
+    }
+
+    $('#tabs li span').click(function(e) {
+        e.preventDefault();
+        $('#tabs li').removeClass("current").removeClass("hoverItem");
+        $(this).parent().addClass("current");
+        $("#contents div").removeClass("show");
+        $('#' + $(this).attr('title')).addClass('show');
+        let index = $("#tabs li ").find("span").index(this);
+        $.cookie('rec_edit_tab_current',index);
+    });
+
+    //发布时间
+    //    $('#datepicker02').mobiscroll().date({
+    //        theme: 'ax',
+    //        lang:'zh',
+    //        onBeforeShow:function(event, inst){//显示前的点击事件
+    //            $('#'+this.id).addClass('ax-focus')
+    //        },
+    //        onClose: function (event, inst) {//关闭事件
+    //            $('#'+this.id).removeClass('ax-focus');
+    //        },
+    //        display: 'bubble',
+    //        rows:5,
+    //    });
+
+</script>
+
+<script charset="utf-8" src="/static/neditor/neditor.config.js"></script>
+<script charset="utf-8" src="/static/neditor/neditor.all.js"></script>
+<script charset="utf-8" src="/static/neditor/neditor.service.js"></script>
+<script>
+   var ue =  UE.getEditor("content",{
+        autoHeight: false,
+        initialFrameHeight:400,
+        initialFrameWidth:window.screen.width/2.2,
+    });
+   ue.ready(function() {
+       //设置编辑器的内容
+       /**
+        * @param $list 双引号 有bug
+        */
+       ue.setContent('{$list.content|raw}');
+   });
+
+
+</script>
+
+

@@ -1,0 +1,116 @@
+<!--main-->
+{include file="/app/rmcore/view/public/hearder" /}
+<body  style="background-color:#F4F4F4;margin: 6px; overflow: hidden;border-radius: 3px" >
+
+<div id="ajax" class="ajax"></div>
+<div id="page">
+
+    <div class="page"  style="box-shadow:none;height: 100%">
+        {include file="/app/rmcore/view/public/bana_nav" /}
+
+    <div class="ax-margin ax-col " >
+    <div class="ax-row rm-add">
+        <div class="ax-row-2 list-tlea"><h4>权限规则</h4></div>
+        <a data-url="/rmtop/addRules" class="ax-btn ax-sm ax-iconfont ax-icon-plus-t ax-primary lj-a-btn"> 新增权限</a>
+    </div>
+    <div style="height: 1px;margin-bottom: 10px;background-color: gainsboro"></div>
+
+    <table class="ax-table">
+        <thead>
+        <tr style="background-color:#efefef " class="ax-shadow-border ax-radius">
+            <th>ID</th>
+            <th><div class="ax-align-left">权限名称</div></th>
+            <th><div class="ax-align-left">权限模型</div></th>
+            <th><div class="ax-align-left">权限执行</div></th>
+            <th><div class="ax-align-left">操作</div></th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {volist name="rule_list" id="vo"}
+        <tr style="height: 60px">
+            <td><div class="ax-align-center"> {$vo.id}</div></td>
+            <td> <div class="ax-align-left">  {$vo.title}  </div>   </td>
+            <td>
+                <div class="ax-align-left">
+                    {$vo.controller}
+                </div>
+            </td>
+            <td>
+                <div class="ax-align-left">
+                    {$vo.action}
+                </div>
+            </td>
+            <td>
+                <div class="ax-operate ax-align-left">
+                    <a data-url="/rmtop/editRules?id={$vo.id}"  class="ax-iconfont ax-icon-editing-fill rm-model" title="编辑"></a>
+                    <a href="/rmtop/deleteRules?id={$vo.id}" class="ax-iconfont ax-icon-trash-alt-fill" title="删除"></a>
+                </div>
+            </td>
+        </tr>
+        {/volist}
+
+        </tbody>
+    </table>
+
+
+</div>
+        <div class="ax-pagination">
+            {$rule_list->render()|raw}
+        </div>
+</div>
+
+</div>
+<script type="text/javascript">
+    $('.rm-add').click(function (){
+        $('body').append('<div id="overlay"></div>');
+        $('#overlay').height($(document).height()).css({
+            'opacity': .6, //透明度
+            'position': 'absolute',
+            'top': 0,
+            'left': 0,
+            'background-color': 'black',
+            'width': '100%',
+            'z-index': 9//保证这个悬浮层位于其它内容之上
+
+        }).fadeIn('slow');
+        $("#ajax").load($(this).find("a").attr('data-url'));
+        $("#ajax").css({'z-index':10})
+    });
+
+    $('.ax-operate .rm-model').click(function (){
+        $('body').append('<div id="overlay"></div>');
+        $(".buy_content").show()
+        $('#overlay').height($(document).height()).css({
+            'opacity': .6, //透明度
+            'position': 'absolute',
+            'top': 0,
+            'left': 0,
+            'background-color': 'black',
+            'width': '100%',
+            'z-index': 9 //保证这个悬浮层位于其它内容之上
+
+        }).fadeIn('slow');
+        $("#ajax").load($(this).attr('data-url'))
+        $("#ajax").css({'z-index':10})
+    });
+</script>
+<style>
+    .buy_content {  position: absolute;  top: 15%;  left:28%;  width:575px;  height:auto;background: #fff;
+        z-index:1002;  overflow: auto;padding: 15px;  text-align: left;  }
+    .herf-main{background: #fff;padding: 10px;position: relative}
+    .open-head{display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;
+        position: relative;padding-bottom: 10px;}
+    .newhredup{font-size: 15px;color: #333}
+    .closeup{position:relative;font-size: 23px;line-height: 23px;color: #333;cursor: pointer}
+    .closePz{position:relative;font-size: 23px;line-height: 23px;color: #333;cursor: pointer}
+    .tab-ligh{width: 120px;height: 28px;line-height: 28px;display: flex;align-items: center;
+        border: 1px solid #ddd;margin-top: 3px;  background-color: #f8f8f8;  padding: 0;border-radius: 0 4px 4px 0;}
+    .tab-ligh li{width: 50%;text-align: center;cursor: pointer}
+    .lighten{background: #198cff;color: #fff}
+
+    .ax-menu-page .ax-item{padding: 0 30px !important;background-color: #eee;color: #666}
+    .ax-menu-page .ax-item.ax-active {  color: #333 !important;background: #fff  }
+</style>
+</body>
+</html>

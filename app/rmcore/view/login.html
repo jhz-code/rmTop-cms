@@ -1,0 +1,106 @@
+
+{include file="/app/rmcore/view/public/hearder" /}
+
+<style>
+    *, ::after, ::before {  box-sizing: border-box;  }
+    .h-100 {  height: 100%!important;  }
+    .align-items-center {  align-items: center!important;  }
+    .justify-content-center {  justify-content: center!important;  }
+    .login-main{position: relative}
+    .d-flex {  display: flex!important;  }
+    .align-items-center {  align-items: center!important;  }
+    .text-left {  text-align: left!important;  }
+    .pl-4, .px-4 {  padding-left: 1.5rem!important;  }
+    .ml-5, .mx-5 {  margin-left: 3rem!important;  }
+    .border-left {  border-left: 1px solid #dee2e6!important;  }
+    .mb-4, .my-4 {  margin-bottom: 1.5rem!important;  }
+    .row {  display: flex;  flex-wrap: wrap;  margin-right: -15px;  margin-left: -15px;  }
+    .col-form-label {  padding-top: calc(.375rem + 1px);  padding-bottom: calc(.375rem + 1px);  margin-bottom: 0;
+        font-size: inherit;  line-height: 1.5;  }
+    .mb-3, .my-3 {  margin-bottom: 1rem!important;  }
+    .text-right {  text-align: right!important;  }
+    .pr-3, .px-3 {  padding-right: 1rem!important;  }
+    .h5, h5 {  font-size: 1.25rem !important;font-weight: normal;margin: 0;padding: 0  }
+    .form-group {  position: relative;  }
+    .form-group:before, .form-group:after {  display: table;  content: " ";  }
+    .form-group:after {  clear: both;  }
+    .btn-primary {   font-weight: 400;    text-align: center;  cursor: pointer;
+        border: 1px solid #41a9fd;  padding: 0 !important;  font-size: 15px;  line-height: 35px;margin: 0 auto;
+        border-radius: 5px;  white-space: nowrap;color: #fff;  background-color: #41a9fd;width: 100px;height: 35px;  }
+    .text-grey {  color: #999;  }
+    .text-grey a{color: #41a9fd}
+    .text-center {  text-align: center!important;  }
+    .pt-5, .py-5 {  padding-top: 3rem!important;  }
+    .mt-5, .my-5 {  margin-top: 3rem!important;  }
+    .los-success{    position: fixed;top: 33%;left: 40%;width: 360px;height:auto;background: #f9f9f9;z-index: 1002;overflow: hidden;border-radius: 5px;display: none;
+        box-shadow: 0 0 10px 1px #bbb;}
+    .lodi-hhs {padding:30px 25px;position: relative;text-align: center;}
+    .lodi-hhs img{width: 35px;height: 35px;text-align: center;display: block;position: relative;margin: 0 auto 3px;}
+    .lodi-hhs h3 {padding: 0;font-size: 15px;margin-top: 0;color: #3a9ff1;margin-bottom: 22px;}
+    .lodi-hhs p {padding: 0;font-size: 13px;}
+</style>
+
+<body class="h-100 d-flex align-items-center justify-content-center">
+<div class="login-main">
+    <div class="d-flex text-left align-items-center">
+        <a href="" title="rmTop企业网站管理系统" target="_blank">
+            <img src='{RmTop:TopInfo  TopKey="login_logo" /}' alt='{RmTop:TopInfo  TopKey="web_title" /}' width="200">
+        </a>
+        <form action="" id="loginForm" class="border-left pl-4 ml-5 met-login-form" method="post" style="border-color: #eee !important;" onsubmit="return checkUser();">
+            <div class="row mb-4" style="height:55px ">
+                <label class="col-form-label" style="width: 100px;"></label>
+                <div class="mb-3">
+                    <h1 class="h5">管理员登录</h1>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-form-label pr-3 text-right" style="width: 100px;">用户名</label>
+                <div class="form-group mb-4">
+                    <input type="text" id="login_account" name="login_account" data-safety required class="form-control" style="width: 200px;">
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-form-label pr-3 text-right" style="width: 100px;">密码</label>
+                <div class="form-group mb-4">
+                    <input type="password" id="login_pass" name="login_pass" data-safety required class="form-control" style="width: 200px;">
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-form-label" style="width: 100px;"></label>
+                <div class="login_button">
+                    <button type="button" class="btn-primary px-4">登录</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!--提示弹窗-->
+    <div class="los-success">
+        <div class="lodi-hhs">
+            <img src="/static/rmtop/images/login-dl.png">
+            <h3>{$sys.Name}登录管理提示</h3>
+            <p id="alert_text"></p>
+        </div>
+    </div>
+
+    {include file="/app/rmcore/view/public/footer" /}
+
+</div>
+</body>
+<script>
+    $(".login_button button").click(function () {
+          var login_account = $("#login_account").val();
+          var login_pass = $("#login_pass").val();
+         $.post("",{'login_account':login_account,"login_pass":login_pass},function (data) {
+               if(data.code !== 1){
+                   // alert(data.msg)
+                   $('.los-success').stop().show();
+                   $("#alert_text").html(data.msg)
+                   setTimeout("$('.los-success').css('display', 'none')", 2000);
+               }else{
+                   window.location.href = data.url
+               }
+         })
+    })
+</script>
+</html>

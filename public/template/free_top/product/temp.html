@@ -1,0 +1,84 @@
+
+{include file="./common/hearder" /}
+
+<body class="bg_index ">
+
+{include file="./common/topmenu" /}
+
+{include file="./common/Bread" /}
+
+
+<div class="container-fluid m-t-30 m-b-30">
+    <div class="rowrt">
+        <div class="col-8">
+            <div class="form-inline">
+                <input type="text" placeholder="请输入关键字..." class="form-control" style="width: 80%;">
+                <a href="?page=1" class="btn btn-primary ml-1">搜索</a>
+            </div>
+        </div>
+        <div class="col-4 text-right"></div>
+    </div>
+    <div class="rowrt mt-4">
+        <div class="col-6">
+            <div class="portlter">分类：
+                <a href="" class="{if condition='$Request.param.p eq "" '} current {/if} " data-id="0">全部</a>
+                {volist name="CategoryGroup" id="vo"}
+                <a href="?category={$vo.id}" class="">{$vo.title}</a>
+                {/volist}
+            </div>
+        </div>
+        <div class="col-6">
+            <form class="form-inline float-left">
+                <div class="form-group ml-3 font15"> 价格：
+                    <select class="form-control form-control-sm">
+                        <option value="">全部</option>
+                        <option value="false">免费模板</option>
+                        <option value="true">收费模板</option>
+                    </select>
+                </div>
+                <div class="form-group ml-3 font15"> 排序：
+                    <select class="form-control form-control-sm">
+                        <option value="">默认</option>
+                        <option value="UpdatedDate">更新时间</option>
+                        <option value="AddDate">上传时间</option>
+                        <option value="Price">价格</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="rowrt mt-4"></div>
+    <div class="port mb-4">
+        <div class="rowrt fadeInUp animated animated">
+
+            {volist name="TopData" id="vo"}
+            <div class="col-lg-3 tepw-item">
+                <div class="gal-detail thumb">
+                    <!--<p class="cart-money">免费</p>-->
+                    <!--<p class="cart-money">付费</p>-->
+                    <a href="{$vo.url}" target="_blank" class="image-popup">
+                        <img src="{$vo.org_img}" class="thumb-img" style="max-height: 400px;">
+                    </a>
+                    <h4 class="text-center" title="{$vo.title}">{$vo.title}</h4>
+                    <div class="ga-border"></div>
+                    <p class="text-muted text-center" style="max-height: 45px; overflow: hidden;" title="{$vo.seo_des}"><small>{$vo.seo_des}</small></p>
+                </div>
+            </div>
+            {/volist}
+
+        </div>
+    </div>
+    <div class="page overflow clearfix">
+
+        <div class="page overflow clearfix">
+            {$TopData->render()|raw}
+        </div>
+    </div>
+</div>
+
+
+{include file="./common/footer" /}
+
+</body>
+</html>
+

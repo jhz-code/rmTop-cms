@@ -1,0 +1,70 @@
+            <div id="tab02" class="ax-tab">
+
+            <div class="ax-menu-page ax-tab-nav settingtab" style="margin-bottom: 25px;background: #eee;">
+                    {volist name="group" id="vo"}
+                    <a href="##" class="ax-item ">{$vo.title}</a>
+                    {/volist}
+             </div>
+
+              <ul class="ax-tab-content">
+                    {volist name="group" id="vo"}
+                    <li>
+                        <form action=""  method="post">
+                            <div style="padding-left: 15px;">
+                                {volist name="vo.child" id="item"}
+                                <div class="ax-form-group">
+                                    <div class="ax-flex-row">
+                                        <div class="ax-form-label">{$item.zh_name}：</div>
+                                        <div class="ax-form-input">
+                                            <input type="text" value="{$item.value}" name="{$item.en_name}" >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ax-break-lg"></div>
+                                {/volist}
+
+                                <div class="ax-break-lg"></div>
+                                <div class="ax-break-lg"></div>
+                                <div class="ax-break-lg"></div>
+                                <div class="ax-form-group">
+                                    <div class="ax-flex-row">
+                                        <div class="ax-form-label"></div>
+                                        <div class="ax-flex-block">
+                                            <div class="ax-form-input" style="width:280px !important;">
+                                                <button type="submit" class="ax-btn ax-primary ax-full">确认保存</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </li>
+                    {/volist}
+                </ul>
+            </div>
+
+
+    <script type='text/javascript'>
+                $(document).ready(function () {
+                    var thisTab = $(this);
+                    var thisNav = thisTab.find('.ax-tab-nav');
+                    var thisContent = thisTab.find('.ax-tab-content');
+                    var thisActive = 'ax-active';
+                    console.log($.cookie("settingtab_index"))
+                    if($.cookie("settingtab_index") != null){
+                        thisNav.children().eq($.cookie("settingtab_index")).addClass(thisActive).siblings().removeClass(thisActive);
+                        thisContent.children().eq($.cookie("settingtab_index")).addClass(thisActive).siblings().removeClass(thisActive);
+                    }else{
+                        $.cookie("settingtab_index",0)
+                        thisNav.children().eq($.cookie("settingtab_index")).addClass(thisActive).siblings().removeClass(thisActive);
+                        thisContent.children().eq($.cookie("settingtab_index")).addClass(thisActive).siblings().removeClass(thisActive);
+                    }
+
+                    $(".settingtab a").click(function () {
+                        let index = $(".settingtab").find('a').index(this);
+                        thisNav.children().eq(index).addClass(thisActive).siblings().removeClass(thisActive);
+                        thisContent.children().eq(index).addClass(thisActive).siblings().removeClass(thisActive);
+                        $.cookie("settingtab_index",index)
+                    })
+                });
+</script>

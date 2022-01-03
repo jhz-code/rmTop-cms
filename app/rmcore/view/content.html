@@ -1,0 +1,122 @@
+{include file="/app/rmcore/view/public/hearder" /}
+
+<!--内容列表框架主体-->
+<body  style="background-color:#FFFFFF; overflow: auto;border-radius: 3px;" >
+
+<div style="box-sizing: border-box;height: 100%; width: 100%;  overflow: hidden;position: absolute;top: 0; left: 0;">
+
+    <div  style="width:12%;height:100%;background-color: #F5F5F5;float: left;overflow: auto;">
+        <ul class="ax-tree" style="margin: 30px 0px 0px 15px;" id="tree05"></ul>
+    </div>
+
+    <div style="float: left;width: 85.5%;height:100%;">
+        <iframe class="scroll-wrapper" src="/rmtop/showContent" id="right_content" style="overflow-y: auto" frameborder="0" width="100%" height="95%" scrolling="yes" onload="window.parent" scrolling="yes" onload="window.parent"></iframe>
+    </div>
+
+</div>
+
+</body>
+
+
+
+<script type="text/javascript" src="/static/ax_v1.0.2/plugins/ztree/js/jquery.ztree.all.min.js"></script>
+<script type='text/javascript'>
+   $(document).ready(function () {
+
+      var setting05 = {
+          //异步请求菜单数据
+          async: {
+              enable: true, // 开启异步加载模式
+              url:"/rmtop/columnList",
+              autoParam:["id", "name=n"],
+              dataFilter: filter
+          },
+
+         view: {
+            showIcon: false,
+            addDiyDom: addAfter,
+            expandSpeed: "slow",
+
+         },
+         data: {
+            simpleData: {
+               enable: true
+            }
+         },
+          callback : {
+              // 单击事件
+              onClick : zTreeOnClick,
+              onAsyncSuccess:loadNode
+          }
+
+
+      };
+
+      function addAfter(treeId, treeNode) {
+         if (treeNode.parentNode && treeNode.parentNode.id!=2) return;
+         var aObj = $("#" + treeNode.tId + '_a');
+         if (treeNode.id == 2) {
+           // aObj.append('<i class="ax-dot"></i>');
+         } else if (treeNode.id == 3) {
+           // aObj.after('<i class="ax-badge">2</i>');
+         }
+      }
+
+       // 单击事件 记录点击
+       function zTreeOnClick(event, treeId, treeNode) {
+           console.log(treeNode)
+           $('#right_content').attr('src',"/rmtop/showContent?model="+treeNode.model+"&col_id="+treeNode.id);
+           $.cookie('current_node',JSON.stringify(treeNode))
+       }
+
+
+       //自动加载
+       function loadNode(event, treeId, treeNode){    // 异步加载正常结束的事件回调函数,用于逐级展开子节点
+           // 获取树对象
+           var treeObj = $.fn.zTree.getZTreeObj("tree05");
+           /* 获取所有树节点 */
+           var nodes = treeObj.transformToArray(treeObj.getNodes());
+           // 展开除第一级之外的其他节点
+           for (var i = 0, length_1 = nodes.length; i < length_1; i++) {
+               treeObj.expandNode(nodes[i], true);
+               if(nodes[i].tId === JSON.parse($.cookie('current_node')).tId){
+                   console.log(nodes[i])
+                   let string = "#"+nodes[i].tId+"_a";
+                   $(string).click();
+               }
+           }
+
+       }
+
+
+       /**
+        * 数据加载
+        * @param treeId
+        * @param parentNode
+        * @param childNodes
+        * @returns {null|*}
+        */
+       function filter(treeId, parentNode, childNodes) {
+           if (!childNodes.data) return null;
+           for (var i=0, l=childNodes.data.length; i<l; i++) {
+               childNodes.data[i].name = childNodes.data[i].title;
+           }
+           return childNodes.data;
+       }
+
+      $.fn.zTree.init($("#tree05"), setting05);
+
+
+   });
+</script>
+
+
+<style>
+    .scroll-wrapper {
+        /*height: 90%;*/
+        /*width: 80%;*/
+        margin:10px 20px;
+        -webkit-overflow-scrolling: touch;
+        overflow-y: auto;
+    }
+</style>

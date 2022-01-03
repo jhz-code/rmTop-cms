@@ -1,0 +1,109 @@
+<div class="buy_content">
+  <div class="open-head">
+    <div class="newhredup">编辑广告</div>
+    <div class="closeup  ax-iconfont ax-icon-close-t"></div>
+  </div>
+  <form action="{$action}"  method="post">
+    <div class="item show herf-main">
+      <div class="ax-break-lg"></div>
+      <div class="ax-form-group">
+        <div class="ax-flex-row">
+          <div class="ax-form-label">广告分组：</div>
+
+          <div class="ax-form-con">
+            <div class="ax-form-input">
+              <select name="group_id">
+                <option value="0">不设置分组</option>
+                {volist name="Group" id='vo'}
+                <option value="{$vo.id}" {if $vo.id == $info.group_id}selected{/if} >{$vo.title}</option>
+                {/volist}
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ax-break-lg"></div>
+      <div class="ax-form-group">
+        <div class="ax-flex-row">
+          <div class="ax-form-label">广告名称：</div>
+          <div class="ax-form-input"><input type="text" name="title" value="{$info.title}"  placeholder=""></div>
+        </div>
+      </div>
+      <div class="ax-break-lg"></div>
+
+
+
+      <div class="ax-form-group">
+        <div class="ax-flex-row">
+          <div class="ax-form-label">广告图：</div>
+          <div class="ax-form-con">
+            <div class="ax-form-input">
+              <input id="file" onchange=handleFile("file") class="ax-input-file" type="file">
+              <input name="org_img" value="{$info.org_img}" placeholder="上传图片" id="org_img_file" type="text">
+              <span  class="ax-file-btn">选择图片</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ax-break-lg"></div>
+
+
+      <div class="ax-break-lg"></div>
+      <div class="ax-form-group">
+        <div class="ax-flex-row">
+          <div class="ax-form-label">广告简述：</div>
+          <div class="ax-form-input">
+            <textarea name="desc"  placeholder="广告简述">{$info.desc}</textarea>
+          </div>
+        </div>
+      </div>
+      <div class="ax-break-lg"></div>
+
+
+
+
+      <!--if网站地址-->
+      <div class="ax-form-group" id="shouhou2">
+        <div class="ax-flex-row">
+          <div class="ax-form-label">广告链接：</div>
+          <div class="ax-form-input"><input type="text" name="url" value="{$info.url}"  placeholder=""></div>
+        </div>
+      </div>
+
+
+      <div class="ax-break-lg"></div>
+
+
+      <div class="ax-form-group">
+        <div class="ax-flex-row">
+          <div class="ax-form-label">排序：</div>
+          <div class="ax-form-input"><input type="text" name="sort"  value="{$info.sort}" placeholder=""></div>
+        </div>
+      </div>
+
+      <div class="ax-break-lg"></div>
+
+      <input name="id" value="{$info.id}" type="hidden">
+      <div class="ax-form-group">
+        <div class="ax-flex-row">
+          <div class="ax-form-label"></div>
+          <div class="ax-flex-block">
+            <div class="ax-form-input"><button type="submit" class="ax-btn ax-primary ax-full">确认提交</button></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </form>
+</div>
+
+
+<script>
+  $(".closeup").click(function () {
+    $('#overlay').hide();
+    $("#ajax").empty();
+  })
+</script>

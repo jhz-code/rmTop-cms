@@ -1,0 +1,106 @@
+
+
+{include file="./common/hearder" /}
+
+<body class="bg_index ">
+
+{include file="./common/topmenu" /}
+
+<div class="carousel-inner topper-wper">
+    <div class=" topper-slide">
+        <div class="epyeoM bannerOne">
+            <div class="indexBox">
+                <div class="left-drsy">
+                    <div class="content">
+                        <h3>{RmTop:TopInfo  TopKey="web_title"/}</h3>
+                        <h2>{RmTop:TopContentInfo sid = "1"  TopType="single"  TopKey="title_key"/}</h2>
+                        <p>{RmTop:TopContentInfo sid = "1"  TopType="single"  TopKey="title_des"/}</p>
+                        <h4 style="margin-top: 20px">最新版本： <span>{RmTop:TopContentInfo sid = "1" TopType="single" TopKey="verison"}</span></h4>
+                        <h4>著作权号： <span>{RmTop:TopContentInfo sid = "1" TopType="single" TopKey="copyright"}</span></h4>
+                        <h4>更新： <span>{RmTop:TopLink sid = "1" TopType="article" TopKey="title"}</span></h4>
+                        <div class="control-wrer">
+                            <a target="_blank" href='{RmTop:TopContentInfo sid = "1"  TopType="single"  TopKey="free_down"/}'><span class="btn"> 免费下载</span></a>
+                            <a class="sste">
+                                <span class="btn pl-item"> 部署详情</span>
+                                <div class="home-deploy-wrap">
+                                    <p class="home-deploy-1">支持系统：Windows、Mac、Linux<br/>部署环境：PHP（7.4+）+MySql(5.5+)</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="img-content" style="text-align: right;display: none"><img src="/template/free_top/static/images/index_chatu.png" width="500"></div>
+                </div>
+                <span style="display:table;clear:both"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="rm-ts-box rm-xis">
+    <div class="s2we-ainer">
+        <div class="rtdt-nter title-df">
+            <span class="sut-title">核心优势</span>
+            <span class="dt-title line-height-c">ADVANTAGE</span>
+        </div>
+        <div class="rm-ts-content">
+            <div class="rms-row">
+                <div class="col-ys-list">
+                    <div class="si-itm si-itm-1"></div>
+                    <h4 class="rtdt-nter">多站点/站群系统</h4>
+                    <p class="rtdt-nter">可创建多站点，站点，后台，用户中心均可绑定独立域名</p>
+                </div>
+                <div class="col-ys-list">
+                    <div class="si-itm si-itm-2"></div>
+                    <h4 class="rtdt-nter">自定义表单/字段</h4>
+                    <p class="rtdt-nter ">自定义数据表，支持一对一，一对多自定义字段，可应对复杂的数据内容需求</p>
+                </div>
+                <div class="col-ys-list">
+                    <div class="si-itm si-itm-3"></div>
+                    <h4 class="rtdt-nter">先进的模板设计</h4>
+                    <p class="rtdt-nter ">支持母版页、局部页等公共页面,提高重用性，制作网站模板更高效和便捷</p>
+                </div>
+            </div>
+            <div class="rms-row">
+                <div class="col-ys-list">
+                    <div class="si-itm si-itm-4"></div>
+                    <h4 class="rtdt-nter">千万级负载</h4>
+                    <p class="rtdt-nter ">http缓存+后台缓存+专业数据优化，大数据、大流量下也能快速响应</p>
+                </div>
+                <div class="col-ys-list">
+                    <div class="si-itm si-itm-5"></div>
+                    <h4 class="rtdt-nter">企业级安全保障</h4>
+                    <p class="rtdt-nter ">系统从底层预防Sql注入、CSRF、暴力破解等攻击，可通过公安部三级安全等保测评</p>
+                </div>
+                <div class="col-ys-list">
+                    <div class="si-itm si-itm-6"></div>
+                    <h4 class="rtdt-nter">灵活扩展、支持多终端</h4>
+                    <p class="rtdt-nter">可拆卸的插件式设计，可为小程序、App等终端提供数据接口</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="yous-tent" style="background: #fff;">
+    <p class="rm-std">新版UI设计 交互体验大更新</p>
+    <p class="rm-std2 mt20">免费、开源、专业</p>
+    <p class="rm-std3 mt30">基于用户体验制作的UI风格、覆盖各行业、持续更新，能够大幅度提高网站访问。</p>
+    <img src="/template/free_top/static/images/ct-se1.jpg" class="mt30">
+</div>
+
+<div class="yous-tent">
+    <p class="rm-std">首选优质模版</p>
+    <p class="rm-std2 mt20">您可以下载部署RM-top CMS系统将提供更多优质的模版</p>
+    <p class="rm-std3 mt30">可以直接下载到本地，自行部署到服务器内后台会自动检测到最新版将直接可以免费使用。</p>
+    <p class="rm-std2 mt30">模版的UI和功能实用型都经过严格审核，可以更好的吸引用户满足所需功能。模版会累计提供上千款供您选择！</p>
+    <a class="mt25 go-chs" href="/temp.html">去看看</a>
+    <img src="/template/free_top/static/images/ct-se2.jpg" class="mt30">
+</div>
+
+{include file="./common/footer" /}
+
+
+
+</body>
+</html>

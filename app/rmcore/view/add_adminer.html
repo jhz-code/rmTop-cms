@@ -1,0 +1,149 @@
+{include file="/app/rmcore/view/public/hearder" /}
+
+<style>
+    .admin_poplistdiv {  background: #f9f9f9;  padding: 5px 8px;  border: 1px solid #eee;  margin: 0px 0px 8px;  }
+    .admin_poplistdiv h2 {  font-size: 14px;  cursor: default;padding: 0;  margin: 0;color: #333;font-weight: normal  }
+    img.cboximg {  height: 11px;  width: 13px;  padding-right: 2px;  }
+    .none {  display: none;  }
+    .ax-label-ches label {  margin-right: 10px;    line-height: 33px;  }
+</style>
+
+<body  style="background-color:#F4F4F4;margin: 6px; overflow: auto;border-radius: 3px">
+
+<div class="page"  style="box-shadow:none;height: 97%">
+
+    <div class="tab-contain" style="margin-top: 10px;">
+        <!-- tab栏 -->
+        <ul id="tabs">
+            <li class="current"><span title="tab1">新增管理员</span></li>
+            <!--<li><span  title="tab2">高级设置</span></li>-->
+        </ul>
+
+        <div style="height: 1px;background-color: gainsboro"></div>
+        <!-- 对应显示内容 -->
+
+        <div id="content">
+            <form action=""  method="post">
+                <div id="tab1" class="item show">
+                    <div class="ax-form-group">
+                        <div class="ax-flex-row">
+                            <div class="ax-form-label" style="font-size: 15px;font-weight: bold">角色信息</div>
+                        </div>
+                    </div>
+                    <div class="ax-break-lg"></div>
+                    <div class="ax-form-group">
+                        <div class="ax-flex-row">
+                            <div class="ax-form-label">用户名：</div>
+                            <div class="ax-form-input"><input type="text" name="username"></div>
+                        </div>
+                    </div>
+                    <div class="ax-break-lg"></div>
+                    <div class="ax-form-group">
+                        <div class="ax-flex-row">
+                            <div class="ax-form-label">账号：</div>
+                            <div class="ax-form-input"><input type="text" name="account"></div>
+                        </div>
+                    </div>
+                    <div class="ax-break-lg"></div>
+                    <div class="ax-form-group">
+                        <div class="ax-flex-row">
+                            <div class="ax-form-label">用户密码：</div>
+                            <div class="ax-form-input"><input type="text" name="password"></div>
+                        </div>
+                    </div>
+                    <div class="ax-break-lg"></div>
+                    <div class="ax-form-group">
+                        <div class="ax-flex-row">
+                            <div class="ax-form-label">真实姓名：</div>
+                            <div class="ax-form-input"><input type="text" name="truename"></div>
+                        </div>
+                    </div>
+                    <div class="ax-break-lg"></div>
+                    <div class="ax-form-group">
+                        <div class="ax-flex-row">
+                            <div class="ax-form-label">手机号：</div>
+                            <div class="ax-form-input"><input type="text" name="mobile"></div>
+                        </div>
+                    </div>
+                    <div class="ax-break-lg"></div>
+                    <div class="ax-form-group">
+                        <div class="ax-flex-row">
+                            <div class="ax-form-label">Email邮箱：</div>
+                            <div class="ax-form-input"><input type="text" name="email"></div>
+                        </div>
+                    </div>
+                    <div class="ax-break-lg"></div>
+                    <div class="ax-form-group">
+                        <div class="ax-flex-row">
+                            <div class="ax-form-label">权限组：</div>
+                            <div class="ax-form-con">
+                                <div class="ax-form-input">
+                                    <select name="group_id">
+                                        <option value="0">超级管理员</option>
+                                        <option value="1">优化推广员</option>
+                                        <option value="2">内容管理员</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="ax-break-lg"></div>
+                    <div class="ax-break-lg"></div>
+                    <div class="ax-break-lg"></div>
+
+
+                    <div class="ax-form-group">
+                        <div class="ax-flex-row">
+                            <div class="ax-form-label"></div>
+                            <div class="ax-flex-block">
+                                <div class="ax-form-input"><button type="submit" class="ax-btn ax-primary ax-full">确认提交</button></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+<style>
+
+    #tabs {  overflow: hidden;  width: 100%;  margin: 0;  padding: 0;  list-style: none;  }
+    #tabs li {  float: left;  margin-left: 14px;  height: 40px;  line-height: 40px;cursor: pointer ;width: 100px;  }
+    li span {  position: relative;  font-size: 16px;  }
+    .current li{  outline: 0;  color: #3398cc;  border-bottom: 1px solid #3398cc;    }
+    .current span{  outline: 0;  color: #3398cc;  border-bottom: 1px solid #3398cc;  }
+    .current span:before{content: '';position: absolute;bottom: 0;left: 2px;width: 95%;
+        height: 2px;background: #3398cc;border-radius: 30px;}
+    #content {  background: #fff;  padding: 30px 0 25px;  position: relative;  }
+    .item{  display: none;  }
+    .show{  display: block;  }
+
+</style>
+
+<script type="text/javascript">
+    $(function(){
+        $('#tabs span').click(function(e) {
+            e.preventDefault();
+            $('#tabs li').removeClass("current").removeClass("hoverItem");
+            $(this).parent().addClass("current");
+            $("#content div").removeClass("show");
+            $('#' + $(this).attr('title')).addClass('show');
+        });
+
+        $('#tabs span').hover(function(){
+            if(!$(this).parent().hasClass("current")){
+                $(this).parent().addClass("hoverItem");
+            }
+        },function(){
+            $(this).parent().removeClass("hoverItem");
+        });
+    });
+</script>
+
+
+

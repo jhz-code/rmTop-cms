@@ -1,0 +1,51 @@
+
+<div class="buy_content">
+    <div class="open-head">
+        <div class="newhredup">添加分组</div>
+        <div class="closeup  ax-iconfont ax-icon-close-t"></div>
+    </div>
+
+    <form action="{$action}"  method="post">
+        <div class="">
+            <div class="ax-break-lg"></div>
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label">名称：</div>
+                    <div class="ax-form-input"><input type="text" name="title" value="" placeholder=""></div>
+                </div>
+            </div>
+            <div class="ax-break-lg"></div>
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label">父级分类：</div>
+                    <div class="ax-form-input">
+                        <input type="text" name="pid" value="" placeholder="">
+                    </div>
+                </div>
+            </div>
+            <div class="ax-break-lg"></div>
+            <div class="ax-break-lg"></div>
+
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label"></div>
+                    <div class="ax-flex-block">
+                        <div class="ax-form-input"><button type="submit" class="ax-btn ax-primary ax-full">确认提交</button></div>
+                    </div>
+                </div>
+            </div>
+
+            <input type="hidden" name="col_id" value="{$col_id}" placeholder="">
+        </div>
+
+    </form>
+</div>
+
+
+<script>
+    $(".closeup").click(function () {
+        $('#overlay').hide();
+        $("#ajax").empty();
+    })
+</script>
+

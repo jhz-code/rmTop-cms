@@ -1,0 +1,56 @@
+<!--main-->
+{include file="/app/rmcore/view/public/hearder" /}
+<body  style="background-color:#F4F4F4;margin: 6px; overflow: hidden;border-radius: 3px" >
+<div id="ajax" class="ajax"></div>
+<div id="page">
+<div class="page"  style="box-shadow:none;height: 100%">
+    {include file="/app/rmcore/view/public/bana_nav" /}
+
+    <div class="ax-margin ax-col " >
+    <div class="ax-row">
+        <a href="/rmtop/addRole" class="ax-btn ax-sm ax-iconfont ax-icon-plus-t ax-primary lj-a-btn"> 新增角色</a>
+    </div>
+    <div style="height: 1px;margin-bottom: 10px;background-color: gainsboro"></div>
+
+    <table class="ax-table">
+        <thead>
+        <tr style="background-color:#efefef " class="ax-shadow-border ax-radius">
+            <th style="width:50px;"><input name="" type="checkbox" value=""></th>
+            <th>ID</th>
+            <th>管理角色</th>
+            <th>查看权限</th>
+            <th>更新时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+
+
+        {volist name="lists" id="vo"}
+
+        <tr style="height: 60px">
+            <td><input name="" type="checkbox" value=""></td>
+            <td><div class="ax-align-center">{$vo.id}</div></td>
+            <td><div class="ax-align-center">{$vo.title}</div></td>
+            <td><div class="ax-align-center">查看权限</div></td>
+            <td><div class="ax-align-center">{$vo.update_time}</div></td>
+            <td>
+                <div class="ax-operate">
+                    <a  href="/rmtop/editRole?id={$vo.id}"  class="ax-iconfont ax-icon-editing-fill rm-model" title="编辑"></a>
+                    <a href="/rmtop/deleteRole?id={$vo.id}" class="ax-iconfont ax-icon-trash-alt-fill" title="删除"></a>
+                </div>
+            </td>
+        </tr>
+
+        {/volist}
+
+        </tbody>
+    </table>
+</div>
+</div>
+    <div class="ax-pagination">
+        {$lists->render()|raw}
+    </div>
+</div>
+</body>
+</html>

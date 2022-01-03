@@ -1,0 +1,30 @@
+{include file="./common/hearder" /}
+
+<body>
+{include file="./common/topmenu" /}
+
+{include file="./common/Bread" /}
+
+<div class="container-fluid" style="margin:50px 0;">
+    <div class="row row-static">
+        <div class="col-md-12 col-sm-12" style="">
+            <div class="productDetail">
+                <h3 class="title">{$TopData.title}</h3>
+                <div class="text">
+                    <div class="text_title">
+                        <h3>产品介绍</h3>
+                    </div>
+                    <div class="text_cont">
+                        {$TopData.content|raw}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{include file="./common/footer" /}
+
+</body>
+
+</html>

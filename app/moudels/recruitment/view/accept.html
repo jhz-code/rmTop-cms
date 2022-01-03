@@ -1,0 +1,118 @@
+<!--main-->
+{include file="/app/rmcore/view/public/hearder" /}
+
+<div class="ax-sr-page">
+<div class="ax-header ax-row ax-align-center ">
+    <a class="ax-btn ax-sm ax-primary ax-iconfont ax-icon-undo-fill lj-a-btn"> 导出Excel</a>
+</div>
+<div style="height: 1px;margin-bottom: 10px;"></div>
+
+<!--应聘模块-->
+<table class="ax-table ax-margin-top">
+    <thead>
+    <tr style="background-color:gainsboro " class="ax-shadow-border ax-radius">
+        <th style="width:50px;"><input name="" type="checkbox" value=""></th>
+        <th>ID</th><th>申请职位</th><th>姓名</th><th>性别</th><th>手机号</th><th>所属栏目</th><th>投递时间</th><th>状态</th><th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    {volist name="lists" id="vo"}
+    <tr style="height: 60px">
+        <td><input name="" type="checkbox" value=""></td>
+        <td><div class="ax-align-center">{$vo.id}</div></td>
+        <td><div class="ax-align-center">{$vo.title}</div></td>
+        <td><div class="ax-align-center">{$vo.column_title}</div></td>
+        <td><div class="ax-align-center">{$vo.sex}</div></td>
+        <td><div class="ax-align-center">{$vo.views}</div></td>
+        <td><div class="ax-align-center">{$vo.column}</div></td>
+        <td><div class="ax-align-center">{$vo.create_time}</div></td>
+        <td><div class="ax-align-center">{$vo.state}</div></td>
+        <td>
+            <div class="ax-operate">
+                <a class="check ax-iconfont ax-icon-eye-fill" title="查看"></a>
+                <a href="#" class="ax-iconfont ax-icon-trash-alt-fill" title="删除"></a>
+            </div>
+        </td>
+    </tr>
+    {/volist}
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="13">
+            <div class="ax-flex-row">
+                <!--<div class="ax-flex-block ax-align-left">选择全部</div>-->
+                <div class="ax-flex-block ax-align-right"><a href="##" class="ax-btn ax-primary ax-xs">批量删除</a></div>
+                <span class="ax-gutter"></span>
+            </div>
+        </td>
+    </tr>
+    </tfoot>
+</table>
+
+
+<div class="ax-pagination">
+    <a class="ax-total">共142条</a><a href="##" class="ax-prev">上一页</a><a href="##">1</a><a class="ax-active">2</a><a href="##">3</a><a href="##">4</a><a href="##">5</a><a href="##">6</a><a href="##" class="ax-next">下一页</a><a href="##" class="ax-last">尾页</a>
+</div>
+
+
+<!--弹窗-->
+<div class="looker" style="display: none">
+    <div class="buy-bg"></div>
+    <div class="buy_content">
+        <div class="closeup  ax-iconfont ax-icon-close-t"></div>
+        <div class="tplName">
+            <div class="tplName-lf"><strong>申请职位</strong></div><div class="tplName-rt">网络运营专员</div>
+        </div>
+        <div class="tplName">
+            <div class="tplName-lf"><strong>姓名</strong></div><div class="tplName-rt">雅虎</div>
+        </div>
+        <div class="tplName">
+            <div class="tplName-lf"><strong>性别</strong></div><div class="tplName-rt">男</div>
+        </div>
+        <div class="tplName">
+            <div class="tplName-lf"><strong>手机</strong></div><div class="tplName-rt">13133333333</div>
+        </div>
+        <div class="tplName">
+            <div class="tplName-lf"><strong>投递时间</strong></div><div class="tplName-rt">2021-03-09 13:28:08</div>
+        </div>
+    </div>
+</div>
+<!--弹窗end-->
+
+</div>
+
+<style>
+    .buy-bg{  position: absolute;  top: 0%;  left: 0%;  width:100%;  height: 100%;
+        background-color: black;  z-index:1001;  -moz-opacity: 0.8;  opacity:.50;  filter: alpha(opacity=50);  }
+    .buy_content {  position: absolute;  top: 25%;  left:25%;  width:50%;  height:auto;background: #fff;
+        z-index:1002;  overflow: auto;padding: 25px;  text-align: left;  }
+    .tplName{display: flex;align-items: center;padding: 15px 0;}
+    .tplName-lf{width: 10%;min-width: 60px;}
+    .tplName-rt{width: 90%;    padding-left: 10px;  color: #555;}
+    .closeup{position: absolute;  right: 10px;  top: 5px;  font-size: 23px;  line-height: 23px;  color: #333;  cursor: pointer                  }
+</style>
+<!--<script>-->
+    <!--var app = new Vue({-->
+        <!--el: '#main',-->
+        <!--data: {-->
+            <!--message: 'Hello Vue!'-->
+        <!--},-->
+        <!--methods:{-->
+            <!--hello(){-->
+                <!--alert(111);-->
+            <!--}-->
+        <!--}-->
+    <!--})-->
+<!--</script>-->
+<script type="text/javascript">
+    $(function(){
+        $('.check').click(function(){
+            $('.looker').stop().show();    //显示
+        });
+        $('.closeup').click(function(){
+            $('.looker').stop().hide();    //隐藏
+        });
+    });
+</script>
+</body>
+</html>

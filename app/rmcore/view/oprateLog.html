@@ -1,0 +1,73 @@
+{include file="/app/rmcore/view/public/hearder" /}
+<body  style="background-color:#F4F4F4;margin: 6px; overflow: hidden;border-radius: 3px" >
+<div class="page"  style="box-shadow:none;height: 100%">
+
+    {include file="/app/rmcore/view/public/bana_nav" /}
+
+    <div class="ax-margin ax-col " >
+        <div class="ax-row">
+            <div class="ax-row-2 list-tlea"><h4>管理日志</h4></div>
+            <!--<a href="/rmtop/addAdminer" class="ax-btn ax-sm ax-iconfont ax-icon-plus-t ax-primary lj-a-btn"> 新增管理员</a>-->
+        </div>
+        <div style="height: 1px;margin-bottom: 10px;background-color: gainsboro"></div>
+
+        <div class="ax-form-group">
+            <div class="ax-flex-row">
+                <div class="ax-form-con">
+                    <div class="ax-form-input">
+                        <div class="ax-row ax-input-group">
+                            <div class="ax-flex-block">
+                                <input name="username" placeholder="请输入需要检索的关键字" type="text">
+                            </div>
+                            <a href="##" class="ax-operate ax-btn ax-primary">搜索</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ax-break-md"></div>
+
+        <table class="ax-table">
+            <thead>
+            <tr style="background-color:#efefef " class="ax-shadow-border ax-radius">
+                <th>操作员</th>
+                <th>操作内容</th>
+                <th>操作IP</th>
+                <th>操作时间</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {volist name="list" id="vo"}
+            <tr style="height: 55px">
+                <td><div class="ax-align-center">{$vo.admin_id}</div></td>
+                <td><div class="ax-align-center">{$vo.content}</div></td>
+                <td><div class="ax-align-center">{$vo.client_ip}</div></td>
+                <td><div class="ax-align-center">{$vo.create_time}</div></td>
+            </tr>
+            {/volist}
+
+            </tbody>
+        </table>
+
+        <div class="ax-pagination">
+            {$list->render()|raw}
+        </div>
+    </div>
+</div>
+<script>
+    var app = new Vue({
+        el: '#main',
+        data: {
+            message: 'Hello Vue!'
+        },
+        methods:{
+            hello(){
+                alert(111);
+            }
+        }
+    })
+</script>
+</body>
+</html>

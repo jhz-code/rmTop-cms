@@ -1,0 +1,60 @@
+
+<div class="buy_content ax-radius">
+    <div class="open-head">
+        <div class="newhredup">添加分组</div>
+        <div class="closeup ax-iconfont ax-icon-close-t"></div>
+    </div>
+    <form action="/rmtop/ajaxAddConfigGroup"  method="post">
+        <div class="item show herf-main">
+            <div class="ax-break-lg"></div>
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label">分组名称：</div>
+                    <div class="ax-form-input"  style="width: 360px !important;">
+                        <input type="text" name="title" placeholder="">
+                    </div>
+                </div>
+            </div>
+            <div class="ax-break-lg"></div>
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label">分组标识：</div>
+                    <div class="ax-form-input"  style="width: 360px !important;">
+                        <input type="text" name="ident" placeholder="">
+                    </div>
+                </div>
+            </div>
+            <div class="ax-break-lg"></div>
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label">分组排序：</div>
+                    <div class="ax-form-input"  style="width: 360px !important;">
+                        <input type="text" name="sort" placeholder="">
+                    </div>
+                </div>
+            </div>
+            <div class="ax-break-lg"></div>
+            <div class="ax-break-lg"></div>
+            <input name="pid" value="" type="hidden">
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label"></div>
+                    <div class="ax-flex-block" >
+                        <div class="ax-form-input" style="width: 280px !important;">
+                            <button type="submit" class="ax-btn ax-primary ax-full">确认添加</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </form>
+</div>
+
+<script>
+    $(".closeup").click(function () {
+        $('#overlay').hide();
+        $("#ajax").empty();
+    })
+</script>

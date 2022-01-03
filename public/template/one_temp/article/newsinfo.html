@@ -1,0 +1,37 @@
+{include file="./common/hearder" /}
+
+<body>
+
+{include file="./common/topmenu" /}
+
+<div class="clearfix"></div>
+
+{include file="./common/Bread" /}
+
+<div class="mainBg box1Bg" style="padding-top: 10px">
+    <div class="container">
+        <div class="bread-crumb row">
+            <span>您的当前位置：</span><a href="{$Category.category_url}">{$Category.category_bread}</a> > <a>{$TopData.title}</a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="products_list row">
+            <div class="info_det">
+                <div class="titleas">{$TopData.title}</div>
+                <div class="tips">
+                    <div class="datse">{$TopData.create_time}</div>
+                    <div class="num">阅读量：{$TopData.views}</div>
+
+                </div>
+                <div class="info-cont">
+                    {$TopData.content|raw}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{include file="./common/footer" /}
+
+</body>
+</html>

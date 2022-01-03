@@ -1,0 +1,53 @@
+<div class="buy_content ax-radius">
+    <div class="open-head">
+        <div class="newhredup">创建规则</div>
+        <div class="closeup ax-iconfont ax-icon-close-t"></div>
+    </div>
+    <form action="/rmtop/addRules"  method="post">
+        <div id="tab1" class="item show">
+            <div class="ax-break-lg"></div>
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label">规则名称：</div>
+                    <div class="ax-form-input"><input type="text" name="title"></div>
+                </div>
+            </div>
+            <div class="ax-break-lg"></div>
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label">权限URL：</div>
+                    <div class="ax-form-input"><input type="text" name="url"></div>
+                </div>
+            </div>
+            <div class="ax-break-lg"></div>
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label">是否启用：</div>
+                    <div class="ax-form-input"><input type="text" placeholder="1 启用 0禁用" name="status"></div>
+                </div>
+            </div>
+            <input name="pid" value="" type="hidden">
+            <div class="ax-break-lg"></div>
+            <div class="ax-break-lg"></div>
+            <div class="ax-break-lg"></div>
+
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label"></div>
+                    <div class="ax-flex-block">
+                        <div class="ax-form-input"><button type="submit" class="ax-btn ax-primary ax-full">确认提交</button></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </form>
+</div>
+
+<script>
+    $(".closeup").click(function () {
+        $('#overlay').hide();
+        $("#ajax").empty();
+    })
+</script>

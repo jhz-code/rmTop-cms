@@ -1,0 +1,88 @@
+<div class="buy_content ax-radius">
+    <div class="open-head">
+        <div class="newhredup">添加参数</div>
+        <div class="closeup ax-iconfont ax-icon-close-t"></div>
+    </div>
+    <form action="/rmtop/addParams"  method="post">
+        <div class="item show herf-main">
+            <div class="ax-break-lg"></div>
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label">参数名称：</div>
+                    <div class="ax-form-input"  style="width: 360px !important;">
+                        <input type="text"  name="title" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="ax-break-lg"></div>
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label">输入类型：</div>
+                    <div class="ax-form-input"  style="width: 360px !important;">
+                        <select name="type">
+                            <option value="text">文本类型</option>
+                            <option value="textarea">文本域</option>
+                            <option value="file">上传文件/图片</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ax-break-lg"></div>
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label">参数标识：</div>
+                    <div class="ax-form-input"  style="width: 360px !important;">
+                        <input type="text" id="paramKey" name="key" placeholder="">
+                        <label id="tips" style="color: red"></label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="ax-break-lg"></div>
+            <div class="ax-break-lg"></div>
+            <input name="cid" id="cid" value="{$cid}" type="hidden">
+            <input name="sid" id="sid" value="{$sid}" type="hidden">
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label"></div>
+                    <div class="ax-flex-block" >
+                        <div class="ax-form-input" style="width: 280px !important;">
+                            <button type="submit" id="addParam" disabled="disabled" class="ax-btn disabled ax-primary ax-full">确认添加</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </form>
+</div>
+
+<script>
+    $(".closeup").click(function () {
+        $('#overlay').hide();
+        $("#ajax_params").empty();
+    })
+
+    $("#paramKey").bind('input propertychange', function() {
+        $.ajax({
+            type: "post",
+            url: "/rmtop/checkParamsKey",
+            data: {sid:$("#sid").val(),cid:$("#cid").val(),'paramKey':$("#paramKey").val()},
+            dataType: "json",
+            success: function(data){
+                if(data.code !== 1){
+                    $("#addParam").attr('disabled','disabled');
+                    $("#tips").html(data.msg);
+                }else{
+                    $("#addParam").removeAttr("disabled");
+                    $("#tips").empty();
+
+                }
+            }
+        });
+    })
+</script>

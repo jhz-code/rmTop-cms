@@ -1,0 +1,169 @@
+{include file="/app/rmcore/view/public/hearder" /}
+<body>
+
+<style>
+    .scroll-wrapper {  height: 100%;  -webkit-overflow-scrolling: touch;  overflow-y: auto;  }
+    #xh-menubar {  position: relative; overflow-y: hidden;overflow-x: auto;  height: 40px;  line-height: 40px;
+        padding: 0;  z-index: 99; box-shadow: 0px 0px 3px rgb(0 0 0 / 10%); }
+    #xh-menubar li {  cursor: pointer;  float: left;  margin-left: 2px;  }
+    #xh-menubar li {  background-color: #f6f6f6;  height: 40px;  line-height: 40px;  padding: 0 15px;
+        display: inline-block;  border-radius: 3px;  -webkit-border-radius: 3px;  -moz-border-radius: 3px;
+        -ms-border-radius: 3px;  -o-border-radius: 3px;  }
+    #xh-menubar li i:first-child {  margin: 0 2px 0 0; line-height: 37px; }
+    #xh-menubar li i {  font-size: 16px;  color: #455765;  }
+    .fa-fw {  width: 1.28571429em;  text-align: center;  }
+    .fa {  display: inline-block;  font: normal normal normal 14px/1 FontAwesome;  font-size: inherit;
+        text-rendering: auto;  -webkit-font-smoothing: antialiased;  -moz-osx-font-smoothing: grayscale;  }
+    #xh-menubar li b {  color: #999999;  margin-left: 8px;  }
+</style>
+
+<!--框架主体-->
+<div class="admincp-container unfold">
+    {include file="/app/rmcore/view/public/navslider" /}
+
+    <div class="admincp-container-right">
+
+        <div class="admincp-header ax-shadow-border" >
+            <div class="wraper">
+                <div class="admincp-header-r" style="float: none;width: 100%;padding: 3px 0;">
+                    {include file="/app/rmcore/view/public/topmenu" /}
+                    <!--<div class="manager"></div>-->
+                </div>
+            </div>
+        </div>
+
+       <div class="scroll-wrapper" >
+         <iframe src="" id="main" name="main" style="overflow-y: auto" frameborder="0" width="100%" height="95%" scrolling="yes" onload="window.parent"></iframe>
+       </div>
+
+
+            <!--footer-->
+      {include file="/app/rmcore/view/public/footer" /}
+            <!--footer-->
+    </div>
+</div>
+
+
+
+
+<script type='text/javascript'>
+    var eleMenus = $("#menu-basic a").bind("click", function(event) {
+        var query = this.href.split("#")[1];
+        if (history.pushState && query && !$(this).hasClass("childless")) {
+            $('#loading').css({"display":""});
+            setTimeout(function () {
+                $('#main').attr('src', query);
+                $('#loading').css({"display":"none"});
+            },300)
+            // history处理
+            var title = "RmTop-" + $(this).text().replace(/\d+$/, "");
+            document.title = title;
+            if (event && /\d/.test(event.button)) {
+                history.pushState({ title: title }, title, location.href.split("#")[0] + "#" + query);
+            }
+        }
+
+        return false;
+    });
+
+
+
+    var fnHashTrigger = function(target) {
+        $('#loading').css({"display":''});
+        var query = location.href.split("#")[1], eleTarget = target || null;
+        if (typeof query == "undefined") {
+            if (eleTarget == eleMenus.get(0)) {
+                // 如果没有查询字符，则使用第一个导航元素的查询字符内容
+                history.replaceState(null, document.title, location.href.split("#")[0] + "#" + eleTarget.href.split("#")[1]) + location.hash;
+            }
+        } else {
+            eleMenus.each(function() {
+                if (eleTarget === null && this.href.split("#")[1] === query) {
+                    eleTarget = this;
+                }
+            });
+
+            if (!eleTarget) {
+                // 如果查询序列没有对应的导航菜单，去除查询然后执行回调
+                history.replaceState(null, document.title, location.href);
+               // fnHashTrigger();
+                $("main").load(location.href.split("#")[1]);
+            } else {
+                $(eleTarget).trigger("click");
+            }
+        }
+        $('#loading').css({"display":'none'});
+    };
+
+    if (history.pushState) {
+        window.addEventListener("popstate", function() {
+            fnHashTrigger();
+        });
+
+        // 默认载入
+        fnHashTrigger();
+    }
+
+
+    function openNav(){
+        $('.sub-menu').find('li').removeClass('active');
+        data_str = param.split('|');
+        $this = $('div[id^="admincpNavTabs_"]').find('a[data-param="' + param + '"]');
+        if ($('.admincp-container').hasClass('unfold')) {
+            $this.parents('dd:first').show();
+        }
+        $('li[data-param="' + data_str[0] + '"]').addClass('active');
+        $this.parent().addClass('active').parents('dl:first').addClass('active').parents('div:first').show();
+        var src = eyou_basefile + '?m='+module_name+'&c=' + data_str[0] + '&a=' + data_str[1];
+        if (data_str.length%2 === 0) {
+            for (var i = 2; i < data_str.length; i++) {
+                if (i%2 == 0) {
+                    src = src + '&';
+                } else {
+                    src = src + '=';
+                }
+                src = src + data_str[i];
+            }
+        }
+        var lang = $.cookie('admin_lang');
+        if (!lang) lang = __lang__;
+        if (false != $.inArray('lang', data_str) && $.trim(lang) != '') {
+            src = src + '&lang=' + lang;
+        }
+        $('#workspace').attr('src', src);
+        $.cookie('workspaceParam', data_str[1] + '|' + data_str[0], { expires: 1 ,path:"/"});
+
+        // 循环清空选中的标记的Class
+        var SubMenuA = $('.sub-menu a');
+        SubMenuA.each(function(){
+            // 其他参数处理
+            $('#'+this.id).removeClass('on');
+            // 特殊参数处理
+            $('#'+this.id).parent().siblings().removeClass('on');
+        });
+        // 拼装ID获取到点击的ID
+        var ColorId = data_str.join('_');
+        if (0 == $('#'+ColorId).attr('data-child')) {
+            // 其他参数选项
+            $('#'+ColorId).addClass('on');
+        }else{
+            // 特殊参数处理
+            $('#'+ColorId).parent().siblings().addClass('on');
+        }
+
+    }
+
+
+
+</script>
+
+<script src="/static/rmtop/js/ax-admin01.js?v=1.1" type="text/javascript"></script>
+<style>
+    .scroll-wrapper {
+        height: 100%;
+        -webkit-overflow-scrolling: touch;
+        overflow-y: auto;
+    }
+</style>
+</body>
+</html>

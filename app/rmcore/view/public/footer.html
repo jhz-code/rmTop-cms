@@ -1,0 +1,14 @@
+
+
+<footer class="text-grey text-center mt-5 pt-5">Powered by <b>
+    <a href="{$sys.Host}" target=_blank title="CMS">{$sys.Name} {$sys.Version}</a>
+</b> ©2017-{:date("Y")}&nbsp;<a href="{$sys.Host}" target=_blank title="{$sys.Name}">{$sys.Host}</a>
+</footer>
+<script type='text/javascript'>
+    $(document).ready(function() {
+        $('#menu-basic').axMenu({cookie: true });
+        $(".ax-nav-main,main").axScroll({horizrailenabled:false});
+        $('#menuCookie').axMenu({cookie: true });
+    });
+
+</script>

@@ -1,0 +1,26 @@
+{include file="./common/hearder" /}
+
+<body>
+{include file="./common/topmenu" /}
+
+{include file="./common/Bread" /}
+
+<div class="container-fluid" style="margin:50px 0;">
+    <div class="row row-static">
+        <div class="col-md-12">
+            <div class="article-detail">
+                <h2>{$TopData.title}</h2>
+                <div class="source" style="border-bottom:1px solid #ddd;"> <span>时间：</span><em>{$TopData.create_time}</em> <em> </em> </div>
+                <div class="news-cont">
+                    {$TopData.content|raw}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{include file="./common/footer" /}
+
+</body>
+
+</html>

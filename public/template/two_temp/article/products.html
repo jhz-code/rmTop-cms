@@ -1,0 +1,44 @@
+{include file="./common/hearder" /}
+
+<body>
+{include file="./common/topmenu" /}
+
+{include file="./common/Bread" /}
+
+<div class="container-fluid" style="margin-bottom:50px;">
+    <div class="row row-static">
+        <div class="col-md-12">
+            <div>
+                <div>
+                    <div class="block-title">
+                        <h3 class="title">{$Category.category_title}</h3>
+                        <p class="sub-title"></p>
+                        <div class="line"> <span class="short-line"></span> <span class="long-line"></span> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row row-static">
+        <div class="col-md-12">
+            <div class="Webpart">
+                <div class="sys_gallery_01 gallery-3">
+                    {volist name="TopData" id="vo"}
+                    <div class="gallery-item">
+                        <a href="{$vo.url}" target="_blank"><img src="{$vo.org_img}" alt="{$vo.title}"><p class="cpname">{$vo.title}</p></a>
+                    </div>
+                    {/volist}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="pagination-wrapper">
+    {$TopData->render()|raw}
+</div>
+
+{include file="./common/footer" /}
+
+</body>
+
+</html>

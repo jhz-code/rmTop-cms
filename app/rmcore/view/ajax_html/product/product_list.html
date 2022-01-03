@@ -1,0 +1,50 @@
+
+<div class="ax-sr-page">
+    <div class="ax-row ax-align-center ">
+        <div class="ax-text list-tlea"><h4>{$column_title}</h4></div>
+        <a href="{$actions.product_add}" class="ax-btn ax-sm ax-iconfont ax-icon-plus-t ax-primary lj-a-btn">添加产品</a>
+    </div>
+
+    <table class="ax-table">
+        <thead>
+        <tr style="background-color:#efefef " class="ax-shadow-border ax-radius">
+            <th style="width:50px;"><input name="" type="checkbox" value=""></th>
+            <th>ID</th>
+            <th><div class="ax-align-left">产品名称</div></th>
+            <th>栏目</th>
+            <th>浏览量</th>
+            <th>发布时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {volist name="list" id="vo"}
+        <tr style="height: 60px">
+            <td><input name="" type="checkbox" value=""></td>
+            <td><div class="ax-align-center">{$vo.id}</div></td>
+            <td><div class="ax-align-left">{$vo.title}</div></td>
+            <td><div class="ax-align-center">{$vo.column_title}</div></td>
+            <td><div class="ax-align-center">{$vo.views}</div></td>
+            <td><div class="ax-align-center">{$vo.create_time}</div></td>
+            <td>
+                <div class="ax-operate">
+                    <a href="{:previewUrl($vo.uqid,$vo.col_id,$vo.title)}" target="_blank" class="ax-iconfont ax-icon-eye-fill" title="查看"></a>
+                    <a href="{$actions.product_edit}&id={$vo.id}" class="ax-iconfont ax-icon-editing-fill" title="编辑"></a>
+                    <a href="{$actions.product_delete}&id={$vo.id}" class="ax-iconfont ax-icon-trash-alt-fill" title="删除"></a>
+                </div>
+            </td>
+        </tr>
+        {/volist}
+        </tbody>
+
+
+    </table>
+
+    <div class="ax-pagination">
+        {$list->render()|raw}
+    </div>
+</div>
+
+
+</div>

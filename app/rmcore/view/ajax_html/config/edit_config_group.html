@@ -1,0 +1,60 @@
+
+<div class="buy_content ax-radius">
+    <div class="open-head">
+        <div class="newhredup">编辑分组</div>
+        <div class="closeup ax-iconfont ax-icon-close-t"></div>
+    </div>
+    <form action="/rmtop/editConfigGroup"  method="post">
+        <div class="item show herf-main">
+            <div class="ax-break-lg"></div>
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label">分组名称：</div>
+                    <div class="ax-form-input"  style="width: 360px !important;">
+                        <input type="text" name="title" value="{$group.title}" placeholder="">
+                    </div>
+                </div>
+            </div>
+            <div class="ax-break-lg"></div>
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label">分组标识：</div>
+                    <div class="ax-form-input"  style="width: 360px !important;">
+                        <input type="text" value="{$group.ident}"  name="ident" placeholder="">
+                    </div>
+                </div>
+            </div>
+            <div class="ax-break-lg"></div>
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label">分组排序：</div>
+                    <div class="ax-form-input"  style="width: 360px !important;">
+                        <input type="text" value="{$group.sort}" name="sort" placeholder="">
+                    </div>
+                </div>
+            </div>
+            <div class="ax-break-lg"></div>
+            <div class="ax-break-lg"></div>
+            <input name="id"  value="{$group.id}" type="hidden">
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label"></div>
+                    <div class="ax-flex-block" >
+                        <div class="ax-form-input" style="width: 280px !important;">
+                            <button type="submit" class="ax-btn ax-primary ax-full">保存编辑</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </form>
+</div>
+
+<script>
+    $(".closeup").click(function () {
+        $('#overlay').hide();
+        $("#ajax").empty();
+    })
+</script>

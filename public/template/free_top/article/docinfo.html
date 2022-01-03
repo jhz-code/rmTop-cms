@@ -1,0 +1,66 @@
+
+{include file="./common/hearder" /}
+<body class="bg_index ">
+
+{include file="./common/topmenu" /}
+
+
+{include file="./common/Bread" /}
+
+
+
+<div class="RMw-bage RMw-bage-listPage" style="display: block;padding-top: 40px;background: #f1f4f9;padding-bottom: 50px;">
+    <div class="r-tWrap">
+        <div class="lw-mas">
+            <ul class="ct-lettList">
+                {RmTop:MenuList group_id="8"  limit ="9"   name="vo" }
+                <li class="wd-Item"  {if $vo.column_id == $CurrentColumnId} class="current" {/if} ><a  href="{$vo.url}">{$vo.title}</a></li>
+                {/RmTop:MenuList}
+            </ul>
+        </div>
+        <div class="Rlt">
+            <div class="RltArticle" style="display: block;">
+                <div class="RltArticleWrap">
+                    <div class="RltArticle-header">
+                        <!-- nav start -->
+                        <div class="RltNavWrap">
+                            <ul class="rms-tlest">
+                                <li class="rms-tlest-item"><a href="/">首页</a></li>
+                                <li class="rms-tlest-item"><span class="f-arrow">/</span></li>
+                                <li class="rms-tlest-item"><a href="{$Category.category_url}">{$Category.category_bread}</a></li>
+                                <li class="rms-tlest-item"><span class="f-arrow">/</span></li>
+                                <li class="rms-tlest-item bv-curtiem rms-tlest-wrap-item ellipsis"><span>{$TopData.title}</span></li>
+                            </ul>
+                        </div>
+                        <!-- nav end -->
+
+                    </div>
+                    <div class="RltArticle-titleWrap">
+                        <div style="position: relative;">
+                            <h1 class="RltArticle-title ellipsis">{$TopData.title}</h1>
+                        </div>
+                        <p class="RltArticle-time"> {$TopData.create_time} </p>
+                    </div>
+
+                    <div class="RltArticle-desc viewDetail" id="viewDetail">
+                        {$TopData.content|raw}
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{include file="./common/footer" /}
+
+
+</body>
+</html>
+
+
+
+
+

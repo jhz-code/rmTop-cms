@@ -1,0 +1,30 @@
+{include file="/app/rmcore/view/public/hearder" /}
+
+<body  style="background-color:#F4F4F4;margin: 6px; overflow: hidden;border-radius: 3px" >
+<div class="page"  style="box-shadow:none;height: 100%">
+    <div class="ax-margin ax-col ">
+        <div class="panel-head">
+            <h3>{$info.title}</h3>
+            <p> {$info.create_time}</p>
+        </div>
+        <div style="height: 1px;margin-bottom: 10px;background-color: gainsboro"></div>
+        <div class="biaqud">
+              {$info.content}
+        </div>
+        <div class="ax-form-group" style="margin: 10px auto;text-align: center">
+            <div class="ax-form-input" style="width: 150px;margin: auto">
+                <button type="button" class="ax-btn ax-primary ax-iconfont ax-icon-dot-left ax-full" onclick="javascript:history.back(-1);"> 返回列表</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .panel-head {  padding: 15px;  border-radius: 4px 4px 0 0;  font-size: 16px;text-align: center;  }
+    .panel-head h3{font-size: 18px;font-weight: normal;margin-bottom: 0}
+    .panel-head p{font-size: 12px;color: #888;}
+    .biaqud p{  font-size: 13px;  line-height: 25px;letter-spacing:1px;text-align: left;  }
+    .biaqud p img{  width: auto;max-width: 90%;  height: auto;max-height: 800px;  }
+</style>
+</body>
+</html>

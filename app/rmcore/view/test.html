@@ -1,0 +1,47 @@
+{include file="/app/rmcore/view/public/hearder" /}
+
+<div class="ax-sr-page">
+<div style=" height: 60%">
+    <div class="ax-margin ax-col " >
+
+        <div class="ax-margin-tb">
+            <a href="/rmtop/addColumn" class="ax-btn ax-sm  ax-iconfont ax-icon-plus-t ax-primary ax-iconfont ax-icon-plus">添加栏目</a>
+            <a href="#" class="ax-btn ax-sm ax-primary">批量添加</a>
+        </div>
+
+        <table class="ax-table  ax-padding ax-hover">
+            <thead>
+            <tr style="background-color: #efefef">
+                <th class=" ax-margin-lr">ID</th><th class=" ax-margin-lr">排序</th>
+                <th class=" ax-align-left">栏目名称</th><th class=" ax-margin-lr">栏目模型</th>
+                <th class=" ax-margin-lr">操作</th>
+            </tr>
+
+            </thead>
+            <tbody>
+            {volist name="column_list" id="vo"}
+            <tr height="50px">
+                <td width="8%" >{$vo.id}</td>
+                <td>{$vo.sort}</td>
+                <td width="20%" class="ax-align-left">{$vo.title}</td>
+                <td>单页模型{$vo.model}</td>
+                <td>
+                    <a href="">内容</a>
+                    <a href="">编辑</a>
+                    <a href="">添加子栏目</a>
+                    <a href="">删除</a>
+                    <a href="">浏览</a>
+                </td>
+            </tr>
+            {/volist}
+
+            </tbody>
+        </table>
+
+
+    </div>
+
+</div>
+
+</div>
+</body>

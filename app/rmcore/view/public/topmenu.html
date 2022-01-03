@@ -1,0 +1,55 @@
+<div style="width: 200px;height:48px;">
+   <div id="userInfo" style="line-height: 48px;cursor: pointer;position: absolute;right: 30px" onmouseover="pic()" onmouseout="nopic()">
+       <img style="margin-right: 10px" class="ax-avatar ax-radius" src="/static/ax_v1.0.2/images/login-lpgo.png" ></img>
+       <span id="nickname">{$adminInfo.username}</span>
+   </div>
+</div>
+
+
+<div class="ax-usera" id="works_m" onmouseover="stop()" onmouseout="nopic()">
+    <div class="ax-arrowes"></div>
+    <div class="ax-popup-contentes">
+        <a data-url="/rmtop/adminList" class="ax-info-block" style="cursor: pointer">个人信息</a>
+        <div class="ax-break-line"></div>
+        <a data-url="/rmtop/systemMessage" class="ax-info-block" style="cursor: pointer">站内消息</a>
+        <div class="ax-break-line"></div>
+        <a href="/rmtop/loginOut" class="ax-info-block" style="cursor: pointer">安全退出</a>
+    </div>
+</div>
+
+
+
+<script>
+    $('#works_m').find("a").click(function (evt){
+        evt.preventDefault();
+        if($(this).attr('data-url')){
+            $("#main").attr('src',$(this).attr('data-url'));
+        }else{
+            window.location.href = $(this).attr('href');
+        }
+    });
+</script>
+
+<style>
+    .ax-usera{min-width: 100px;  background-color: #fff;  background-clip: padding-box;-webkit-background-clip: padding-box;
+        border: 1px solid #ebebeb;  border-radius: 3px;  text-align: center;  white-space: normal;  padding: 0;
+        box-shadow: 0 5px 10px rgb(0 0 0 10%);  position: absolute;  top:27px;  right: 15px;  z-index: 9999;
+        display: none;margin-top:15px;}
+    .ax-usera .ax-arrowes{ position: absolute;  margin-top: -10px;  left: 35px;  width: 0;  z-index: 20;  height: 0;
+        border-width: 0 10px 13px;  border-style: solid;  border-color: transparent transparent #ddd;  }
+    .ax-usera .ax-arrowes:after { content: "";  position: absolute;  top: 2px;  left: -10px;  border-width: 0 10px 11px;
+        border-style: solid;  border-color: transparent transparent #fff;  }
+    .ax-usera .ax-popup-contentes {overflow: hidden;  outline: none;padding: 0;max-width: 500px;  max-height: 600px;
+        box-sizing: border-box;  display: block;  }
+    .ax-info-block {  line-height: 22px;  padding: calc((38px - 22px)/2) 14px;
+        display: block;  transition: all 0.1s linear;  position: relative;  }
+    .ax-break-line {  height: 1px;  overflow: hidden;  background-color: #ebebeb;  }
+</style>
+
+<script>
+    function pic(){works_m.style.display="block";}
+    function nopic(){timer=setTimeout(function(){works_m.style.display="none";});}
+    function stop(){clearTimeout(timer);}
+</script>
+
+

@@ -1,0 +1,114 @@
+<div id="ajax" class="ajax"></div>
+<div id="page">
+    <div class="ax-row">
+        <a class="addgroup ax-btn ax-sm ax-iconfont ax-icon-plus-t ax-primary lj-a-btn"  data-url="/rmtop/addCategory?col_id={$col_id}"
+           style="margin-top: 0 !important;"> 添加广告</a>
+    </div>
+
+    <div style="height: 1px;margin-bottom: 10px;"></div>
+    <table class="ax-table">
+        <thead>
+        <tr style="background-color: #efefef">
+            <th class=" ax-margin-lr">ID</th>
+            <th class=" ax-margin-lr">父级名称</th>
+            <th class=" ax-margin-lr">分类名称</th>
+            <th class=" ax-margin-lr">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {volist name="list" id='vo'}
+
+        <tr height="50px">
+            <td><div class="ax-align-center">{$vo.id}</div></td>
+            <td><div class="ax-align-center">{$vo.pid}</div></td>
+            <td><div class="ax-align-center">{$vo.title}</div></td>
+            <td>
+                <div class="ax-operate">
+                    <a data-url="/rmtop/editCategory?id={$vo.id}&col_id={$vo.col_id}" class="ax-iconfont ax-icon-editing-fill rm-model" title="编辑"></a>
+                    <a href="/rmtop/deleteCategory?id={$vo.id}&col_id={$vo.col_id}" class="ax-iconfont ax-icon-trash-alt-fill" title="删除"></a>
+                </div>
+            </td>
+        </tr>
+        {/volist}
+
+        </tbody>
+    </table>
+
+
+    <div class="ax-pagination">
+        {$list->render()|raw}
+    </div>
+
+</div>
+
+<script>
+    $('.addgroup').click(function (){
+        $('body').append('<div id="overlay"></div>');
+        $('#overlay').height($(document).height()).css({
+            'opacity': .6, //透明度
+            'position': 'absolute',
+            'top': 0,
+            'left': 0,
+            'background-color': 'black',
+            'width': '100%',
+            'z-index': 9 //保证这个悬浮层位于其它内容之上
+
+        }).fadeIn('slow');
+        $("#ajax").load($(this).attr('data-url'));
+        $("#ajax").css({'z-index':10})
+    });
+
+
+
+    $('.ax-operate .rm-model').click(function (){
+        $('body').append('<div id="overlay"></div>');
+        $('#overlay').height($(document).height()).css({
+            'opacity': .6, //透明度
+            'position': 'absolute',
+            'top': 0,
+            'left': 0,
+            'background-color': 'black',
+            'width': '100%',
+            'z-index': 9 //保证这个悬浮层位于其它内容之上
+
+        }).fadeIn('slow');
+        $("#ajax").load($(this).attr('data-url'))
+        $("#ajax").css({'z-index':10})
+    });
+
+
+    $('.ax-pagination .pagination li a').click(function (evt){
+        evt.preventDefault();
+        $("#page").html()
+        $("#page").load($(this).attr('href'))
+    });
+
+</script>
+
+<style>
+
+    #tabs {  overflow: hidden;  width: 100%;  margin: 0;  padding: 0;  list-style: none;  }
+    #tabs li {  float: left;  margin-left: 14px;  height: 40px;  line-height: 40px;cursor: pointer ;width: 100px;  }
+    li span {  position: relative;  font-size: 16px;  }
+    .current li{  outline: 0;  color: #3398cc;  border-bottom: 1px solid #3398cc;    }
+    .current span{  outline: 0;  color: #3398cc;  border-bottom: 1px solid #3398cc;  }
+    .current span:before{content: '';position: absolute;bottom: 0;left: 2px;width: 95%;
+        height: 2px;background: #3398cc;border-radius: 30px;}
+    #content {  background: #fff;  padding: 30px 0 25px;  position: relative;  }
+    .item{  display: none;  }
+    .show{  display: block;  }
+    .ax-form-label{width: 95px !important;justify-content: flex-start !important;padding-left: 0;}
+    .buy_content {  position: absolute;  top: 2%;  left:18%;  width:575px;  height:auto;background: #fff;
+        z-index:1002;  overflow: auto;padding: 15px;  text-align: left;border-radius: 5px;  }
+    .herf-main{background: #fff;padding: 10px;position: relative}
+    .open-head{display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;
+        position: relative;padding-bottom: 10px;}
+    .newhredup{font-size: 15px;color: #333}
+    .closeup{position:relative;font-size: 23px;line-height: 25px;color: #333;cursor: pointer}
+    .closeup2{position:relative;font-size: 23px;line-height: 25px;color: #333;cursor: pointer}
+    .tab-ligh{width: 120px;height: 28px;line-height: 28px;display: flex;align-items: center;
+        border: 1px solid #ddd;margin-top: 3px;  background-color: #f8f8f8;  padding: 0;border-radius: 0 4px 4px 0;}
+    .tab-ligh li{width: 50%;text-align: center;cursor: pointer}
+    .lighten{background: #198cff;color: #fff}
+</style>

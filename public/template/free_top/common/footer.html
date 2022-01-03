@@ -1,0 +1,118 @@
+<!--底部-->
+<div class="w100 clearfix overflow boder-t" xmlns="http://www.w3.org/1999/html">
+    <div class="wrap overflow pt20 wow fadeInUp animated  zoomInDow">
+        <dl>
+            <dt class="fl l-26 f16 tl">友情链接:</dt>
+            <dd class="tl l-24">
+            {RmTop:MenuList group_id="9"  limit ="5"   name="vo" }
+                <a href="{$vo.url}" target="_blank" class="ml15">{$vo.title}</a>
+            {/RmTop:MenuList}
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<div class="copy_bg  clearfix mt20  wow fadeInUp animated">
+    <div class="wrap overflow">
+        <div class="w810 fl ">
+            <ol class="w100 clearfix overflow">
+                {RmTop:MenuList group_id="7"  limit ="9"   name="vo" }
+                <a href="{$vo.url}">{$vo.title}</a>  |
+                {/RmTop:MenuList}
+            </ol>
+
+            <dl>
+                <dt><img src="{RmTop:TopInfo  TopKey='web_logo' /}" class="zuob-s"></dt>
+                <dd>
+                    联系地址：{RmTop:TopInfo  TopKey="kefu_adress" /}<br>
+                    客服热线：{RmTop:TopInfo  TopKey="kefu_mobile" /}<br>
+                    {RmTop:TopInfo  TopKey="web_icp" /}<br>
+                </dd>
+            </dl>
+
+        </div>
+
+        <div class="w272 fr overflow">
+            <ul>
+                <li><img src='{RmTop:TopContentInfo sid = "1" TopType="single" TopKey="weixinewm"}'>官方微信</li>
+                <li><img src='{RmTop:TopContentInfo sid = "1" TopType="single" TopKey="kefu_weixin"}'>客服微信</li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="copyright overflow clearfix">Copyright© 2017-{:date("Y")}  <a href="{$sys.Host}" type="_blank" style="color: #7E7F83">{$sys.Name}-{$sys.Version}</a>  {$sys.Copyright} 版权所有 All rights reserved</div>
+</div>
+
+<!--侧边客服-->
+<div class="suspension">
+    <div class="suspension-box">
+        <a href="javascript:" class="a a-service-phone "><i class="i"></i></a>
+        <a href="javascript:" class="a a-qrcode"><i class="i"></i></a>
+        <a href="javascript:" class="a a-top"><i class="i"></i></a>
+        <div class="d d-service-phone" style="min-height: 45px">
+            <i class="arrow"></i>
+            <div class="inner-box" style="padding: 0">
+                <div class="d-service-item clearfix">
+                    <div class="text">
+                        <p class="red number">{RmTop:TopInfo  TopKey="kefu_mobile" /}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d d-qrcode">
+            <i class="arrow"></i>
+            <div class="inner-box">
+                <div class="qrcode-img"><img src='{RmTop:TopContentInfo sid = "1" TopType="single" TopKey="kefu_weixin"}' alt=""></div>
+                <p class="jisu-ke">技术客服</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        /* ----- 侧边悬浮 ---- */
+        $(document).on("mouseenter", ".suspension .a", function(){
+            var _this = $(this);
+            var s = $(".suspension");
+            var isServicePhone = _this.hasClass("a-service-phone");
+            var isQrcode = _this.hasClass("a-qrcode");
+            if(isServicePhone){ s.find(".d-service-phone").show().siblings(".d").hide();}
+            if(isQrcode){ s.find(".d-qrcode").show().siblings(".d").hide();}
+        });
+        $(document).on("mouseleave", ".suspension, .suspension .a-top", function(){
+            $(".suspension").find(".d").hide();
+        });
+        $(document).on("mouseenter", ".suspension .a-top", function(){
+            $(".suspension").find(".d").hide();
+        });
+        $(document).on("click", ".suspension .a-top", function(){
+            $("html,body").animate({scrollTop: 0});
+        });
+        $(window).scroll(function(){
+            var st = $(document).scrollTop();
+            var $top = $(".suspension .a-top");
+            if(st > 400){
+                $top.css({display: 'block'});
+            }else{
+                if ($top.is(":visible")) {
+                    $top.hide();
+                }
+            }
+        });
+    });
+
+    //360
+    (function(){
+        var src = "https://s.ssl.qhres2.com/ssl/ab77b6ea7f3fbf79.js";
+        document.write('<script src="' + src + '" id="sozz"><\/script>');
+    })();
+
+</script>
+
+
+
+

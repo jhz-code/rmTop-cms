@@ -1,0 +1,36 @@
+
+{include file="./common/hearder" /}
+
+<body class="bg_index ">
+
+{include file="./common/topmenu" /}
+
+
+{include file="./common/Bread" /}
+
+
+<div class="wrap overflow clearfix pt15 lj_list tl" style="padding: 2px 10px;">
+    当前位置：<a href="{$Category.category_url}">{$Category.category_bread}</a> >
+    {$TopData.title}
+</div>
+
+<div class="wrap overflow clearfix pt25"  style="background: #fff;padding:30px 20px;margin-bottom: 20px;">
+
+    <div class="bt pt10 nes-he">
+        {$TopData.content|raw}
+    </div>
+
+    <div class="fenpian">
+        <ul>
+
+        </ul>
+    </div>
+</div>
+
+
+
+{include file="./common/footer" /}
+
+
+</body>
+</html>

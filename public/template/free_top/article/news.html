@@ -1,0 +1,41 @@
+
+{include file="./common/hearder" /}
+
+<body class="bg_index ">
+
+{include file="./common/topmenu" /}
+
+
+{include file="./common/Bread" /}
+
+
+
+<div class="wrap overflow clearfix pest_list_news" style="background: #fff; margin: 20px auto;padding: 0 20px;">
+
+    {volist name="TopData" id="vo"}
+    <dl>
+        <dd><img src="{$vo.org_img}" width="286" height="174"></dd>
+        <dt>
+            <a href="{$vo.url}">
+                <h1>{$vo.title}</h1>
+                <p>{$vo.seo_des}</p>
+                <span>{$vo.create_time}</span>
+            </a>
+        </dt>
+    </dl>
+    {/volist}
+
+    {$TopData->render()|raw}
+
+</div>
+
+<div class="page overflow clearfix" style="margin: 20px auto;">
+
+</div>
+
+
+{include file="./common/footer" /}
+
+
+</body>
+</html>

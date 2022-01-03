@@ -1,0 +1,271 @@
+{include file="/app/rmcore/view/public/hearder" /}
+
+<body  style="overflow: auto;border-radius: 3px;">
+
+<div class="tab-contain" style="margin-top: 10px;">
+    <!-- tab栏 -->
+    <ul id="tabs">
+        <li class="current"><span title="tab1">单页参数</span></li>
+        <li><span  title="tab2">富文本类型</span></li>
+    </ul>
+
+    <div style="height: 1px;background-color: gainsboro"></div>
+    <!-- 对应显示内容 -->
+    <form action="{$actions.single_request_edit}"  method="post">
+        <input name="col_id" value="{$list.col_id}" type="hidden">
+        <input name="id" value="{$list.id}" type="hidden">
+        <div class="ajax" id="ajax_params"></div>
+        <div id="contents">
+
+            <div id="tab1" class="item show">
+
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <div class="ax-form-label"></div>
+                        <div class="ax-flex-block">
+                            <div class="ax-form-input"><button type="button" id="addParams" class="ax-btn ax-primary">添加参数</button></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ax-break-lg"></div>
+                <div class="ax-break-lg"></div>
+
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <div class="ax-form-label">页面ID：</div>
+                        <div class="ax-form-con">
+                            <div class="ax-form-input">
+                                <label style="line-height: 38px;font-size: 18px">{$list.id}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ax-break-lg"></div>
+
+
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <div class="ax-form-label">阅读权限：</div>
+                        <div class="ax-form-con">
+                            <div class="ax-form-input">
+                                <select name="access">
+                                    <option value="0">开放阅读</option>
+                                    <option value="1">待审核稿件</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ax-break-lg"></div>
+
+
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <span class="ax-form-label">TGA标签：</span>
+                        <div class="ax-form-input"><input name="tags" value="{$list.tags}" type="text"></div>
+                    </div>
+                </div>
+
+
+                <div class="ax-break-lg"></div>
+
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <span class="ax-form-label">SEO标题：</span>
+                        <div class="ax-form-input"><input name="seo_title" value="{$list.seo_title}" type="text"></div>
+                    </div>
+                </div>
+                <div class="ax-break-lg"></div>
+
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <span class="ax-form-label">SEO关键词：</span>
+                        <div class="ax-form-input"><input name="seo_key" value="{$list.seo_key}" type="text"></div>
+                    </div>
+                </div>
+                <div class="ax-break-lg"></div>
+
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <span class="ax-form-label">SEO描述：</span>
+                        <div class="ax-form-input">
+                            <textarea name="seo_des" cols="" rows="" placeholder="写评论">{$list.seo_des}</textarea>
+                        </div>
+                    </div>
+                </div>
+
+
+            <!--额外参数配置开始-->
+                <div class="ax-break-lg"></div>
+                {include file="/app/rmcore/view/public/params_form_del" /}
+                <div class="ax-break-lg"></div>
+                <div class="ax-break-lg"></div>
+
+            </div>
+
+            <div id="tab2" class="item">
+                <div class="ax-break-lg"></div>
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <div class="ax-form-label">{$column_title}：</div>
+                        <div style="position: relative;width:700px ">
+                            <div id="content" class=""></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ax-break-lg"></div>
+
+                <div class="ax-break-lg"></div>
+                <div class="ax-break-lg"></div>
+
+                <input name="col_id" value="{$column_id}" type="hidden">
+
+            </div>
+
+
+            <div class="ax-break-lg"></div>
+
+            <div class="ax-break-lg"></div>
+
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label"></div>
+                    <div class="ax-flex-block">
+                        <div class="ax-form-input"><button type="submit" class="ax-btn ax-primary ax-full">确认提交</button></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+
+</div>
+</body>
+<style>
+
+    #tabs {  overflow: hidden;  width: 100%;  margin: 0;  padding: 0;  list-style: none;  }
+    #tabs li {  float: left;  margin-left: 14px;  height: 40px;  line-height: 40px;cursor: pointer ;width: 100px;  }
+    #contents {  background: #fff;  padding: 30px 0 25px;  position: relative;  }
+
+    li span {  position: relative;  font-size: 16px;  }
+    .current li{  outline: 0;  color: #3398cc;  border-bottom: 1px solid #3398cc;    }
+    .current span{  outline: 0;  color: #3398cc;  border-bottom: 1px solid #3398cc;  }
+    .current span:before{content: '';position: absolute;bottom: 0;left: 2px;width: 95%;
+        height: 2px;background: #3398cc;border-radius: 30px;}
+    #content {  background: #fff;  padding: 30px 0 25px;  position: relative;  }
+    .item{  display: none;  }
+    .show{  display: block;  }
+    .ax-form-label{width: 95px !important;justify-content: flex-start !important;padding-left: 0;}
+    .ax-form-input{width: 700px !important;}
+    /*.ax-flex-block, .ax-flex-block-1{flex: 0.23}*/
+    /*.label-name{flex: 1 !important;}*/
+
+    .buy-bg{  position: absolute;  top: 0%;  left: 0%;  width:100%;  height: 100%;
+        background-color: black;  z-index:1001;  -moz-opacity: 0.8;  opacity:.50;  filter: alpha(opacity=50);  }
+    .buy_content {  position: absolute;  top: 15%;  left:28%;  width:575px;  height:auto;background: #fff;
+        z-index:1002;  overflow: auto;padding: 15px;  text-align: left;  }
+    .herf-main{background: #fff;padding: 10px;position: relative}
+    .open-head{display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;
+        position: relative;padding-bottom: 10px;}
+    .newhredup{font-size: 15px;color: #333}
+    .closeup{position:relative;font-size: 23px;line-height: 23px;color: #333;cursor: pointer}
+    .closePz{position:relative;font-size: 23px;line-height: 23px;color: #333;cursor: pointer}
+    .tab-ligh{width: 120px;height: 28px;line-height: 28px;display: flex;align-items: center;
+        border: 1px solid #ddd;margin-top: 3px;  background-color: #f8f8f8;  padding: 0;border-radius: 0 4px 4px 0;}
+    .tab-ligh li{width: 50%;text-align: center;cursor: pointer}
+    .lighten{background: #198cff;color: #fff}
+
+    .ax-menu-page .ax-item{padding: 0 30px !important;background-color: #eee;color: #666}
+    .ax-menu-page .ax-item.ax-active {  color: #333 !important;background: #fff  }
+</style>
+
+
+<script type="text/javascript">
+
+    if ($.cookie('single_tab_current')!= null){
+        let num = $.cookie("single_tab_current");
+        $('#tabs li').removeClass("current").removeClass("hoverItem");
+        $("#tabs li ").find("span").eq(num).parent().addClass("current");
+        $("#contents div").removeClass("show");
+        if(num == 0){
+            $("#tab1").addClass('show')
+        }else{
+            $("#tab2").addClass('show')
+        }
+    }else{
+        let num = 0;
+        $('#tabs li').removeClass("current").removeClass("hoverItem");
+        $("#tabs li ").find("span").eq(num).parent().addClass("current");
+        $("#contents div").removeClass("show");
+        $("#tab1").addClass('show')
+    }
+
+
+    $('#tabs li span').click(function(e) {
+        e.preventDefault();
+        $('#tabs li').removeClass("current").removeClass("hoverItem");
+        $(this).parent().addClass("current");
+        $("#contents div").removeClass("show");
+        $('#' + $(this).attr('title')).addClass('show');
+        let index = $("#tabs li ").find("span").index(this);
+        $.cookie('single_tab_current',index);
+    });
+
+
+      $("#addParams").click(function () {
+            $('body').append('<div id="overlay"></div>');
+            $(".buy_content").show()
+            $('#overlay').height($(document).height()).css({
+                'opacity': .6, //透明度
+                'position': 'absolute',
+                'top': 0,
+                'left': 0,
+                'background-color': 'black',
+                'width': '100%',
+                'z-index': 9 //保证这个悬浮层位于其它内容之上
+            }).fadeIn('slow');
+            $('#ajax_params').load("/rmtop/addParams?sid={$list.id}&cid={$list.col_id}");//初始化加载页面
+            $("#ajax").css({'z-index':10})
+        })
+
+    $(".delete_param").click(function () {
+        $.ajax({
+            type: "post",
+            url: "/rmtop/deleteParams",
+            data: {id:$(this).attr('data-id'), cid:"{$list.col_id}",'pid':$(this).attr('data-proid')},
+            dataType: "json",
+            success: function(data){
+                if(data.code === 1){
+                    location.href = data.url;
+                }
+            }
+        });
+    })
+</script>
+
+
+<script charset="utf-8" src="/static/neditor/neditor.config.js"></script>
+<script charset="utf-8" src="/static/neditor/neditor.all.js"></script>
+<script charset="utf-8" src="/static/neditor/neditor.service.js"></script>
+<script>
+    var ue =  UE.getEditor("content",{
+        autoHeight: false,
+        initialFrameHeight:400,
+        initialFrameWidth:window.screen.width/2.2,
+    });
+
+    ue.ready(function() {
+        //设置编辑器的内容
+        /**
+         * @param $list 双引号 有bug
+         */
+        ue.setContent('{$list.text|raw}');
+    });
+
+
+</script>
+
+

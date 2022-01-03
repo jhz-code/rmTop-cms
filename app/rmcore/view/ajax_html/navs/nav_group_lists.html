@@ -1,0 +1,87 @@
+<div id="ajax" class="ajax"></div>
+<div id="page">
+
+<div class="ax-row">
+    <a class="addgroup ax-btn ax-sm ax-iconfont ax-icon-plus-t ax-primary lj-a-btn"  data-url="/rmtop/add_nav_category"
+       style="margin-top: 0 !important;"> 创建导航分组</a>
+</div>
+
+    <div style="height: 1px;margin-bottom: 10px;background-color: gainsboro"></div>
+    <table class="ax-table">
+        <thead>
+        <tr style="background-color:#efefef " class="ax-shadow-border ax-radius">
+            <th style="width:50px;"><input name="" type="checkbox" value=""></th>
+            <th>ID</th>
+            <th>名称</th>
+            <th>排序</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {volist name="navGroups" id='vo'}
+        <tr style="height: 60px">
+            <td><input name="" type="checkbox" value=""></td>
+            <td><div class="ax-align-center">{$vo.id}</div></td>
+            <td><div class="ax-align-center">{$vo.title}</div></td>
+            <td><div class="ax-align-center">{$vo.sort}</div></td>
+            <td>
+                <div class="ax-operate">
+                    <a  data-url="/rmtop/edit_nav_category?id={$vo.id}"  class="ax-iconfont ax-icon-editing-fill rm-model" title="编辑"></a>
+                    <a href="/rmtop/delete_nav_group?id={$vo.id}" class="ax-iconfont ax-icon-trash-alt-fill" title="删除"></a>
+                </div>
+            </td>
+
+        </tr>
+        {/volist}
+        </tbody>
+    </table>
+
+    <div class="ax-pagination">
+        {$navGroups->render()|raw}
+    </div>
+</div>
+
+<script>
+    $('.addgroup').click(function (){
+        $('body').append('<div id="overlay"></div>');
+        $('#overlay').height($(document).height()).css({
+            'opacity': .6, //透明度
+            'position': 'absolute',
+            'top': 0,
+            'left': 0,
+            'background-color': 'black',
+            'width': '100%',
+            'z-index': 9 //保证这个悬浮层位于其它内容之上
+
+        }).fadeIn('slow');
+        $("#ajax").load($(this).attr('data-url'))
+        $("#ajax").css({'z-index':10})
+    });
+
+
+
+    $('.ax-operate .rm-model').click(function (){
+        $('body').append('<div id="overlay"></div>');
+        $('#overlay').height($(document).height()).css({
+            'opacity': .6, //透明度
+            'position': 'absolute',
+            'top': 0,
+            'left': 0,
+            'background-color': 'black',
+            'width': '100%',
+            'z-index': 9 //保证这个悬浮层位于其它内容之上
+
+        }).fadeIn('slow');
+        $("#ajax").load($(this).attr('data-url'))
+        $("#ajax").css({'z-index':10})
+    });
+
+
+    $('.ax-pagination .pagination li a').click(function (evt){
+        evt.preventDefault();
+        $("#page").html()
+        $("#page").load($(this).attr('href'))
+    });
+
+</script>

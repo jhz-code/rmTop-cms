@@ -1,0 +1,42 @@
+{include file="/app/rmcore/view/public/hearder" /}
+
+<body  style="background-color:#F4F4F4;margin: 6px; overflow: hidden;border-radius: 3px" >
+<div class="page"  style="box-shadow:none;height: 100%">
+    {include file="/app/rmcore/view/public/bana_nav" /}
+    <div class="ax-margin ax-col " >
+        <div class="ax-row">
+            <div class="ax-row-2 list-tlea"><h4>访问日志</h4></div>
+        </div>
+        <div style="height: 1px;margin-bottom: 10px;background-color: gainsboro"></div>
+
+        <table class="ax-table">
+            <thead>
+            <tr style="background-color:#efefef " class="ax-shadow-border ax-radius">
+                <th>访客</th>
+                <th><div class="ax-align-left">入口页面</div></th>
+                <th>访问设备</th>
+                <th>访问ip</th>
+                <th>访问时间</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {volist name="list" id="vo"}
+            <tr style="height: 55px">
+                <td><div class="ax-align-center">{$vo.bot}</div></td>
+                <td><div class="ax-align-left" style="max-width: 550px">{$vo.from_page}</div></td>
+                <td><div class="ax-align-center">{$vo.agent}</div></td>
+                <td><div class="ax-align-center">{$vo.client_ip}</div></td>
+                <td><div class="ax-align-center">{$vo.create_time}</div></td>
+            </tr>
+            {/volist}
+            </tbody>
+        </table>
+
+        <div class="ax-pagination">
+            {$list->render()|raw}
+        </div>
+    </div>
+</div>
+</body>
+</html>

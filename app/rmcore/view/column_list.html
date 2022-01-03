@@ -1,0 +1,87 @@
+{include file="/app/rmcore/view/public/hearder" /}
+
+<body  style="background-color:#F4F4F4;margin: 6px; overflow: hidden;border-radius: 3px" >
+
+<div class="page"  style="box-shadow:none;height: 100%">
+    {include file="/app/rmcore/view/public/bana_nav" /}
+
+    <div id="page">
+
+    <div class="ax-margin ax-col " >
+       <div class="ax-margin-tb">
+           <a href="/rmtop/addColumn" class="ax-btn ax-sm  ax-primary ax-iconfont ax-icon-plus-t ax-iconfont ax-icon-plus">添加栏目</a>
+       </div>
+
+       <table class="ax-table  ax-padding ax-hover">
+           <thead>
+           <tr style="background-color: #efefef">
+               <th style="width:50px;"><input name="" type="checkbox" value=""></th>
+               <th class=" ax-margin-lr">ID</th>
+               <th class=" ax-align-left">栏目名称</th>
+               <th class=" ax-margin-lr">栏目模型</th>
+<!--               <th class=" ax-margin-lr">排序</th>-->
+               <th class=" ax-margin-lr">操作</th>
+           </tr>
+           </thead>
+
+           <tbody>
+           {volist name="column_list" id="vo"}
+           <tr height="50px">
+               <td><input name="" type="checkbox" value=""></td>
+               <td width="8%" >{$vo.id}</td>
+               <td width="20%" style="cursor: pointer" class="ax-align-left"><span class="rm-next">+-{$vo.title}</span></td>
+               <td>{$vo.model_title??"空模型"}</td>
+<!--               <td>{$vo.sort}</td>-->
+               <td>
+                   <a href="">内容</a><i class="ricrt"></i>
+                   <a href="/rmtop/editColumn?col_id={$vo.id}">编辑</a><i class="ricrt"></i>
+                   <a href="/rmtop/addColumn?pid={$vo.id}">添加子栏目</a><i class="ricrt"></i>
+                   <a href="/rmtop/delete_column?col_id={$vo.id}">删除</a>
+               </td>
+           </tr>
+
+           {volist name="vo.sunList" id="sun"}
+           <tr class="child"  height="50px" hidden>
+               <td><input name="" type="checkbox" value=""></td>
+               <td width="8%">{$sun.id}</td>
+               <td width="20%" style="cursor: pointer" class="ax-align-left rm-next">——{$sun.title}</td>
+               <td>{$sun.model_title??"空模型"}</td>
+               <td>
+                   <a href="">内容</a><i class="ricrt"></i>
+                   <a href="/rmtop/editColumn?col_id={$sun.id}">编辑</a><i class="ricrt"></i>
+                   <a href="/rmtop/addColumn?pid={$sun.id}">添加子栏目</a><i class="ricrt"></i>
+                   <a href="/rmtop/delete_column?col_id={$sun.id}">删除</a><i class="ricrt"></i>
+                   <a href="">浏览</a>
+               </td>
+           </tr>
+           {/volist}
+
+           {/volist}
+
+           </tbody>
+       </table>
+
+
+   </div>
+
+
+</div>
+
+    <div class="ax-pagination">
+        {$column_list->render()|raw}
+    </div>
+
+</div>
+
+
+
+</body>
+
+<script>
+    $("table tr").find("span").click(function () {
+        console.log($(this).parent().parent())
+        $(this).parent().parent().nextAll().show()
+        console.log($(this).parent().parent().next().nextUntil('tr').show())
+    })
+
+</script>

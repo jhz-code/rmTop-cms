@@ -1,0 +1,97 @@
+
+<div id="ajax" class="ajax"></div>
+<div class="ax-row">
+    <a class="addgroup ax-btn ax-sm ax-iconfont ax-icon-plus-t ax-primary lj-a-btn" data-url="/rmtop/ajaxAddConfigGroup" style="margin-top: 0 !important;cursor:pointer"> 添加分组</a>
+</div>
+<div style="height: 1px;margin-bottom: 10px;background-color: gainsboro"></div>
+<!--加载图层-->
+<table class="ax-table">
+    <thead>
+    <tr style="background-color:#efefef " class="ax-shadow-border ax-radius">
+        <th style="width:50px;"><input name="" type="checkbox" value=""></th>
+        <th>ID</th>
+        <th><div class="ax-align-left">分组名称</div></th>
+        <th><div class="ax-align-left">标识</div></th>
+        <th>排序</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+
+
+    {volist name="group" id="vo"}
+    <tr style="height: 60px">
+        <td><input name="" type="checkbox" value=""></td>
+        <td><div class="ax-align-center">{$vo.id}</div></td>
+        <td><div class="ax-align-left">{$vo.title}</div></td>
+        <td><div class="ax-align-left">{$vo.ident}</div></td>
+        <td><div class="ax-align-center">{$vo.sort}</div></td>
+        <td>
+            <div class="ax-operate">
+                <a  data-url="{$vo.edit_url}" class="ax-iconfont ax-icon-editing-fill rm-model" title="编辑"></a>
+                <a  href="{$vo.delete_url}" class="ax-iconfont ax-icon-trash-alt-fill" title="删除"></a>
+            </div>
+        </td>
+    </tr>
+    {/volist}
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="13">
+            <div class="ax-flex-row">
+                <div class="ax-flex-block ax-align-left" style="flex:inherit"><input name="" type="checkbox" value="">全选</div>
+                <div class="ax-flex-block ax-align-right" style="flex:inherit"><a href="##" class="ax-btn ax-primary ax-xs">批量删除</a></div>
+                <span class="ax-gutter"></span>
+            </div>
+        </td>
+    </tr>
+    </tfoot>
+</table>
+
+<div class="ax-pagination">
+    <a class="ax-total">共142条</a><a href="##" class="ax-prev">上一页</a><a href="##">1</a><a class="ax-active">2</a><a href="##">3</a><a href="##">4</a><a href="##">5</a><a href="##">6</a><a href="##" class="ax-next">下一页</a><a href="##" class="ax-last">尾页</a>
+</div>
+
+
+<script>
+    $('.addgroup').click(function (){
+        $('body').append('<div id="overlay"></div>');
+        $(".buy_content").show()
+        $('#overlay').height($(document).height()).css({
+                'opacity': .6, //透明度
+                'position': 'absolute',
+                'top': 0,
+                'left': 0,
+                'background-color': 'black',
+                'width': '100%',
+                'z-index': 9 //保证这个悬浮层位于其它内容之上
+
+            }).fadeIn('slow');
+        $("#ajax").load($(".addgroup").attr('data-url'))
+        $("#ajax").css({'z-index':10})
+    });
+
+
+    $(".closeup").click(function () {
+        $('#overlay').hide();
+        $("#ajax").empty();
+    })
+
+
+    $('.ax-operate .rm-model').click(function (){
+        $('body').append('<div id="overlay"></div>');
+        $(".buy_content").show()
+        $('#overlay').height($(document).height()).css({
+            'opacity': .6, //透明度
+            'position': 'absolute',
+            'top': 0,
+            'left': 0,
+            'background-color': 'black',
+            'width': '100%',
+            'z-index': 9 //保证这个悬浮层位于其它内容之上
+
+        }).fadeIn('slow');
+        $("#ajax").load($(this).attr('data-url'))
+        $("#ajax").css({'z-index':10})
+    });
+</script>

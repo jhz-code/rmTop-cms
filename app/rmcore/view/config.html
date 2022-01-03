@@ -1,0 +1,311 @@
+{include file="/app/rmcore/view/public/hearder" /}
+
+<body  style="background-color:#F4F4F4;margin: 6px; overflow: auto;border-radius: 3px">
+
+<div class="page"  style="box-shadow:none;height: 97%">
+
+    {include file="/app/rmcore/view/public/bana_nav" /}
+
+    <div class="tab-contain" style="margin-top: 10px;">
+        <!-- tab栏 -->
+        <ul id="tabs">
+            <li class="current"><span title="tab1">基础设置</span></li>
+            <li><span  title="tab2">运行配置</span></li>
+            <li><span  title="tab3">模版配置</span></li>
+        </ul>
+        <div style="height: 1px;background-color: gainsboro"></div>
+
+        <div id="content">
+            <form action=""  method="post">
+                <!--基础设置-->
+                <div id="tab1" class="item" style="padding-left: 15px;">
+
+                    <div class="ax-form-group">
+                        <div class="ax-flex-row">
+                            <div class="ax-form-label" style="justify-content: flex-start">网站状态：</div>
+                            <div class="ax-form-con">
+                                <div class="ax-form-input">
+                                    <div class="ax-row">
+                                        <div class="ax-col ax-col-6">
+                                            <label class="ax-radio"><input name="is_open" value="0" checked="" type="radio"><span>开启</span></label>
+                                        </div>
+                                        <div class="ax-col ax-col-6">
+                                            <label class="ax-radio"><input name="is_open" value="1" type="radio"><span>关闭</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ax-break-lg"></div>
+                    <div class="ax-form-group">
+                        <div class="ax-flex-row">
+                            <div class="ax-form-label">网站标题：</div>
+                            <div class="ax-form-input"><input type="text" name="web_title" value="{$config.web_title}" placeholder="输入网站名称"></div>
+                        </div>
+                    </div>
+                    <div class="ax-break-lg"></div>
+                    <div class="ax-form-group">
+                        <div class="ax-flex-row">
+                            <div class="ax-form-label">站点地址：</div>
+                            <div class="ax-form-input"><input type="text" name="web_host" value="{$config.web_host}" placeholder="输入网站网址"></div>
+                        </div>
+                    </div>
+                    <div class="ax-break-lg"></div>
+
+                    <div class="ax-form-group">
+                        <div class="ax-flex-row">
+                            <div class="ax-form-label">网站Logo：</div>
+                            <div class="ax-form-con">
+                                <div class="ax-form-input">
+                                    <input id="file" onchange=handleFile("file") class="ax-input-file" type="file">
+                                    <input name="web_logo" value="{$config.web_logo}" placeholder="上传图片" id="org_img_file" type="text">
+                                    <span  class="ax-file-btn">选择图片</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ax-break-lg"></div>
+
+                    <div class="ax-form-group">
+                        <div class="ax-flex-row">
+                            <div class="ax-form-label">网站ico：</div>
+                            <div class="ax-form-con">
+                                <div class="ax-form-input">
+                                    <input id="ico" onchange=handleFile("ico") class="ax-input-file" type="file">
+                                    <input name="web_ico" value="{$config.web_ico}" placeholder="上传图片" id="org_img_ico" type="text">
+                                    <span  class="ax-file-btn">选择图片</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ax-break-lg"></div>
+
+                    <div class="ax-form-group">
+                        <div class="ax-flex-row">
+                            <div class="ax-form-label">登录页面Logo：</div>
+                            <div class="ax-form-con">
+                                <div class="ax-form-input">
+                                    <input id="login_logo" onchange=handleFile("login_logo") class="ax-input-file" type="file">
+                                    <input name="login_logo" value="{$config.login_logo}" placeholder="上传图片" id="org_img_login_logo" type="text">
+                                    <span  class="ax-file-btn">选择图片</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="ax-break-lg"></div>
+                    <div class="ax-form-group">
+                        <div class="ax-flex-row">
+                            <div class="ax-form-label">全站关键词：</div>
+                            <div class="ax-form-input"><input type="text" name="web_keyword" value="{$config.web_keyword}" placeholder="输入关键词"></div>
+                        </div>
+                    </div>
+                    <div class="ax-break-lg"></div>
+                    <div class="ax-form-group">
+                        <div class="ax-flex-row">
+                            <div class="ax-form-label">全站描述：</div>
+                            <div class="ax-flex-block">
+                                <div class="ax-form-input"><textarea name="web_desc"  cols="" rows="" placeholder="描述">{$config.web_desc}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ax-break-lg"></div>
+                    <div class="ax-form-group">
+                        <div class="ax-flex-row">
+                            <div class="ax-form-label">网站版权：</div>
+                            <div class="ax-form-input"><input type="text" value="{$config.web_copyright}" name="web_copyright" placeholder="请输入版权信息"></div>
+                        </div>
+                    </div>
+                    <div class="ax-break-lg"></div>
+                    <div class="ax-form-group">
+                        <div class="ax-flex-row">
+                            <div class="ax-form-label">备案号：</div>
+                            <div class="ax-form-input"><input type="text" value="{$config.web_icp}" name="web_icp" placeholder="请输入备案号"></div>
+                        </div>
+                    </div>
+                    <div class="ax-break-lg"></div>
+                    <div class="ax-form-group">
+                        <div class="ax-flex-row">
+                            <div class="ax-form-label">网站关闭提示：</div>
+                            <div class="ax-form-input"><input type="text" value="{$config.close_tip}" name="close_tip" placeholder="网站正在升级维护，请稍后再访问，由此给您带来不便，敬请谅解！"></div>
+                        </div>
+                    </div>
+
+                    <div class="ax-break-lg"></div>
+                    <div class="ax-break-lg"></div>
+
+                </div>
+
+                <div id="tab2" class="item">
+                    <div class="ax-break-lg"></div>
+
+                    <div class="ax-form-group">
+                        <div class="ax-flex-row">
+                            <div class="ax-form-label">储存路径：</div>
+                            <div class="ax-form-input">
+                                <input type="text" name="static_path" value="{$config.static_path}" placeholder="配置文件储存路径">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ax-break-lg"></div>
+
+                    <div class="ax-form-group">
+                        <div class="ax-flex-row">
+                            <div class="ax-form-label">可访问路径：</div>
+                            <div class="ax-form-input">
+                                <input type="text" name="view_static_path" value="{$config.view_static_path}" placeholder="配置文件储存路径">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="ax-break-lg"></div>
+                    <div class="ax-form-group">
+                        <div class="ax-flex-row">
+                            <div class="ax-form-label">应用中心：</div>
+                            <div class="ax-form-input">
+                                <select name="app_center">
+                                    <option value="1" {if 1 == $config.app_center} selected {/if} >开启</option>
+                                    <option value="2" {if 2 == $config.app_center} selected {/if} >关闭</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="ax-break-lg"></div>
+                    <div class="ax-form-group">
+                        <div class="ax-flex-row">
+                            <div class="ax-form-label">开发者模式：</div>
+                            <div class="ax-form-input">
+                                <select name="developer">
+                                    <option value="1" {if 1 == $config.developer} selected {/if} >开发者模式</option>
+                                    <option value="2" {if 2 == $config.developer} selected {/if} >运行模式</option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div id="tab3" class="item">
+                    <div class="ax-break-lg"></div>
+                    <div class="ax-break-lg"></div>
+                    <div class="ax-form-group">
+                        <div class="ax-flex-row">
+                            <div class="ax-form-label">系统模板：</div>
+                            <div class="ax-form-input">
+                                <select name="tmp_path">
+                                    {volist name="tpl" id="vo"}
+                                    <option value="{$vo}" {if $vo === $config.tmp_path} selected {/if} >{$vo}</option>
+                                    {/volist}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="ax-break-lg"></div>
+                <div class="ax-break-lg"></div>
+
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <div class="ax-form-label"></div>
+                        <div class="ax-flex-block">
+                            <div class="ax-form-input" style="width:280px !important;">
+                                <button type="submit" class="ax-btn ax-primary ax-full">保存配置</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</body>
+<style>
+
+    #tabs {  overflow: hidden;  width: 100%;  margin: 0;  padding: 0;  list-style: none;  }
+    #tabs li {  float: left;  margin-left: 14px;  height: 40px;  line-height: 40px;cursor: pointer ;width: 100px;  }
+    li span {  position: relative;  font-size: 16px;  }
+    .current li{  outline: 0;  color: #3398cc;  border-bottom: 1px solid #3398cc;    }
+    .current span{  outline: 0;  color: #3398cc;  border-bottom: 1px solid #3398cc;  }
+    .current span:before{content: '';position: absolute;bottom: 0;left: 2px;width: 95%;
+        height: 2px;background: #3398cc;border-radius: 30px;}
+    #content {  background: #fff;  padding: 30px 0 25px;  position: relative;  }
+    .item{  display: none;  }
+    .show{  display: block;  }
+    .ax-form-label{width: 95px !important;justify-content: flex-start !important;padding-left: 0;}
+    .ax-form-input{width: 700px !important;}
+    /*.ax-flex-block, .ax-flex-block-1{flex: 0.23}*/
+    /*.label-name{flex: 1 !important;}*/
+
+    .buy-bg{  position: absolute;  top: 0%;  left: 0%;  width:100%;  height: 100%;
+        background-color: black;  z-index:1001;  -moz-opacity: 0.8;  opacity:.50;  filter: alpha(opacity=50);  }
+    .buy_content {  position: absolute;  top: 15%;  left:28%;  width:575px;  height:auto;background: #fff;
+        z-index:1002;  overflow: auto;padding: 15px;  text-align: left;  }
+    .herf-main{background: #fff;padding: 10px;position: relative}
+    .open-head{display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;
+        position: relative;padding-bottom: 10px;}
+    .newhredup{font-size: 15px;color: #333}
+    .closeup{position:relative;font-size: 23px;line-height: 23px;color: #333;cursor: pointer}
+    .tab-ligh{width: 120px;height: 28px;line-height: 28px;display: flex;align-items: center;
+        border: 1px solid #ddd;margin-top: 3px;  background-color: #f8f8f8;  padding: 0;border-radius: 0 4px 4px 0;}
+    .tab-ligh li{width: 50%;text-align: center;cursor: pointer}
+    .lighten{background: #198cff;color: #fff}
+</style>
+
+<script type="text/javascript">
+    if ($.cookie('sys_config_tab')!= null){
+        let num = $.cookie("sys_config_tab");
+        $('#tabs li').removeClass("current").removeClass("hoverItem");
+        $("#tabs li ").find("span").eq(num).parent().addClass("current");
+        $("#content div").removeClass("show");
+        if(num == 2){
+            $("#tab3").addClass('show')
+        } else if(num == 1){
+            $("#tab2").addClass('show')
+        }else{
+            $("#tab1").addClass('show')
+        }
+    }else{
+        let num = 0;
+        $('#tabs li').removeClass("current").removeClass("hoverItem");
+        $("#tabs li ").find("span").eq(num).parent().addClass("current");
+        $("#content div").removeClass("show");
+        $("#tab1").addClass('show')
+    }
+
+    $('#tabs li span').click(function(e) {
+        e.preventDefault();
+        $('#tabs li').removeClass("current").removeClass("hoverItem");
+        $(this).parent().addClass("current");
+        $("#content div").removeClass("show");
+        $('#' + $(this).attr('title')).addClass('show');
+        let index = $("#tabs li ").find("span").index(this);
+        $.cookie('sys_config_tab',index);
+    });
+
+</script>
+
+
+
+
+
+
+

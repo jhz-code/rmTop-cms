@@ -1,0 +1,68 @@
+<!--额外参数配置开始-->
+
+<div class="ajax" id="ajax_params"></div>
+
+<div class="ax-form-group">
+  <div class="ax-flex-row">
+    <div class="ax-form-label"></div>
+    <div class="ax-flex-block">
+      <div class="ax-form-input"><button type="button" id="addParams" class="ax-btn ax-primary">添加参数</button></div>
+    </div>
+  </div>
+  <div class="ax-break-lg"></div>
+  <div class="ax-break-lg"></div>
+</div>
+
+{volist name="Params" id="vo"}
+
+<div class="ax-break-lg"></div>
+<div class="ax-form-group">
+
+  <div class="ax-flex-row">
+    <span class="ax-form-label">参数：</span>
+    <div class="ax-form-input">
+      <div class="ax-form-input">
+        <input disabled="disabled" value="{$vo.title}({$vo.key})--参数类型 {$vo.type}" type="text">
+      </div>
+    </div>
+    <span  class="delete_param" data-id="{$vo.id}" data-proid="{$vo.sid}"  >X 删除参数</span>
+  </div>
+  {/volist}
+
+<div class="ax-break-lg"></div>
+<div class="ax-break-lg"></div>
+
+</div>
+
+<script>
+  $("#addParams").click(function () {
+    $('body').append('<div id="overlay"></div>');
+    $(".buy_content").show()
+    $('#overlay').height($(document).height()).css({
+      'opacity': .6, //透明度
+      'position': 'absolute',
+      'top': 0,
+      'left': 0,
+      'background-color': 'black',
+      'width': '100%',
+      'z-index': 9 //保证这个悬浮层位于其它内容之上
+    }).fadeIn('slow');
+    $('#ajax_params').load("/rmtop/addParams?sid={$sid}&cid={$col_id}");//初始化加载页面
+    $("#ajax").css({'z-index':10})
+  })
+
+
+  $(".delete_param").click(function () {
+    $.ajax({
+      type: "post",
+      url: "/rmtop/deleteParams",
+      data: {id:$(this).attr('data-id'), cid:"{$col_id}",'pid':$(this).attr('data-proid')},
+      dataType: "json",
+      success: function(data){
+        if(data.code === 1){
+          location.href = data.url;
+        }
+      }
+    });
+  })
+</script>

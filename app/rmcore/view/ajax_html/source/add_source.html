@@ -1,0 +1,48 @@
+<div class="buy_content">
+  <div class="open-head">
+    <div class="newhredup">添加资源</div>
+    <div class="closeup  ax-iconfont ax-icon-close-t"></div>
+  </div>
+  <form action="{$action}"  method="post">
+    <div class="item show herf-main">
+      <div class="ax-break-lg"></div>
+
+      <div class="ax-break-lg"></div>
+      <div class="ax-form-group">
+        <div class="ax-flex-row">
+          <div class="ax-form-label">上传资源：</div>
+          <div class="ax-form-con">
+            <div class="ax-form-input">
+              <input id="file" onchange=handleFile("file") class="ax-input-file" type="file">
+              <input name="org_img" value="" placeholder="上传资源" id="org_img_file" type="text">
+              <span  class="ax-file-btn">选择资源</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ax-break-lg"></div>
+      <div class="ax-break-lg"></div>
+      <div class="ax-break-lg"></div>
+
+      <div class="ax-form-group">
+        <div class="ax-flex-row">
+          <div class="ax-form-label"></div>
+          <div class="ax-flex-block">
+            <div class="ax-form-input"><button type="submit" class="ax-btn ax-primary ax-full">确认提交</button></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </form>
+</div>
+
+
+<script>
+  $(".closeup").click(function () {
+    $('#overlay').hide();
+    $("#ajax").empty();
+  })
+</script>

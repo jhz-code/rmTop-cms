@@ -1,0 +1,89 @@
+{include file="/app/rmcore/view/public/hearder" /}
+
+<body  style="overflow: auto;border-radius: 3px;">
+
+
+<div class="tab-contain" style="margin-top: 10px;">
+
+    <!-- 对应显示内容 -->
+    <form action="{$action}"  method="post">
+        <div id="contents">
+<!--            <div class="ax-form-group">-->
+<!--                <div class="ax-flex-row">-->
+<!--                    <div class="ax-form-label">模板名称：</div>-->
+<!--                    <div class="ax-form-input">-->
+<!--                        <div class="ax-form-input"  style="width: 360px !important;">-->
+<!--                            <input type="text"  name="title" placeholder="请输入名称">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+            <div class="ax-break-lg"></div>
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label">上传文件：</div>
+                    <div class="ax-form-con">
+                        <div class="ax-form-input">
+                            <input id="file" onchange=handleFile("file") class="ax-input-file" type="file" >
+                            <input name="temp" value="" placeholder="上传文件" id="org_img_file" type="text">
+                            <span  class="ax-file-btn">选择文件</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ax-break-lg"></div>
+            <div class="ax-break-lg"></div>
+
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label"></div>
+                    <div class="ax-flex-block">
+                        <div class="ax-form-input"><button type="submit" class="ax-btn ax-primary ax-full" style="width: 111px">保存新模版</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+</div>
+
+</body>
+
+<script type="text/javascript">
+
+    if ($.cookie('article_add_tab_current')!= null){
+        let num = $.cookie("article_add_tab_current");
+        $('#tabs li').removeClass("current").removeClass("hoverItem");
+        $("#tabs li ").find("span").eq(num).parent().addClass("current");
+        $("#contents div").removeClass("show");
+        if(num == 1){
+            $("#tab2").addClass('show')
+        }else{
+            $("#tab1").addClass('show')
+        }
+    }else{
+        let num = 0;
+        $('#tabs li').removeClass("current").removeClass("hoverItem");
+        $("#tabs li ").find("span").eq(num).parent().addClass("current");
+        $("#contents div").removeClass("show");
+        $("#tab1").addClass('show')
+    }
+
+    $('#tabs li span').click(function(e) {
+        e.preventDefault();
+        $('#tabs li').removeClass("current").removeClass("hoverItem");
+        $(this).parent().addClass("current");
+        $("#contents div").removeClass("show");
+        $('#' + $(this).attr('title')).addClass('show');
+        let index = $("#tabs li ").find("span").index(this);
+        $.cookie('article_add_tab_current',index);
+    });
+
+
+</script>
+
+
+

@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>用户登录</title>
+  <meta name="renderer" content="webkit">
+  <meta name="description" content='{$Category.category_seo_des}' />
+  <meta name="keywords" content='{$Category.category_seo_key}' />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+  <link rel="shortcut icon" href='{RmTop:TopInfo  TopKey="web_ico" /}' type="image/x-icon" />
+  <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="stylesheet" href="../static/css/animate.css">
+  <script type="text/javascript" src="../static/js/jquery.min.js"></script>
+  <script src="../static/js/base.js"></script>
+</head>
+
+<body>
+<div class="login-bg"></div>
+<div class="L-main">
+    <div class="login-box">
+        <a class="login-logo" href="http://rmtop.317.ink/"><img src="../static/images/logo.png"/></a>
+        <div class="login-sign clearfix">
+            <span class="login-tab1 active">账号密码登录</span>
+            <span class="login-tab2">手机验证码登录</span>
+        </div>
+        <div class="login-as">
+            <!--      账号登录-->
+            <form action="" id="acct_login">
+                <div class="login-g-input">
+                    <input name="name" type="text" id="accet_empty" placeholder="用户名/邮箱/手机号">
+                </div>
+                <div class="login-g-input">
+                    <input name="tel" type="password" id="password_empty" placeholder="密码">
+                </div>
+            </form>
+
+            <!--      手机号登录-->
+            <form action="" id="tell_login" style="display: none">
+                <div class="login-g-input">
+                    <input name="name" type="text" id="phone_empty" placeholder="手机号">
+                </div>
+                <div class="login-g-input disle-flex">
+                    <input name="tel" type="text" id="captcha_empty" placeholder="短信验证码">
+                    <input id="btnSendCode" type="button" class="aui-btn-default" value="获取验证码" onclick="sendMessage()">
+                </div>
+            </form>
+
+            <div class="controls-t clearfix">
+                <label><input type="checkbox"> 记住登录信息</label>
+                <a href="forget.html" class="pull-right">忘记密码?</a>
+            </div>
+            <div class="login-g-input2">
+                <input type="submit" name="dosubmit" value="登录">
+            </div>
+            <div class="login-footer" style="margin-top: 30px">没有账户？<a href="register.html" class="text-primary">去注册</a></div>
+        </div>
+    </div>
+    <div class="login-ft text-center">
+        <div class="copyr-ight text-center">
+            <p>  CoprRight &copy; <a href="http://rmtop.317.ink/" target="_blank">RmTop-CMS </a> </p>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+  $('.login-tab1').click(function(e){
+    $(this).addClass("active").siblings().removeClass("active");
+    $("#acct_login").show(500);
+    $("#tell_login").hide(500);
+  })
+  $('.login-tab2').click(function(e){
+    $(this).addClass("active").siblings().removeClass("active");
+    $("#acct_login").hide(500);
+    $("#tell_login").show(500);
+  })
+
+  //获取验证码
+  var phoneReg = /(^1[3|4|5|7|8]\d{9}$)|(^09\d{8}$)/;
+  var count = 60;
+  var InterValObj1;
+  var curCount1;
+  function sendMessage() {
+      curCount1 = count;
+      var phone = $.trim($('#phone_empty').val());
+      if (!phoneReg.test(phone)) {
+          alert(" 请输入有效的手机号码");
+          return false;
+      }
+      $("#btnSendCode").attr("disabled", "true");
+      $("#btnSendCode").val(+curCount1 + "秒再获取");
+      InterValObj1 = window.setInterval(SetRemainTime1, 1000);
+
+  }
+  function SetRemainTime1() {
+      if (curCount1 == 0) {
+          window.clearInterval(InterValObj1);
+          $("#btnSendCode").removeAttr("disabled");
+          $("#btnSendCode").val("重新发送");
+      } else {
+          curCount1--;
+          $("#btnSendCode").val(+curCount1 + "秒再获取");
+      }
+  }
+  function binding() {
+      alert(1)
+  }
+</script>
+</body>
+</html>

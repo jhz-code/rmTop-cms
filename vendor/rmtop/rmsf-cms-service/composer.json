@@ -1,0 +1,29 @@
+{
+    "name": "rmtop/rmsf-cms-service",
+    "description": "\"system install\"",
+    "require": {
+        "guzzlehttp/guzzle": "~6.0",
+        "ext-json": "*",
+        "topthink/think-migration": "^3.0",
+        "topthink/think-view": "^1.0",
+      "ext-pdo": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "RmTop\\RmCmsService\\": "src/"
+        }
+    },
+    "extra": {
+        "think": {
+            "services": [
+                "RmTop\\RmCmsService\\RmCmsService"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "jhz-code",
+            "email": "zhuok520@qq.com"
+        }
+    ]
+}

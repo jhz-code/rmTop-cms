@@ -1,0 +1,78 @@
+<div class="buy_content ax-radius">
+    <div class="open-head">
+        <div class="newhredup">添加管理员</div>
+        <div class="closeup ax-iconfont ax-icon-close-t"></div>
+    </div>
+<form action="/rmtop/addAdmin"  method="post">
+    <div id="tab1" class="item show">
+        <div class="ax-break-lg"></div>
+        <div class="ax-form-group">
+            <div class="ax-flex-row">
+                <div class="ax-form-label">登录账户：</div>
+                <div class="ax-form-input"><input type="text" name="username"></div>
+            </div>
+        </div>
+
+        <div class="ax-break-lg"></div>
+        <div class="ax-form-group">
+            <div class="ax-flex-row">
+                <div class="ax-form-label">登录密码：</div>
+                <div class="ax-form-input"><input type="text" name="password"></div>
+            </div>
+        </div>
+
+        <div class="ax-break-lg"></div>
+        <div class="ax-form-group">
+            <div class="ax-flex-row">
+                <div class="ax-form-label">手机号：</div>
+                <div class="ax-form-input"><input type="text" name="mobile"></div>
+            </div>
+        </div>
+        <div class="ax-break-lg"></div>
+        <div class="ax-form-group">
+            <div class="ax-flex-row">
+                <div class="ax-form-label">Email：</div>
+                <div class="ax-form-input"><input type="text" name="email"></div>
+            </div>
+        </div>
+        <div class="ax-break-lg"></div>
+        <div class="ax-form-group">
+            <div class="ax-flex-row">
+                <div class="ax-form-label">管理组：</div>
+                <div class="ax-form-con">
+                    <div class="ax-form-input">
+                        <select name="group_id">
+                            {volist name="role_list" id="vo"}
+                            <option value="{$vo.id}" >{$vo.title}</option>
+                            {/volist}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="ax-break-lg"></div>
+        <div class="ax-break-lg"></div>
+        <div class="ax-break-lg"></div>
+
+        <div class="ax-form-group">
+            <div class="ax-flex-row">
+                <div class="ax-form-label"></div>
+                <div class="ax-flex-block">
+                    <div class="ax-form-input"><button type="submit" class="ax-btn ax-primary ax-full">确认提交</button></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</form>
+</div>
+
+<script>
+    $(".closeup").click(function () {
+        $('#overlay').hide();
+        $("#ajax").empty();
+    })
+</script>

@@ -1,0 +1,70 @@
+{include file="/app/rmcore/view/public/hearder" /}
+
+
+<body  style="background-color:#F4F4F4;margin: 6px; overflow: auto;border-radius: 3px">
+
+<div class="page"  style="box-shadow:none;height: 97%">
+
+  {include file="/app/rmcore/view/public/bana_nav" /}
+
+  <div class="tab-contain" style="margin-top: 10px;">
+    <!-- tab栏 -->
+    <ul id="tabs">
+      <li class="current" ><span data-url="/rmtop/advertiseList" title="tab1">广告列表</span></li>
+      <li><span  title="tab2" data-url="/rmtop/advertiseGroupList">广告分组</span></li>
+    </ul>
+    <div style="height: 1px;background-color: gainsboro"></div>
+    <div id="content"> </div>
+  </div>
+</div>
+
+<style>
+
+  #tabs {  overflow: hidden;  width: 100%;  margin: 0;  padding: 0;  list-style: none;  }
+  #tabs li {  float: left;  margin-left: 14px;  height: 40px;  line-height: 40px;cursor: pointer ;width: 100px;  }
+  li span {  position: relative;  font-size: 16px;  }
+  .current li{  outline: 0;  color: #3398cc;  border-bottom: 1px solid #3398cc;    }
+  .current span{  outline: 0;  color: #3398cc;  border-bottom: 1px solid #3398cc;  }
+  .current span:before{content: '';position: absolute;bottom: 0;left: 2px;width: 95%;
+    height: 2px;background: #3398cc;border-radius: 30px;}
+  #content {  background: #fff;  padding: 30px 0 25px;  position: relative;  }
+  .item{  display: none;  }
+  .show{  display: block;  }
+  .ax-form-label{width: 95px !important;justify-content: flex-start !important;padding-left: 0;}
+  .buy_content {  position: absolute;  top: 2%;  left:18%;  width:575px;  height:auto;background: #fff;
+    z-index:1002;  overflow: auto;padding: 15px;  text-align: left;border-radius: 5px;  }
+  .herf-main{background: #fff;padding: 10px;position: relative}
+  .open-head{display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;
+    position: relative;padding-bottom: 10px;}
+  .newhredup{font-size: 15px;color: #333}
+  .closeup{position:relative;font-size: 23px;line-height: 25px;color: #333;cursor: pointer}
+  .closeup2{position:relative;font-size: 23px;line-height: 25px;color: #333;cursor: pointer}
+  .tab-ligh{width: 120px;height: 28px;line-height: 28px;display: flex;align-items: center;
+    border: 1px solid #ddd;margin-top: 3px;  background-color: #f8f8f8;  padding: 0;border-radius: 0 4px 4px 0;}
+  .tab-ligh li{width: 50%;text-align: center;cursor: pointer}
+  .lighten{background: #198cff;color: #fff}
+</style>
+
+<script type="text/javascript">
+  if ($.cookie('nav_tab_current')!= null){
+    let num = $.cookie("nav_tab_current");
+    $('#tabs li').removeClass("current").removeClass("hoverItem");
+    $("#tabs li ").find("span").eq(num).parent().addClass("current");
+    $("#content").load($("#tabs li").find("span").eq(num).attr('data-url'))
+  }else{
+    $('#content').load($("#tabs li span:first").attr('data-url'));//初始化加载页面
+  }
+
+  $('#tabs li span').click(function(e) {
+    e.preventDefault();
+    $('#tabs li').removeClass("current").removeClass("hoverItem");
+    $(this).parent().addClass("current");
+    let index = $("#tabs li ").find("span").index(this);
+    $.cookie('nav_tab_current',index);
+    $("#content").load($(this).attr('data-url'))
+  });
+</script>
+
+</body>
+
+</html>

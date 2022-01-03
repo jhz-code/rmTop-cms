@@ -1,0 +1,32 @@
+{include file="./common/hearder" /}
+
+<body>
+
+{include file="./common/topmenu" /}
+
+
+<div class="clearfix"></div>
+
+{include file="./common/Bread" /}
+
+<div class="mainBg box1Bg">
+    <div class="container">
+        <div class="products_list row">
+            {volist name="TopData" id="vo"}
+            <div class="left_products_info clearfix wow fadeInUp">
+                <div class="products_bg "><a href="{$vo.url}"><div class="products_img"><img src="{$vo.org_img}" width="100%"></div></a></div>
+                <div class="products_content ">
+                    <div><h3><a class="hte-tle" href="{$vo.url}">{$vo.title}</a><span class="new">NEW</span> </h3><a href="{$vo.url}" class="more">MORE+</a></div>
+                    <p>{$vo.content|raw}</p>
+                </div>
+            </div>
+            {/volist}
+        </div>
+    </div>
+</div>
+
+{include file="./common/footer" /}
+
+
+</body>
+</html>

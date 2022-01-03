@@ -1,0 +1,105 @@
+{include file="/app/rmcore/view/public/hearder" /}
+
+<body  style="background-color:#F4F4F4;margin: 6px; overflow: auto;">
+
+<div class="page" style="box-shadow:none;">
+
+    <div class="ax-flex-block  ax-radius">
+            <div class="ax-alert ax-primary">
+
+                早上好，{$adminInfo['username']}!</br></br>您上次登录的时间：{:date('Y-m-d H:i:s',$adminInfo['logintime']) } ，共登录{$adminInfo['logintimes']}次。
+                <a href="##" class="ax-close"></a>
+            </div>
+    </div>
+        <div class="ax-break"></div>
+
+        <div class="ax-flex-block  ax-shadow-border ax-radius" style="padding: 0 15px 15px;">
+            <div class="">
+                <h5  style="margin: 10px 0 18px;padding-top: 10px;">网站概况</h5>
+            </div>
+
+            <div class="ax-row ax-panel-body ">
+
+                {volist name="models" id="vo"}
+                <div class="ax-col ax-col-4 ax-bg-info ax-align-center ax-radius-sm" >
+                    <p>{$vo.title}</p>
+                    <h3>{$vo.count}</h3>
+                </div>
+                <span class="ax-gutter"></span>
+                {/volist}
+
+            </div>
+
+        </div>
+
+        <div class="ax-break"></div>
+        <div class="ax-break"></div>
+        <div class="ax-break"></div>
+
+        <div class="ax-panel   ax-shadow-border ax-radius">
+            <div class="ax-panel-header"><h5 style="margin: 10px 0 18px;">访客详情：</h5></div>
+            <div class="ax-panel-body" style="    padding: 0 10px">
+                <div id="line" style="height:200px;width: 100%;"></div>
+
+            </div>
+            <div class="ax-panel-close"></div>
+        </div>
+
+    <div class="ax-break"></div>
+    <div class="ax-break"></div>
+    <div class="ax-break"></div>
+    <div class="ax-break"></div>
+    <div class="ax-break"></div>
+    <div class="ax-break"></div>
+
+</div>
+</body>
+
+<script type="text/javascript" src="/static/ax_v1.0.2/plugins/baidu/echarts.min.js"></script>
+<script type='text/javascript'>
+    //折线图
+    optionLine = {
+        title: {
+            text: ''
+        },
+        legend: {
+            data: ['本周客流', '上周客流'],
+            align: 'left',
+            top:'4'
+        },
+        xAxis: {
+            type: 'category',
+            data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        },
+        yAxis: {
+            name: '单位(万)',
+            type: 'value',
+        },
+        series: [{
+            name:'本周客流',
+            data: [2.2, 2.5, 3.5, 2.8, 2.0, 4.5, 5.2],
+            type: 'line'
+        },{
+            name:'上周客流',
+            data: [1.2, 2.1, 2.9, 3.5, 2.4, 5.6, 4.8],
+            type: 'line'
+        }],
+        tooltip: {
+            trigger: 'axis'
+        },
+        grid: {
+            show: false,
+            borderColor: '#ebebeb',
+            x: 22,
+            x2: 0,
+            y: 36,
+            y2:0,
+            height: 128//170-100(198-128)
+        },
+
+    };
+    var domLine = document.getElementById("line");
+    var chartLine = echarts.init(domLine, 'theme-ax');
+    chartLine.setOption(optionLine, true);
+
+</script>

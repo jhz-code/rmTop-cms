@@ -1,0 +1,24 @@
+<div class="buy_content">
+    <div class="closeup ax-iconfont ax-icon-close-t"></div>
+    <div class="tplName">
+        <div class="tplName-lf"><strong>姓名</strong></div><div class="tplName-rt">{$messageInfo.username}</div>
+    </div>
+    <div class="tplName">
+        <div class="tplName-lf"><strong>联系方式</strong></div><div class="tplName-rt">{$messageInfo.mobile}</div>
+    </div>
+    <div class="tplName">
+        <div class="tplName-lf"><strong>留言内容</strong></div><div class="tplName-rt">{$messageInfo.demand}</div>
+    </div>
+    <div class="tplName">
+        <div class="tplName-lf"><strong>提交时间</strong></div><div class="tplName-rt">{$messageInfo.create_time}</div>
+    </div>
+</div>
+
+
+<script>
+    $(".closeup").click(function () {
+        $('#overlay').hide();
+        $("#ajax").empty();
+        window.location.reload()
+    })
+</script>

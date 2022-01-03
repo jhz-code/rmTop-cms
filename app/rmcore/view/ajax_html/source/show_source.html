@@ -1,0 +1,96 @@
+<div class="buy_content">
+  <div class="open-head">
+    <div class="newhredup">资源</div>
+    <div class="closeup  ax-iconfont ax-icon-close-t"></div>
+  </div>
+  <div style="height: auto;width:100%">
+    <div class="item show">
+      <div class="ax-break-lg"></div>
+      <div class="ax-form-group">
+        <div class="ax-flex-row">
+          <div class="ax-form-label">资源类型：</div>
+          <div class="ax-form-input">
+            <div class="soured-t"><p>{$sourceInfo.img_type}</p></div>
+          </div>
+        </div>
+      </div>
+      {if $sourceInfo.is_img == 1}
+      <div class="ax-break-lg"></div>
+      <div class="ax-form-group">
+        <div class="ax-flex-row">
+          <div class="ax-form-label">预览文件：</div>
+          <div class="ax-form-input">
+            <div class="soured-t">
+              <p><img src="{$sourceInfo.img_path}"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/if}
+
+      <div class="ax-break-lg"></div>
+      <div class="ax-form-group">
+        <div class="ax-flex-row">
+          <div class="ax-form-label">链接：</div>
+          <div class="ax-form-input">
+            <div class="soured-t">
+              <p id="target2"  style="background: #f2f2f2;padding: 10px;">{$sourceInfo.img_path}</p>
+              <button data-clipboard-action="copy" data-clipboard-target="#target2" id="copy_btn2" class="ax-btn ax-primary qif-te">复制</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ax-break-lg"></div>
+      <div class="ax-form-group">
+        <div class="ax-flex-row">
+          <div class="ax-form-label">文件引入代码：</div>
+          <div class="ax-form-input">
+            <div class="soured-t">
+              <p id="target3" style="background: #f2f2f2;padding: 10px;">{$sourceInfo.img_src}</p>
+              <button data-clipboard-action="copy" data-clipboard-target="#target3" id="copy_btn3" class="ax-btn ax-primary qif-te">复制</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ax-break-lg"></div>
+
+<!--      <div class="ax-form-group">-->
+<!--        <button type="submit" class="ax-btn ax-primary ax-full closeup" style="width: 120px;margin: 10px auto;">关闭</button>-->
+<!--      </div>-->
+
+      <!--提示弹窗-->
+      <p class="copy-success">复制成功</p>
+
+    </div>
+
+  </div>
+
+
+</div>
+
+
+<script>
+  $(".closeup").click(function () {
+    $('#overlay').hide();
+    $("#ajax").empty();
+  })
+
+  $(document).ready(function(){
+    var clipboard2 = new Clipboard('#copy_btn2');
+    clipboard2.on('success', function(e) {
+      $('.copy-success').stop().show();
+      setTimeout("$('.copy-success').css('display', 'none')", 1500);
+      e.clearSelection();
+      console.log(e.clearSelection);
+    });
+  });
+  $(document).ready(function(){
+    var clipboard3 = new Clipboard('#copy_btn3');
+    clipboard3.on('success', function(e) {
+      $('.copy-success').stop().show();
+      setTimeout("$('.copy-success').css('display', 'none')", 1500);
+      e.clearSelection();
+      console.log(e.clearSelection);
+    });
+  });
+</script>

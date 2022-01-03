@@ -1,0 +1,69 @@
+<!--底部-->
+<div class="container-fluid common-footer" style="background:url(/template/two_temp/static/images/ft.bg.jpg) no-repeat; padding-bottom:30px; background-size: cover; padding-top:20px;">
+    <div class="row row-static">
+        <div>
+            <div>
+                <div class="ft-nav">
+                    <ul>
+                        {RmTop:MenuList group_id="11"  limit ="8"   name="vo" }
+                        <li><a href='{$vo.url}'>{$vo.title}</a></li>
+                        {/RmTop:MenuList}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div>
+                <div id="ft-contact">
+                    <div class="address">
+                        <p>Copyright &copy; 2017-{:date("Y")} {$sys.Name} {$sys.Copyright} 版权所有</p>
+                        <p>滇ICP备xxxxxxxx号</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--侧边客服-->
+<div class="suspension">
+    <div class="suspension-box">
+        <a href="javascript:;" class="a a-top"><i class="i"></i></a>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        /* ----- 侧边悬浮 ---- */
+        $(document).on("mouseenter", ".suspension .a", function(){
+            var _this = $(this);
+            var s = $(".suspension");
+        });
+        $(document).on("mouseleave", ".suspension, .suspension .a-top", function(){
+            $(".suspension").find(".d").hide();
+        });
+        $(document).on("mouseenter", ".suspension .a-top", function(){
+            $(".suspension").find(".d").hide();
+        });
+        $(document).on("click", ".suspension .a-top", function(){
+            $("html,body").animate({scrollTop: 0});
+        });
+        $(window).scroll(function(){
+            var st = $(document).scrollTop();
+            var $top = $(".suspension .a-top");
+            if(st > 400){
+                $top.css({display: 'block'});
+            }else{
+                if ($top.is(":visible")) {
+                    $top.hide();
+                }
+            }
+        });
+    });
+
+
+</script>
+
+
+

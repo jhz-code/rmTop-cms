@@ -1,0 +1,62 @@
+{include file="/app/rmcore/view/public/hearder" /}
+
+<body  style="background-color:#F4F4F4;margin: 6px; overflow: auto;border-radius: 3px">
+
+<div style="width: 100%;height:100%;position: relative;display: block;overflow: hidden">
+
+        <div class="success-mains">
+            <div class=" ax-margin-isod">
+                <span class="ax-iconfont ax-icon-select ax-margin-top icon-select-sty"></span>
+                <p>发布成功</p>
+            </div>
+            <div class="ax-margin-su">
+                 <div class="ax-margin" style="height: 30px;line-height: 30px">操作成功</div>
+                 <div class="ax-margin"></div>
+                 <div class="ax-margin">发布时间:{:date('Y-m-d H:i:s',time())}</div>
+            </div>
+
+            <div class="ax-margin-su2">
+                {volist name="arr_url" id="vo"}
+                <a type="button" href="{$vo.url}"  class="ax-btn ax-primary">
+                    {$vo.label}
+                </a>
+                {/volist}
+            </div>
+<!--            <div class="success-m">-->
+<!--                <p><span id = "count"><b> 2 </b></span>返回内容页</p>-->
+<!--            </div>-->
+
+        </div>
+
+
+</div>
+</body>
+<style>
+
+    .ax-margin-isod{height: 60px;  line-height: 60px; text-align: center;position: relative;overflow: hidden}
+    .icon-select-sty{color: #198cff;font-size: 45px;text-align: center}
+    .ax-margin-su{margin: 20px auto;text-align: center;position: relative;width: 300px;}
+    .ax-margin-su2{margin: 20px auto 10px;text-align: center;position: relative;}
+    .ax-margin-su2 button{margin: 0 6px}
+    .success-mains{width:100%;min-height:98%;background-color:white;position: relative;display: block;margin: auto;
+        padding:15% 0 0; text-align: center}
+    .success-m{text-align: center;}
+    #count b{font-size: 12px;color:#f00; padding-right: 5px;}
+    .success-m p{line-height: 20px;color: #888}
+
+</style>
+
+<!--<script type="text/javascript">-->
+<!--    $(function() {-->
+<!--        var count = 2;-->
+<!--        setInterval(function() {-->
+<!--            count&#45;&#45;;-->
+<!--            if (count <= 0) window.location.href = "";-->
+<!--            $("#count").html("<b>" + count + "</b>");-->
+<!--        }, 1000);-->
+<!--    });-->
+<!--</script>-->
+
+
+
+

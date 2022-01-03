@@ -1,0 +1,22 @@
+*{ margin:0; padding:0;}
+html, body, div, p, ol, ul, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, form, input, select, button, img, textarea, iframe, table, th, td {
+    margin: 0;padding: 0;}
+html, body { height: 100%; overflow: hidden; }
+html { -webkit-text-size-adjust: none; }
+body, td, input, textarea, select, button { color: #333; font-size: 13px; font-family: "Microsoft Yahei", "Lucida Grande", Verdana, Lucida, Helvetica, Arial, sans-serif; }
+body, ul, ol, li, dl, dt, dd, p, form, fieldset { margin: 0; padding: 0; }
+ul, ol, li { list-style-image: none; list-style-type: none; }
+:focus {outline: 0;}
+img {border: medium none;vertical-align: middle;}
+body, input, select, button, textarea {font-family: "Source Sans Pro",Tahoma,Microsoft yahei;font-size: 14px;}
+.normal, em, i {font-style: normal;font-weight: normal;}
+table {border-collapse: collapse;border-spacing: 0;border-collapse: collapse;}
+p {word-wrap: break-word;}
+a {color: #3f3e3e;text-decoration: none;}
+/*a:hover {color: #f63c0a;}*/
+input[type="button"] {outline: medium none;}
+.clearfix {display: block;}
+.overflow{ overflow:hidden}
+.clearfix::after {clear: both;content: ".";display: block;font-size: 0;height: 0;visibility: hidden;}
+.head-bag{width: 100%;height: 111px;text-align: center;background: #2196f3;font-size: 16px;}
+.btnext{background: blue;color: #fff;width: 100px;text-align: center;border-radius: 10px;height: 48px;line-height: 50px;position: relative;top:60px;left: 70px;}

@@ -1,0 +1,34 @@
+{include file="./common/hearder" /}
+
+<body>
+{include file="./common/topmenu" /}
+
+<div class="clearfix"></div>
+
+{include file="./common/Bread" /}
+
+<div class="mainBg box1Bg backgroundf0">
+    <div class="mainBgImg"></div>
+    <div class="container">
+        <div class="cose_list ">
+            <ul class="row">
+                {volist name="TopData" id="vo"}
+                <li class="cose_info  col-xs-12 col-sm-3 col-md-3 wow fadeInUp animated animated" style="visibility: visible; animation-name: fadeInUp;">
+                    <a href="{$vo.url}" class="cose_conent">
+                        <div class="cases-img"><img src="{$vo.org_img}" width="100%"></div>
+                        <h3>{$vo.title}</h3>
+                        <h5>{$vo.seo_des}</h5>
+                    </a>
+                </li>
+                {/volist}
+
+                {$TopData->render()|raw}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{include file="./common/footer" /}
+
+</body>
+</html>

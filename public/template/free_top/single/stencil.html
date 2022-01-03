@@ -1,0 +1,36 @@
+
+{include file="./common/hearder" /}
+
+<body class="bg_index ">
+
+{include file="./common/topmenu" /}
+
+{include file="./common/Bread" /}
+
+
+<div class="buy-main">
+    <div class="buy-cont">
+        <div class="buyleft">
+            <ul>
+                {RmTop:MenuList group_id="9"  limit ="9"   name="vo" }
+                <li {if $vo.column_id == $CurrentColumnId} class="current"   {/if} ><a  href="{$vo.url}">{$vo.title}</a></li>
+                {/RmTop:MenuList}
+            </ul>
+        </div>
+
+        <div class="buyright">
+
+            <div class="buy-cir">
+                <div class="proadd_text2">
+                    {RmTop:TopContentInfo sid = "12"  TopType="single"  TopKey="text"/}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{include file="./common/footer" /}
+
+</body>
+</html>

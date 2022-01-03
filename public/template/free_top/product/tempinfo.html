@@ -1,0 +1,93 @@
+
+{include file="./common/hearder" /}
+
+<body class="bg_index ">
+
+{include file="./common/topmenu" /}
+
+{include file="./common/Bread" /}
+
+
+<div class="container-fluid m-t-30 m-b-30">
+    <div class="tempinfo-main">
+        <div class="article-title">
+            <h1>{$TopData.title}</h1>
+            <div class="subtitle">
+                <h5></h5>
+                <!-- 预览 -->
+                <div class="previews">
+                    <!--免费-->
+<!--                    <a href="#" class="consulting ">下载</a>-->
+                    <!--if付费-->
+                    <a href="#" class="consulting buys">购买</a>
+                    <a href="#" class="">预览</a>
+                </div>
+            </div>
+        </div>
+        <div class="preview-box">
+            <!-- pc --><div class="pc-box">
+            <div class="preview-content">
+                <img class="lazy" src="{$TopData.org_img}" style="display: inline;">
+            </div>
+        </div>            <!-- mobile -->
+        </div>
+        <div class="descr">
+            <div class="panel-heading">简介</div>
+            <div class="panel-body">
+                <ul>
+                    <li><p>所属类型：<span>企业展示型</span></p><p>模版价格：<span style="color: #2196f3">{$TopData.free_price}</span></p></li>
+                    <li><p>更新时间：<span>{$TopData.create_time}</span></p><p>发布时间：<span>{$TopData.create_time}</span></p></li>
+                    <li><p>当前版本：<span>{$TopData.versions}</span></p><p>开发作者：<!--<img src="{$TopData.author_img}" class="rounded-circle">--><span>{$TopData.author}</span></p></li>
+                    <li><p style="width: 100%">模板信息：<span>{$TopData.seo_des}</span></p></li>
+                </ul>
+            </div>
+        </div>
+
+        <!--详情-->
+        <div class="templ-tiem">
+            <div class="panel-heading">详情</div>
+            {$TopData.content|raw}
+        </div>
+
+
+
+    </div>
+
+</div>
+
+<!--弹窗-->
+<div class="buy" style="display: none">
+    <div class="buy-bg"></div>
+    <div class="buy_content">
+        <p class="closebuy">×</p>
+        <div class="ps-cp-hhs">
+            <p>请扫码添加任一客服微信购买</p>
+        </div>
+        <div class="payse-main">
+            <div class="pay-sd">
+                <img src='{RmTop:TopContentInfo sid = "1" TopType="single" TopKey="weixinewm"}'><p>平台客服</p>
+            </div>
+            <div class="pay-sd">
+               <img src='{RmTop:TopContentInfo sid = "1" TopType="single" TopKey="kefu_weixin"}'><p>技术客服</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{include file="./common/footer" /}
+
+
+<script>
+    $(function(){
+        $('.buys').click(function(){
+            $('.buy').stop().show();    //显示
+        });
+        $('.closebuy').click(function(){
+            $('.buy').stop().hide();    //隐藏
+        });
+    });
+</script>
+
+</body>
+</html>

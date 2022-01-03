@@ -1,0 +1,25 @@
+<!--nav-->
+<div class="eycms_cont_left">
+    <!--<a href="##" class="ax-close-nav-all"><span class="ax-iconfont ax-icon-left"></span></a>-->
+    <div class="" style="text-align: center;padding: 3px 0">
+        <a href="/rmtop/mainPage#/rmtop/inipage" class="ax-logo ax-color-white ax-margin" style="font-weight: bold;font-size: 16px;">RmTop-CMS<img src="" /></a>
+        <!--<a href="##" class="ax-close-nav ax-iconfont ax-icon-menu-fold"></a>-->
+    </div>
+    <div class=" ">
+        <ul class="ax-menu ax-menu-dark" id="menu-basic">
+            {volist name="navs" id="vo"}
+            <li>
+                <a href="#"><span class="ax-legend ax-iconfont">{$vo.ico}</span><span class="ax-name">{$vo.title}</span><span class="ax-arrow ax-iconfont ax-icon-right"></span></a>
+                <ul>
+                    {volist name="vo.menus" id="menu"}
+                    <li><a href="#/rmtop/{$menu.url}"><span class="ax-name">{$menu.title}</span></a></li>
+                    {/volist}
+                </ul>
+            </li>
+            {/volist}
+        </ul>
+        <div class="ax-mask"></div><!--收缩后的遮罩层，点击可重新展开菜单-->
+    </div>
+</div>    <!--end-->
+
+

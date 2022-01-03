@@ -1,0 +1,223 @@
+{include file="/app/rmcore/view/public/hearder" /}
+
+<body  style="overflow: auto;border-radius: 3px;">
+
+
+<div class="tab-contain" style="margin-top: 10px;">
+    <!-- tab栏 -->
+    <ul id="tabs">
+        <li class="current"><span title="tab1">常规选项</span></li>
+        <li><span  title="tab2">其他选项</span></li>
+    </ul>
+
+    <div style="height: 1px;background-color: gainsboro"></div>
+    <!-- 对应显示内容 -->
+
+    <form action="{$actions.article_request_add}"  method="post">
+
+        <div id="contents">
+            <div id="tab1" class="item show">
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <div class="ax-form-label">标题：</div>
+                        <div class="ax-form-input"><label>
+                            <input type="text" name="title">
+                        </label></div>
+                    </div>
+                </div>
+                <div class="ax-break-lg"></div>
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <div class="ax-form-label">封面图：</div>
+                        <div class="ax-form-con">
+                            <div class="ax-form-input">
+                                <input id="file" onchange=handleFile("file") class="ax-input-file" type="file">
+                                <input name="org_img" value="" placeholder="上传图片" id="org_img_file" type="text">
+                                <span  class="ax-file-btn">选择图片</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ax-break-lg"></div>
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <div class="ax-form-label">内容详情：</div>
+                        <div style="position: relative;width:700px ">
+                            <div id="content" class=""></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ax-break-lg"></div>
+                <div class="ax-break-lg"></div>
+                <input name="col_id" value="{$column_id}" type="hidden">
+            </div>
+
+            <div id="tab2" class="item">
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <span class="ax-form-label">作者：</span>
+                        <div class="ax-form-input"><input name="author" value="" type="text"></div>
+                    </div>
+                </div>
+                <div class="ax-break-lg"></div>
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <span class="ax-form-label">访问量：</span>
+                        <div class="ax-form-input"><input name="views" value="" type="text"></div>
+                    </div>
+                </div>
+                <div class="ax-break-lg"></div>
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <div class="ax-form-label">阅读权限：</div>
+                        <div class="ax-form-con">
+                            <div class="ax-form-input">
+                                <select name="access">
+                                    <option value="0">开放阅读</option>
+                                    <option value="1">待审核稿件</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ax-break-lg"></div>
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <div class="ax-form-label">特定模板：</div>
+                        <div class="ax-form-con">
+                            <div class="ax-form-input">
+                                <label>
+                                    <input name="view_path" value="" placeholder="选择模版,不设置则为默认模版" type="text">
+                                </label>
+                                <span onmouseover="document.getElementById('file-upload').style.display='block';" class="ax-file-btn">选择模版</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ax-break-lg"></div>
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <span class="ax-form-label">TGA标签：</span>
+                        <div class="ax-form-input"><input name="tags" type="text"></div>
+                    </div>
+                </div>
+                <div class="ax-break-lg"></div>
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <span class="ax-form-label">SEO标题：</span>
+                        <div class="ax-form-input"><input name="seo_title" value="" type="text"></div>
+                    </div>
+                </div>
+                <div class="ax-break-lg"></div>
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <span class="ax-form-label">SEO关键词：</span>
+                        <div class="ax-form-input"><input name="seo_key" value="" type="text"></div>
+                    </div>
+                </div>
+                <div class="ax-break-lg"></div>
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <span class="ax-form-label">SEO描述：</span>
+                        <div class="ax-form-input">
+                            <textarea name="seo_des" cols="" rows="" placeholder="写描述"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="ax-break-lg"></div>
+            <div class="ax-break-lg"></div>
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label"></div>
+                    <div class="ax-flex-block">
+                        <div class="ax-form-input"><button type="submit" class="ax-btn ax-primary ax-full">保存配置</button></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+
+</div>
+
+</body>
+<style>
+    #tabs {  overflow: hidden;  width: 80%;  margin: 0;  padding: 0;  list-style: none;  }
+    #tabs li {  float: left;  margin-left: 14px;  height: 40px;  line-height: 40px;  width: 100px;cursor: pointer  }
+    li span {  position: relative;  font-size: 16px;  }
+    .current li{  outline: 0;  color: #3398cc;  border-bottom: 1px solid #3398cc;    }
+    .current span{  outline: 0;  color: #3398cc;  border-bottom: 1px solid #3398cc;  }
+    .current span:before{content: '';position: absolute;bottom: 0;left: 2px;width: 95%;
+        height: 2px;background: #3398cc;border-radius: 30px;}
+    #contents {  background: #fff;  padding: 30px 0 25px;  position: relative;  }
+    .item{  display: none;  }
+    .show{  display: block;  }
+
+</style>
+
+<script type="text/javascript">
+
+    if ($.cookie('article_add_tab_current')!= null){
+        let num = $.cookie("article_add_tab_current");
+        $('#tabs li').removeClass("current").removeClass("hoverItem");
+        $("#tabs li ").find("span").eq(num).parent().addClass("current");
+        $("#contents div").removeClass("show");
+        if(num == 1){
+            $("#tab2").addClass('show')
+        }else{
+            $("#tab1").addClass('show')
+        }
+    }else{
+        let num = 0;
+        $('#tabs li').removeClass("current").removeClass("hoverItem");
+        $("#tabs li ").find("span").eq(num).parent().addClass("current");
+        $("#contents div").removeClass("show");
+        $("#tab1").addClass('show')
+    }
+
+    $('#tabs li span').click(function(e) {
+        e.preventDefault();
+        $('#tabs li').removeClass("current").removeClass("hoverItem");
+        $(this).parent().addClass("current");
+        $("#contents div").removeClass("show");
+        $('#' + $(this).attr('title')).addClass('show');
+        let index = $("#tabs li ").find("span").index(this);
+        $.cookie('article_add_tab_current',index);
+    });
+
+    // $(function(){
+    //     $('#tabs span').click(function(e) {
+    //         e.preventDefault();
+    //         $('#tabs li').removeClass("current").removeClass("hoverItem");
+    //         $(this).parent().addClass("current");
+    //         $("#contents div").removeClass("show");
+    //         $('#' + $(this).attr('title')).addClass('show');
+    //     });
+    //
+    //     $('#tabs span').hover(function(){
+    //         if(!$(this).parent().hasClass("current")){
+    //             $(this).parent().addClass("hoverItem");
+    //         }
+    //     },function(){
+    //         $(this).parent().removeClass("hoverItem");
+    //     });
+    // });
+</script>
+
+<script charset="utf-8" src="/static/neditor/neditor.config.js"></script>
+<script charset="utf-8" src="/static/neditor/neditor.all.js"></script>
+<script charset="utf-8" src="/static/neditor/neditor.service.js"></script>
+<script>
+    UE.getEditor("content",{
+        autoHeight: false,
+        initialFrameHeight:400,
+        initialFrameWidth:window.screen.width/2.2,
+    });
+</script>
+
+

@@ -1,0 +1,20 @@
+{
+    "name": "rmtop/rmsf-system-rules",
+    "description": "\"````````\"",
+    "require": {
+        "casbin/think-authz": "^1.2",
+        "topthink/think-migration": "^3.0"
+    },
+    "license": "rmTop",
+    "authors": [
+        {
+            "name": "rmsf-jhz",
+            "email": "hezuo@ynrmsf.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "RmTop\\": "src/"
+        }
+    }
+}

@@ -1,0 +1,93 @@
+<!--main-->
+{include file="/app/rmcore/view/public/hearder" /}
+<div id="ajax" class="ajax"></div>
+<div class="ax-sr-page">
+<div class="ax-row ax-align-center ">
+    <a class="ax-btn ax-sm ax-primary ax-iconfont ax-icon-undo-fill lj-he-btn"> 导出Excel</a>
+</div>
+<div style="height: 1px;margin-bottom: 10px;"></div>
+
+<table class="ax-table">
+    <thead>
+    <tr style="background-color:#EFEFEF " class="ax-shadow-border ax-radius">
+        <th style="width:50px;"><input name="" type="checkbox" value=""></th>
+        <th>ID</th>
+        <th><div class="ax-align-left">姓名</div></th>
+        <th><div class="ax-align-left">联系方式</div></th>
+        <th><div class="ax-align-left">需求</div></th>
+        <th>状态</th>
+        <th>提交时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    {volist name="list" id="vo"}
+    <tr style="height: 60px">
+        <td><input name="id[]" type="checkbox" value=""></td>
+        <td><div class="ax-align-center">{$vo.id}</div></td>
+        <td><div class="ax-align-left">{$vo.username}</div></td>
+        <td><div class="ax-align-left" style="max-width: 120px">{$vo.mobile}</div></td>
+        <td><div class="ax-align-left" style="max-width: 200px">{$vo.demand}</div></td>
+        <td><div class="ax-align-center">
+
+            {if $vo.state  == 1}
+              <span style="color: green">{$vo.state_label}</span>
+            {else/}
+              <span style="color: red">{$vo.state_label}</span>
+            {/if}
+
+
+        </div>
+        </td>
+        <td><div class="ax-align-center">{$vo.create_time}</div></td>
+        <td>
+            <div class="ax-operate">
+                <a data-url="/rmtop/messageInfo?id={$vo.id}" class="ax-iconfont ax-icon-eye-fill rm-model" title="查看"></a>
+                <a href="{$actions.message_delete}&id={$vo.id}" class="ax-iconfont ax-icon-trash-alt-fill" title="删除"></a>
+            </div>
+        </td>
+    </tr>
+    {/volist}
+    </tbody>
+
+</table>
+
+    <div class="ax-pagination">
+        {$list->render()|raw}
+    </div>
+
+<!--弹窗-->
+
+<!--弹窗end-->
+</div>
+
+<style>
+    .buy-bg{  position: absolute;  top: 0%;  left: 0%;  width:100%;  height: 100%;
+        background-color: black;  z-index:1001;  -moz-opacity: 0.8;  opacity:.50;  filter: alpha(opacity=50);  }
+    .buy_content {  position: absolute;  top: 25%;  left:25%;  width:50%;  height:auto;background: #fff;
+        z-index:1002;  overflow: auto;padding: 25px;  text-align: left;  }
+    .tplName{display: flex;align-items: center;padding: 15px 0;}
+    .tplName-lf{width: 10%;min-width: 60px;}
+    .tplName-rt{width: 90%;    padding-left: 10px;  color: #555;}
+    .closeup{position: absolute;  right: 10px;  top: 5px;  font-size: 23px;  line-height: 23px;  color: #333;  cursor: pointer                  }
+</style>
+<script type="text/javascript">
+    $('.ax-operate .rm-model').click(function (){
+        $('body').append('<div id="overlay"></div>');
+        $('#overlay').height($(document).height()).css({
+            'opacity': .6, //透明度
+            'position': 'absolute',
+            'top': 0,
+            'left': 0,
+            'background-color': 'black',
+            'width': '100%',
+            'z-index': 9 //保证这个悬浮层位于其它内容之上
+        }).fadeIn('slow');
+        $("#ajax").load($(this).attr('data-url'))
+        $("#ajax").css({'z-index':10})
+    });
+
+
+</script>
+</body>
+</html>

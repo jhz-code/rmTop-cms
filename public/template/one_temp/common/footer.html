@@ -1,0 +1,63 @@
+<!--底部-->
+
+<footer class="footerBg">
+    <div class="container">
+        <div class="footTop">
+            <div class="footTopR text-right">
+                <div class="clear">咨询服务电话：</div>
+                <p class="fTel">{RmTop:TopInfo  TopKey="kefu_mobile" /}</p>
+                <p>（周一至周五8:30-18:30）</p>
+            </div>
+            <div class="footTopL">
+                <ul class="footLink list-unstyled list-inline">
+                    {RmTop:MenuList group_id="7"  limit ="10"   name="vo" }
+                    <li>
+                        <h3><a class="ellipsis" href="{$vo.url}" target="_blank">{$vo.title}</a></h3>
+                        {if $vo.childNum != 0}
+                        <div class="footSub">
+                            {RmTop:ChildMenuList pid="$vo['id']"  limit ="5"  name="vo_child" }
+                            <p><a class="ellipsis" href="{$vo_child.url}" target="_blank">{$vo_child.title}</a></p>
+                            {/RmTop:ChildMenuList}
+                        </div>
+                        {/if}
+                    </li>
+                    {/RmTop:MenuList}
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+    </div>
+    <div class="footBot"><p>Copyright© 2017-{:date("Y")} {$sys.Name}-{$sys.Version} {$sys.Copyright} 版权所有 All rights reserved</p> </div>
+</footer>
+
+<!--侧边客服-->
+<div class="suspension">
+    <div class="suspension-box">
+        <a href="javascript:;" class="a a-service-phone "><i class="i"></i></a>
+        <a href="javascript:;" class="a a-qrcode"><i class="i"></i></a>
+        <a href="javascript:;" class="a a-top"><i class="i"></i></a>
+        <div class="d d-service-phone" style="min-height: 45px">
+            <i class="arrow"></i>
+            <div class="inner-box" style="padding: 0">
+                <div class="d-service-item clearfix">
+                    <div class="text">
+                        <p class="red number">{RmTop:TopInfo  TopKey="kefu_mobile" /}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d d-qrcode">
+            <i class="arrow"></i>
+            <div class="inner-box">
+                <div class="qrcode-img"><img src='{RmTop:TopContentInfo sid = "1" TopType="single" TopKey="kefu_weixin"}' alt=""></div>
+                <p class="jisu-ke">咨询客服</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+

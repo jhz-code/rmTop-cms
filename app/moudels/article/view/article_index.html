@@ -1,0 +1,48 @@
+<!--main-->
+{include file="/app/rmcore/view/public/hearder" /}
+<div class="ax-sr-page">
+    <div class="ax-row">
+        <div class="ax-row-2 list-tlea"><h4>{$column_title}</h4></div>
+        <div class="ax-row-2 ax-btn ax-iconfont ax-icon-plus-t ax-primary lj-a-btn" style="height: 33px"><a  href="{$actions.article_add}" style="color: #fff">添加文档</a></div>
+    </div>
+    <div style="height: 1px;margin-bottom: 10px;background-color: gainsboro"></div>
+
+    <table class="ax-table">
+        <thead>
+        <tr style="background-color:#efefef " class="ax-shadow-border ax-radius">
+            <th>文章ID</th>
+            <th><div class="ax-align-left">文章标题</div></th>
+            <th>栏目</th>
+            <th>访问量</th>
+            <th>发布时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+
+         {volist name="list" id="vo"}
+
+        <tr style="height: 60px">
+            <td><div class="ax-align-center">{$vo.id}</div></td>
+            <td><div class="ax-align-left">{$vo.title}</div></td>
+            <td><div class="ax-align-center">{$vo.column_title}</div></td>
+            <td><div class="ax-align-center">{$vo.views}</div></td>
+            <td><div class="ax-align-center">{$vo.create_time}</div></td>
+            <td>
+                <div class="ax-operate">
+                    <a href="{:previewUrl($vo.uqid,$vo.col_id,$vo.title)}" target="_blank" class="ax-iconfont ax-icon-eye-fill" title="查看"></a>
+                    <a href="{$actions.article_edit}&id={$vo.id}" class="ax-iconfont ax-icon-editing-fill" title="编辑"></a>
+                    <a href="{$actions.article_delete}&id={$vo.id}" class="ax-iconfont ax-icon-trash-alt-fill" title="删除"></a>
+                </div>
+            </td>
+        </tr>
+        {/volist}
+        </tbody>
+    </table>
+    <div class="ax-pagination">
+        {$list->render()|raw}
+    </div>
+</div>
+
+</body>
+</html>

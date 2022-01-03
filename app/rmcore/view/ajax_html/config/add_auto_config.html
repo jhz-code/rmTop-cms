@@ -1,0 +1,95 @@
+    <div class="buy_content ax-radius">
+        <div class="open-head">
+            <div class="newhredup">添加配置项</div>
+            <div class="closeup ax-iconfont ax-icon-close-t"></div>
+        </div>
+        <form action="/rmtop/ajaxAddAutoConfig"  method="post">
+            <div class="item show herf-main">
+                <div class="ax-break-lg"></div>
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <div class="ax-form-label">配置分组：</div>
+                        <div class="ax-form-con">
+                            <div class="ax-form-input" style="width: 360px !important;">
+                                <select name="group_id">
+                                    {volist name="group" id="vo"}
+                                    <option value="{$vo.id}">{$vo.title}</option>
+                                    {/volist}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ax-break-lg"></div>
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <div class="ax-form-label">配置名称：</div>
+                        <div class="ax-form-input"  style="width: 360px !important;">
+                            <input type="text" name="zh_name" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div class="ax-break-lg"></div>
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <div class="ax-form-label">配置字段：</div>
+                        <div class="ax-form-input"  style="width: 360px !important;">
+                            <input type="text" id="paramKey" name="en_name" placeholder="">
+                            <label id="tips" style="color: red"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="ax-break-lg"></div>
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <div class="ax-form-label">排序：</div>
+                        <div class="ax-form-input"  style="width: 360px !important;">
+                            <input type="text" name="sort" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div class="ax-break-lg"></div>
+                <div class="ax-break-lg"></div>
+                <div class="ax-form-group">
+                    <div class="ax-flex-row">
+                        <div class="ax-form-label"></div>
+                        <div class="ax-flex-block" >
+                            <div class="ax-form-input" style="width: 280px !important;">
+                                <button id="addConfig"   disabled="disabled" type="submit" class="ax-btn ax-primary ax-full">确认添加</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+
+    <script>
+        $(".closeup").click(function () {
+            $('#overlay').hide();
+            $("#ajax").empty();
+        })
+
+        $("#paramKey").bind('input propertychange', function() {
+            $.ajax({
+                type: "post",
+                url: "/rmtop/checkAutoConfigKey",
+                data: {sid:$("#sid").val(),'paramKey':$("#paramKey").val()},
+                dataType: "json",
+                success: function(data){
+                    if(data.code !== 1){
+                        $("#addConfig").attr('disabled','disabled');
+                        $("#tips").html(data.msg);
+                    }else{
+                        $("#addConfig").removeAttr("disabled");
+                        $("#tips").empty();
+
+                    }
+                }
+            });
+        })
+
+
+    </script>
