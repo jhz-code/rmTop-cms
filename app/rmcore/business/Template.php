@@ -21,16 +21,19 @@ class Template
      */
    static  function tempList(): array
     {
+        if (!file_exists(public_path().'/template/')){
+            mkdir(public_path().'/template/');
+        }
         $files = scandir(public_path().'/template/');
         $list = [];
-        foreach ($files as $file) {
+        foreach ($files as $key=>$file) {
             if ($file != '.' && $file != '..') {
-                    $list[] = $file ;
+                    $list[$key]['name'] = $file ;
+                    $list[$key]['image'] = '/template/'.$file.'/rmtop-img.png' ;
             }
         }
         return $list;
     }
-
 
 
     /**
@@ -62,7 +65,7 @@ class Template
         $zip = new ZipArchive;
         $res = $zip->open($tempPath);
         if ($res) {
-            var_dump($tempPath);
+//            var_dump($tempPath);
             //解压缩到test文件夹
             $zip->extractTo(public_path().'/template/');
             $zip->close();
@@ -112,7 +115,7 @@ class Template
             }
 
         }
-        @closedir($path);
+        @closedir($handler);
     }
 
 

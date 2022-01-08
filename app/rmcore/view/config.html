@@ -11,7 +11,6 @@
         <ul id="tabs">
             <li class="current"><span title="tab1">基础设置</span></li>
             <li><span  title="tab2">运行配置</span></li>
-            <li><span  title="tab3">模版配置</span></li>
         </ul>
         <div style="height: 1px;background-color: gainsboro"></div>
 
@@ -27,10 +26,10 @@
                                 <div class="ax-form-input">
                                     <div class="ax-row">
                                         <div class="ax-col ax-col-6">
-                                            <label class="ax-radio"><input name="is_open" value="0" checked="" type="radio"><span>开启</span></label>
+                                            <label class="ax-radio"><input name="is_open"  value="0"  {if condition="$config.is_open eq 0"} checked {/if} type="radio"><span>开启</span></label>
                                         </div>
                                         <div class="ax-col ax-col-6">
-                                            <label class="ax-radio"><input name="is_open" value="1" type="radio"><span>关闭</span></label>
+                                            <label class="ax-radio"><input name="is_open" value="1"  {if condition="$config.is_open eq 1"} checked {/if}  type="radio"><span>关闭</span></label>
                                         </div>
                                     </div>
                                 </div>
@@ -42,14 +41,14 @@
                     <div class="ax-form-group">
                         <div class="ax-flex-row">
                             <div class="ax-form-label">网站标题：</div>
-                            <div class="ax-form-input"><input type="text" name="web_title" value="{$config.web_title}" placeholder="输入网站名称"></div>
+                            <div class="ax-form-input"><input type="text" name="web_title" value="{$config.web_title}" placeholder="请输入网站标题"></div>
                         </div>
                     </div>
                     <div class="ax-break-lg"></div>
                     <div class="ax-form-group">
                         <div class="ax-flex-row">
                             <div class="ax-form-label">站点地址：</div>
-                            <div class="ax-form-input"><input type="text" name="web_host" value="{$config.web_host}" placeholder="输入网站网址"></div>
+                            <div class="ax-form-input"><input type="text" name="web_host" value="{$config.web_host}" placeholder="请输入站点地址"></div>
                         </div>
                     </div>
                     <div class="ax-break-lg"></div>
@@ -59,10 +58,11 @@
                             <div class="ax-form-label">网站Logo：</div>
                             <div class="ax-form-con">
                                 <div class="ax-form-input">
-                                    <input id="file" onchange=handleFile("file") class="ax-input-file" type="file">
+                                    <input id="file" onchange=handleFile("file") class="ax-input-file showImg" type="file">
                                     <input name="web_logo" value="{$config.web_logo}" placeholder="上传图片" id="org_img_file" type="text">
                                     <span  class="ax-file-btn">选择图片</span>
                                 </div>
+                                <div class="large"></div>
                             </div>
                         </div>
                     </div>
@@ -74,10 +74,11 @@
                             <div class="ax-form-label">网站ico：</div>
                             <div class="ax-form-con">
                                 <div class="ax-form-input">
-                                    <input id="ico" onchange=handleFile("ico") class="ax-input-file" type="file">
+                                    <input id="ico" onchange=handleFile("ico") class="ax-input-file showImg2" type="file">
                                     <input name="web_ico" value="{$config.web_ico}" placeholder="上传图片" id="org_img_ico" type="text">
                                     <span  class="ax-file-btn">选择图片</span>
                                 </div>
+                                <div class="large2"></div>
                             </div>
                         </div>
                     </div>
@@ -89,10 +90,11 @@
                             <div class="ax-form-label">登录页面Logo：</div>
                             <div class="ax-form-con">
                                 <div class="ax-form-input">
-                                    <input id="login_logo" onchange=handleFile("login_logo") class="ax-input-file" type="file">
+                                    <input id="login_logo" onchange=handleFile("login_logo") class="ax-input-file showImg3" type="file">
                                     <input name="login_logo" value="{$config.login_logo}" placeholder="上传图片" id="org_img_login_logo" type="text">
                                     <span  class="ax-file-btn">选择图片</span>
                                 </div>
+                                <div class="large3"></div>
                             </div>
                         </div>
                     </div>
@@ -102,7 +104,7 @@
                     <div class="ax-form-group">
                         <div class="ax-flex-row">
                             <div class="ax-form-label">全站关键词：</div>
-                            <div class="ax-form-input"><input type="text" name="web_keyword" value="{$config.web_keyword}" placeholder="输入关键词"></div>
+                            <div class="ax-form-input"><input type="text" name="web_keyword" value="{$config.web_keyword}" placeholder="请输入关键词"></div>
                         </div>
                     </div>
                     <div class="ax-break-lg"></div>
@@ -139,6 +141,16 @@
 
                     <div class="ax-break-lg"></div>
                     <div class="ax-break-lg"></div>
+                    <div class="ax-form-group">
+                        <div class="ax-flex-row">
+                            <div class="ax-form-label"></div>
+                            <div class="ax-flex-block">
+                                <div class="ax-form-input" style="width:280px !important;">
+                                    <button type="submit" class="ax-btn ax-primary ax-full">保存配置</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
 
@@ -183,53 +195,29 @@
                     <div class="ax-break-lg"></div>
                     <div class="ax-form-group">
                         <div class="ax-flex-row">
-                            <div class="ax-form-label">开发者模式：</div>
+                            <div class="ax-form-label">运行模式：</div>
                             <div class="ax-form-input">
                                 <select name="developer">
                                     <option value="1" {if 1 == $config.developer} selected {/if} >开发者模式</option>
-                                    <option value="2" {if 2 == $config.developer} selected {/if} >运行模式</option>
-
+                                    <option value="2" {if 2 == $config.developer} selected {/if} >安全模式</option>
                                 </select>
                             </div>
                         </div>
                     </div>
 
-
-                </div>
-
-                <div id="tab3" class="item">
                     <div class="ax-break-lg"></div>
                     <div class="ax-break-lg"></div>
                     <div class="ax-form-group">
                         <div class="ax-flex-row">
-                            <div class="ax-form-label">系统模板：</div>
-                            <div class="ax-form-input">
-                                <select name="tmp_path">
-                                    {volist name="tpl" id="vo"}
-                                    <option value="{$vo}" {if $vo === $config.tmp_path} selected {/if} >{$vo}</option>
-                                    {/volist}
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <div class="ax-break-lg"></div>
-                <div class="ax-break-lg"></div>
-
-                <div class="ax-form-group">
-                    <div class="ax-flex-row">
-                        <div class="ax-form-label"></div>
-                        <div class="ax-flex-block">
-                            <div class="ax-form-input" style="width:280px !important;">
-                                <button type="submit" class="ax-btn ax-primary ax-full">保存配置</button>
+                            <div class="ax-form-label"></div>
+                            <div class="ax-flex-block">
+                                <div class="ax-form-input" style="width:280px !important;">
+                                    <button type="submit" class="ax-btn ax-primary ax-full">保存配置</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
 
             </form>
         </div>
@@ -247,14 +235,11 @@
     .current span{  outline: 0;  color: #3398cc;  border-bottom: 1px solid #3398cc;  }
     .current span:before{content: '';position: absolute;bottom: 0;left: 2px;width: 95%;
         height: 2px;background: #3398cc;border-radius: 30px;}
-    #content {  background: #fff;  padding: 30px 0 25px;  position: relative;  }
+    #content {  background: #fff;  padding: 15px 0 25px;  position: relative;  }
     .item{  display: none;  }
     .show{  display: block;  }
     .ax-form-label{width: 95px !important;justify-content: flex-start !important;padding-left: 0;}
     .ax-form-input{width: 700px !important;}
-    /*.ax-flex-block, .ax-flex-block-1{flex: 0.23}*/
-    /*.label-name{flex: 1 !important;}*/
-
     .buy-bg{  position: absolute;  top: 0%;  left: 0%;  width:100%;  height: 100%;
         background-color: black;  z-index:1001;  -moz-opacity: 0.8;  opacity:.50;  filter: alpha(opacity=50);  }
     .buy_content {  position: absolute;  top: 15%;  left:28%;  width:575px;  height:auto;background: #fff;
@@ -268,6 +253,8 @@
         border: 1px solid #ddd;margin-top: 3px;  background-color: #f8f8f8;  padding: 0;border-radius: 0 4px 4px 0;}
     .tab-ligh li{width: 50%;text-align: center;cursor: pointer}
     .lighten{background: #198cff;color: #fff}
+
+
 </style>
 
 <script type="text/javascript">
@@ -301,8 +288,45 @@
         $.cookie('sys_config_tab',index);
     });
 
+
 </script>
 
+
+<script>
+    //鼠标移动到上传图片输入框预览图片
+    $(function(){
+        var ei = $(".large");
+        ei.hide();
+        $(".showImg").mousemove(function(e){
+            var UpsImg = $('#org_img_file').val()
+            ei.html('<img src=" '+ UpsImg +' " />').show();
+        }).mouseout( function(){
+            ei.hide();
+        })
+    });
+
+    $(function(){
+        var ei2 = $(".large2");
+        ei2.hide();
+        $(".showImg2").mousemove(function(e){
+            var UpsImg2 = $('#org_img_ico').val()
+            ei2.html('<img src=" '+ UpsImg2 +' " />').show();
+        }).mouseout( function(){
+            ei2.hide();
+        })
+    });
+
+    $(function(){
+        var ei3 = $(".large3");
+        ei3.hide();
+        $(".showImg3").mousemove(function(e){
+            var UpsImg3 = $('#org_img_login_logo').val()
+            ei3.html('<img src=" '+ UpsImg3 +' " />').show();
+        }).mouseout( function(){
+            ei3.hide();
+        })
+    });
+</script>
 
 
 

@@ -8,7 +8,7 @@
 <table class="ax-table">
     <thead>
     <tr style="background-color:#efefef " class="ax-shadow-border ax-radius">
-        <th style="width:50px;"><input name="" type="checkbox" value=""></th>
+<!--        <th style="width:50px;"><input name="" type="checkbox" value=""></th>-->
         <th>ID</th>
         <th><div class="ax-align-left">分组名称</div></th>
         <th><div class="ax-align-left">标识</div></th>
@@ -21,7 +21,7 @@
 
     {volist name="group" id="vo"}
     <tr style="height: 60px">
-        <td><input name="" type="checkbox" value=""></td>
+<!--        <td><input name="" type="checkbox" value=""></td>-->
         <td><div class="ax-align-center">{$vo.id}</div></td>
         <td><div class="ax-align-left">{$vo.title}</div></td>
         <td><div class="ax-align-left">{$vo.ident}</div></td>
@@ -35,21 +35,21 @@
     </tr>
     {/volist}
     </tbody>
-    <tfoot>
-    <tr>
-        <td colspan="13">
-            <div class="ax-flex-row">
-                <div class="ax-flex-block ax-align-left" style="flex:inherit"><input name="" type="checkbox" value="">全选</div>
-                <div class="ax-flex-block ax-align-right" style="flex:inherit"><a href="##" class="ax-btn ax-primary ax-xs">批量删除</a></div>
-                <span class="ax-gutter"></span>
-            </div>
-        </td>
-    </tr>
-    </tfoot>
+<!--    <tfoot>-->
+<!--    <tr>-->
+<!--        <td colspan="13">-->
+<!--            <div class="ax-flex-row">-->
+<!--                <div class="ax-flex-block ax-align-left" style="flex:inherit"><input name="" type="checkbox" value="">全选</div>-->
+<!--                <div class="ax-flex-block ax-align-right" style="flex:inherit"><a href="##" class="ax-btn ax-primary ax-xs">批量删除</a></div>-->
+<!--                <span class="ax-gutter"></span>-->
+<!--            </div>-->
+<!--        </td>-->
+<!--    </tr>-->
+<!--    </tfoot>-->
 </table>
 
 <div class="ax-pagination">
-    <a class="ax-total">共142条</a><a href="##" class="ax-prev">上一页</a><a href="##">1</a><a class="ax-active">2</a><a href="##">3</a><a href="##">4</a><a href="##">5</a><a href="##">6</a><a href="##" class="ax-next">下一页</a><a href="##" class="ax-last">尾页</a>
+<!--    <a class="ax-total">共142条</a><a href="##" class="ax-prev">上一页</a><a href="##">1</a><a class="ax-active">2</a><a href="##">3</a><a href="##">4</a><a href="##">5</a><a href="##">6</a><a href="##" class="ax-next">下一页</a><a href="##" class="ax-last">尾页</a>-->
 </div>
 
 
@@ -94,4 +94,20 @@
         $("#ajax").load($(this).attr('data-url'))
         $("#ajax").css({'z-index':10})
     });
+</script>
+
+<script type="text/javascript">
+    function Fcheck() {
+        if($('#title').val() == '') {
+            layer.tips('请输入分组名称', '#title', {tips: [2, '#4ea1f5'], tipsMore: false, time:1500});
+            $('#title').focus();
+            return false;
+        }
+        if($('#ident').val() == '') {
+            layer.tips('请输入分组标识', '#ident', {tips: [2, '#4ea1f5'], tipsMore: false, time:1500});
+            $('#ident').focus();
+            return false;
+        }
+        return true;
+    }
 </script>

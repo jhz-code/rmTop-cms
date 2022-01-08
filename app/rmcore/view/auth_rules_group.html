@@ -1,101 +1,44 @@
-<!--main-->
 {include file="/app/rmcore/view/public/hearder" /}
-<body  style="background-color:#F4F4F4;margin: 6px; overflow: hidden;border-radius: 3px" >
 
-<div id="ajax" class="ajax"></div>
-<div id="page">
+<body  style="background-color:#F4F4F4;margin: 6px; overflow: auto;border-radius: 3px">
 
-    <div class="page"  style="box-shadow:none;height: 100%">
-        {include file="/app/rmcore/view/public/bana_nav" /}
+<div class="page"  style="box-shadow:none;height: 97%" >
 
-    <div class="ax-margin ax-col " >
-    <div class="ax-row rm-add">
-        <div class="ax-row-2 list-tlea"><h4>权限规则</h4></div>
-        <a data-url="/rmtop/addRules" class="ax-btn ax-sm ax-iconfont ax-icon-plus-t ax-primary lj-a-btn"> 新增权限</a>
+    {include file="/app/rmcore/view/public/bana_nav" /}
+
+    <div class="tab-contain" style="margin-top: 10px;">
+        <!-- tab栏 -->
+        <ul id="tabs">
+            <li class="current"><span data-url="/rmtop/rulesClass"  title="tab1">管理权限</span></li>
+<!--            <li><span title="tab2" data-url="/rmtop/rulesList">详细权限列表</span></li>-->
+        </ul>
+        <div style="height: 1px;background-color: gainsboro"></div>
+        <div id="content"></div>
     </div>
-    <div style="height: 1px;margin-bottom: 10px;background-color: gainsboro"></div>
-
-    <table class="ax-table">
-        <thead>
-        <tr style="background-color:#efefef " class="ax-shadow-border ax-radius">
-            <th>ID</th>
-            <th><div class="ax-align-left">权限名称</div></th>
-            <th><div class="ax-align-left">权限模型</div></th>
-            <th><div class="ax-align-left">权限执行</div></th>
-            <th><div class="ax-align-left">操作</div></th>
-        </tr>
-        </thead>
-        <tbody>
-
-        {volist name="rule_list" id="vo"}
-        <tr style="height: 60px">
-            <td><div class="ax-align-center"> {$vo.id}</div></td>
-            <td> <div class="ax-align-left">  {$vo.title}  </div>   </td>
-            <td>
-                <div class="ax-align-left">
-                    {$vo.controller}
-                </div>
-            </td>
-            <td>
-                <div class="ax-align-left">
-                    {$vo.action}
-                </div>
-            </td>
-            <td>
-                <div class="ax-operate ax-align-left">
-                    <a data-url="/rmtop/editRules?id={$vo.id}"  class="ax-iconfont ax-icon-editing-fill rm-model" title="编辑"></a>
-                    <a href="/rmtop/deleteRules?id={$vo.id}" class="ax-iconfont ax-icon-trash-alt-fill" title="删除"></a>
-                </div>
-            </td>
-        </tr>
-        {/volist}
-
-        </tbody>
-    </table>
-
-
-</div>
-        <div class="ax-pagination">
-            {$rule_list->render()|raw}
-        </div>
 </div>
 
-</div>
-<script type="text/javascript">
-    $('.rm-add').click(function (){
-        $('body').append('<div id="overlay"></div>');
-        $('#overlay').height($(document).height()).css({
-            'opacity': .6, //透明度
-            'position': 'absolute',
-            'top': 0,
-            'left': 0,
-            'background-color': 'black',
-            'width': '100%',
-            'z-index': 9//保证这个悬浮层位于其它内容之上
 
-        }).fadeIn('slow');
-        $("#ajax").load($(this).find("a").attr('data-url'));
-        $("#ajax").css({'z-index':10})
-    });
 
-    $('.ax-operate .rm-model').click(function (){
-        $('body').append('<div id="overlay"></div>');
-        $(".buy_content").show()
-        $('#overlay').height($(document).height()).css({
-            'opacity': .6, //透明度
-            'position': 'absolute',
-            'top': 0,
-            'left': 0,
-            'background-color': 'black',
-            'width': '100%',
-            'z-index': 9 //保证这个悬浮层位于其它内容之上
+</body>
 
-        }).fadeIn('slow');
-        $("#ajax").load($(this).attr('data-url'))
-        $("#ajax").css({'z-index':10})
-    });
-</script>
 <style>
+    #tabs {  overflow: hidden;  width: 100%;  margin: 0;  padding: 0;  list-style: none;  }
+    #tabs li {  float: left;  margin-left: 14px;  height: 40px;  line-height: 40px;cursor: pointer ;width: 100px;  }
+    li span {  position: relative;  font-size: 16px;  }
+    .current li{  outline: 0;  color: #3398cc;  border-bottom: 1px solid #3398cc;    }
+    .current span{  outline: 0;  color: #3398cc;  border-bottom: 1px solid #3398cc;  }
+    .current span:before{content: '';position: absolute;bottom: 0;left: 2px;width: 95%;
+        height: 2px;background: #3398cc;border-radius: 30px;}
+    #content {  background: #fff;  padding: 15px 0 25px;  position: relative;  }
+    .item{  display: none;  }
+    .show{  display: block;  }
+    .ax-form-label{width: 95px !important;justify-content: flex-start !important;padding-left: 0;}
+    /*.ax-form-input{width: 700px !important;}*/
+    /*.ax-flex-block, .ax-flex-block-1{flex: 0.23}*/
+    /*.label-name{flex: 1 !important;}*/
+
+    .buy-bg{  position: absolute;  top: 0%;  left: 0%;  width:100%;  height: 100%;
+        background-color: black;  z-index:1001;  -moz-opacity: 0.8;  opacity:.50;  filter: alpha(opacity=50);  }
     .buy_content {  position: absolute;  top: 15%;  left:28%;  width:575px;  height:auto;background: #fff;
         z-index:1002;  overflow: auto;padding: 15px;  text-align: left;  }
     .herf-main{background: #fff;padding: 10px;position: relative}
@@ -112,5 +55,26 @@
     .ax-menu-page .ax-item{padding: 0 30px !important;background-color: #eee;color: #666}
     .ax-menu-page .ax-item.ax-active {  color: #333 !important;background: #fff  }
 </style>
-</body>
-</html>
+
+<script type="text/javascript">
+    $(function(){
+        //cookie记录已点击的index
+        if ($.cookie('config_tab_current') != null ){
+            let num = $.cookie("config_tab_current");
+            $('#tabs li').removeClass("current").removeClass("hoverItem");
+            $("#tabs li ").find("span").eq(num).parent().addClass("current");
+            $("#content").load($("#tabs li").find("span").eq(num).attr('data-url'))
+        }else{
+            $('#content').load($("#tabs li span:first").attr('data-url'));//初始化加载页面
+        }
+
+        $('#tabs li span').click(function(e) {
+            e.preventDefault();
+            $('#tabs li').removeClass("current").removeClass("hoverItem");
+            $(this).parent().addClass("current");
+            let index = $("#tabs li ").find("span").index(this);
+            $.cookie('config_tab_current',index);
+            $("#content").load($(this).attr('data-url'))
+        });
+    });
+</script>

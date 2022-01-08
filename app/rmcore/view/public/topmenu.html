@@ -1,23 +1,85 @@
-<div style="width: 200px;height:48px;">
-   <div id="userInfo" style="line-height: 48px;cursor: pointer;position: absolute;right: 30px" onmouseover="pic()" onmouseout="nopic()">
-       <img style="margin-right: 10px" class="ax-avatar ax-radius" src="/static/ax_v1.0.2/images/login-lpgo.png" ></img>
+<div class="top-suya" style="width: 200px;height:48px;">
+   <div id="userInfo" style="line-height: 48px;cursor: pointer;position: absolute;right: 30px" >
+       <img style="margin-right: 10px" class="ax-avatar ax-radius" src="{RmTop:TopInfo TopKey='web_logo' /}" />
        <span id="nickname">{$adminInfo.username}</span>
    </div>
-</div>
-
-
-<div class="ax-usera" id="works_m" onmouseover="stop()" onmouseout="nopic()">
-    <div class="ax-arrowes"></div>
-    <div class="ax-popup-contentes">
-        <a data-url="/rmtop/adminList" class="ax-info-block" style="cursor: pointer">个人信息</a>
-        <div class="ax-break-line"></div>
-        <a data-url="/rmtop/systemMessage" class="ax-info-block" style="cursor: pointer">站内消息</a>
-        <div class="ax-break-line"></div>
-        <a href="/rmtop/loginOut" class="ax-info-block" style="cursor: pointer">安全退出</a>
+    <div class="ax-usera" id="works_m">
+        <div class="ax-arrowes"></div>
+        <div class="ax-popup-contentes">
+            <div class="ax-info-block user_Pop" style="cursor: pointer">个人信息</div>
+<!--            <div class="ax-break-line"></div>-->
+<!--            <a data-url="/rmtop/systemMessage" class="ax-info-block" style="cursor: pointer">站内消息</a>-->
+            <div class="ax-break-line"></div>
+            <a href="/rmtop/loginOut" class="ax-info-block" style="cursor: pointer">安全退出</a>
+        </div>
     </div>
 </div>
 
+<div class="overlay" style="display: none"></div>
+<div class="buy_content" style="display: none">
+    <div class="open-head">
+        <div class="newhredup">个人信息</div>
+        <div class="closeup  ax-iconfont ax-icon-close-t down-pop"></div>
+    </div>
+    <form>
+        <div class="item show herf-main">
+            <div class="ax-break-lg"></div>
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label">登录账户：</div>
+                    <div class="ax-form-input"><label style="line-height: 38px;font-size: 15px">{$adminInfo.username}</label></div>
+                </div>
+            </div>
+            <div class="ax-break-lg"></div>
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label">手机号：</div>
+                    <div class="ax-form-input"><label style="line-height: 38px;font-size: 15px">{$adminInfo.mobile}</label></div>
+                </div>
+            </div>
+            <div class="ax-break-lg"></div>
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label">Email：</div>
+                    <div class="ax-form-input"><label style="line-height: 38px;font-size: 15px">{$adminInfo.email}</label></div>
+                </div>
+            </div>
+            <div class="ax-break-lg"></div>
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label">管理组：</div>
+                    <div class="ax-form-input"><label style="line-height: 38px;font-size: 15px">{$adminInfo.role_name}</label></div>
+                </div>
+            </div>
+            <div class="ax-break-lg"></div>
+            <div class="ax-break-lg"></div>
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label"></div>
+                    <div class="ax-flex-block">
+                        <div class="ax-form-input down-pop"><a class="ax-btn ax-primary ax-full">确认</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="ax-break-lg"></div>
 
+        </div>
+
+    </form>
+</div>
+
+
+<script>
+    $('.user_Pop').click(function (){
+        $('.overlay').stop().show();
+        $('.buy_content').show();
+    });
+
+    $(".down-pop").click(function () {
+        $('.overlay').stop().hide();
+        $('.buy_content').stop().hide();
+    })
+</script>
 
 <script>
     $('#works_m').find("a").click(function (evt){
@@ -35,21 +97,29 @@
         border: 1px solid #ebebeb;  border-radius: 3px;  text-align: center;  white-space: normal;  padding: 0;
         box-shadow: 0 5px 10px rgb(0 0 0 10%);  position: absolute;  top:27px;  right: 15px;  z-index: 9999;
         display: none;margin-top:15px;}
+    .top-suya:hover .ax-usera{display: block}
     .ax-usera .ax-arrowes{ position: absolute;  margin-top: -10px;  left: 35px;  width: 0;  z-index: 20;  height: 0;
         border-width: 0 10px 13px;  border-style: solid;  border-color: transparent transparent #ddd;  }
     .ax-usera .ax-arrowes:after { content: "";  position: absolute;  top: 2px;  left: -10px;  border-width: 0 10px 11px;
         border-style: solid;  border-color: transparent transparent #fff;  }
     .ax-usera .ax-popup-contentes {overflow: hidden;  outline: none;padding: 0;max-width: 500px;  max-height: 600px;
         box-sizing: border-box;  display: block;  }
-    .ax-info-block {  line-height: 22px;  padding: calc((38px - 22px)/2) 14px;
-        display: block;  transition: all 0.1s linear;  position: relative;  }
+    .ax-info-block {  line-height: 22px;  padding: calc((38px - 22px)/2) 14px;display: block;  transition: all 0.1s linear;  position: relative;  }
+    .ax-info-block:hover{background: #eee;position: relative;color: #222}
     .ax-break-line {  height: 1px;  overflow: hidden;  background-color: #ebebeb;  }
+    .overlay{height: 1005px; opacity: 0.6; position: absolute; top: 0px; left: 0px; background-color: black; width: 100%; z-index: 9;}
+    .buy_content {  position: absolute;  top: 333%;  left:25%;  width:560px;  height:auto;background: #fff;
+        z-index:1002;  overflow: auto;padding: 15px;  text-align: left;border-radius: 5px;  }
+    .open-head {display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;position: relative;padding-bottom: 10px;}
+    .newhredup {font-size: 15px;color: #333;}
+    .closeup {position: relative;font-size: 23px;line-height: 25px;color: #333;cursor: pointer;}
+    .herf-main {background: #fff;padding: 10px;position: relative;}
 </style>
 
-<script>
-    function pic(){works_m.style.display="block";}
-    function nopic(){timer=setTimeout(function(){works_m.style.display="none";});}
-    function stop(){clearTimeout(timer);}
-</script>
+<!--<script>-->
+<!--    function pic(){works_m.style.display="block";}-->
+<!--    function nopic(){timer=setTimeout(function(){works_m.style.display="none";});}-->
+<!--    function stop(){clearTimeout(timer);}-->
+<!--</script>-->
 
 

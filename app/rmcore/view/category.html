@@ -1,16 +1,15 @@
 <div id="ajax" class="ajax"></div>
 <div id="page">
     <div class="ax-row">
-        <a class="addgroup ax-btn ax-sm ax-iconfont ax-icon-plus-t ax-primary lj-a-btn"  data-url="/rmtop/addCategory?col_id={$col_id}"
-           style="margin-top: 0 !important;"> 添加广告</a>
+        <a class="addgroup ax-btn ax-sm ax-iconfont ax-icon-plus-t ax-primary lj-a-btn"  data-url="/rmtop/addCategory?col_id={$col_id}" style="margin-top: 0 !important;"> 添加分类</a>
     </div>
 
-    <div style="height: 1px;margin-bottom: 10px;"></div>
+<!--    <div style="height: 1px;margin-bottom: 10px;"></div>-->
     <table class="ax-table">
         <thead>
         <tr style="background-color: #efefef">
             <th class=" ax-margin-lr">ID</th>
-            <th class=" ax-margin-lr">父级名称</th>
+            <th class=" ax-margin-lr">父级ID</th>
             <th class=" ax-margin-lr">分类名称</th>
             <th class=" ax-margin-lr">操作</th>
         </tr>
@@ -30,6 +29,19 @@
                 </div>
             </td>
         </tr>
+        {volist name="$vo.sun_cate" id='v'}
+        <tr height="50px">
+            <td><div class="ax-align-center">{$v.id}</div></td>
+            <td><div class="ax-align-center">{$v.pid}</div></td>
+            <td><div class="ax-align-center">&nbsp;&nbsp;&nbsp;|---{$v.title}</div></td>
+            <td>
+                <div class="ax-operate">
+                    <a data-url="/rmtop/editCategory?id={$v.id}&col_id={$vo.col_id}" class="ax-iconfont ax-icon-editing-fill rm-model" title="编辑"></a>
+                    <a href="/rmtop/deleteCategory?id={$v.id}&col_id={$vo.col_id}" class="ax-iconfont ax-icon-trash-alt-fill" title="删除"></a>
+                </div>
+            </td>
+        </tr>
+        {/volist}
         {/volist}
 
         </tbody>
@@ -95,7 +107,7 @@
     .current span{  outline: 0;  color: #3398cc;  border-bottom: 1px solid #3398cc;  }
     .current span:before{content: '';position: absolute;bottom: 0;left: 2px;width: 95%;
         height: 2px;background: #3398cc;border-radius: 30px;}
-    #content {  background: #fff;  padding: 30px 0 25px;  position: relative;  }
+    #content {  background: #fff;  padding:15px 0 25px;  position: relative;  }
     .item{  display: none;  }
     .show{  display: block;  }
     .ax-form-label{width: 95px !important;justify-content: flex-start !important;padding-left: 0;}

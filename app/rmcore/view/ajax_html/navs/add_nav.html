@@ -3,7 +3,7 @@
         <div class="newhredup">添加导航</div>
         <div class="closeup  ax-iconfont ax-icon-close-t"></div>
     </div>
-    <form action="{$action}"  method="post">
+    <form action="{$action}"  method="post" onsubmit="return Fcheck();">
         <div class="item show herf-main">
             <div class="ax-break-lg"></div>
             <div class="ax-form-group">
@@ -42,14 +42,14 @@
             <div class="ax-form-group">
                 <div class="ax-flex-row">
                     <div class="ax-form-label">导航名称：</div>
-                    <div class="ax-form-input"><input type="text" name="title" placeholder=""></div>
+                    <div class="ax-form-input"><input type="text" name="title" id="title" placeholder="请输入导航名称"></div>
                 </div>
             </div>
             <div class="ax-break-lg"></div>
             <div class="ax-form-group">
                 <div class="ax-flex-row">
                     <div class="ax-form-label">排序：</div>
-                    <div class="ax-form-input"><input type="text" name="sort" placeholder=""></div>
+                    <div class="ax-form-input"><input type="text" name="sort" placeholder="0"></div>
                 </div>
             </div>
             <div class="ax-break-lg"></div>
@@ -89,7 +89,7 @@
             <div class="ax-form-group" id="exterior" style="margin-bottom: 18px;display: none">
                 <div class="ax-flex-row">
                     <div class="ax-form-label">网站地址：</div>
-                    <div class="ax-form-input"><input type="text" name="url" placeholder=""></div>
+                    <div class="ax-form-input"><input type="text" name="url" placeholder="请输入网站地址"></div>
                 </div>
             </div>
 
@@ -152,3 +152,4 @@
         })
     });
 </script>
+

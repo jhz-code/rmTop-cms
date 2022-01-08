@@ -2,52 +2,81 @@
     <div id="page">
 
     <div class="ax-row">
-        <a class="addgroup ax-btn ax-sm ax-iconfont ax-icon-plus-t ax-primary lj-a-btn"  data-url="/rmtop/add_nav"
-           style="margin-top: 0 !important;"> 添加导航</a>
+        <a class="addgroup ax-btn ax-sm ax-iconfont ax-icon-plus-t ax-primary lj-a-btn"  data-url="/rmtop/add_nav" style="margin-top: 0 !important;"> 添加导航</a>
     </div>
 
-    <div style="height: 1px;margin-bottom: 10px;"></div>
-    <table class="ax-table">
-       <thead>
-        <tr style="background-color: #efefef">
-            <th style="width:50px;"><input name="" type="checkbox" value=""></th>
-            <th class=" ax-margin-lr">ID</th>
-            <th class=" ax-margin-lr">导航标题</th>
-            <th class=" ax-margin-lr">所属分组</th>
-            <th class=" ax-margin-lr">新窗口打开</th>
-            <th class=" ax-margin-lr">操作</th>
-        </tr>
-        </thead>
-        <tbody>
+        <div style="height: 1px;margin-bottom: 10px;background-color: gainsboro"></div>
+        <table class="ax-table">
+            <thead>
+            <tr style="background-color:#efefef " class="ax-shadow-border ax-radius">
+                <th class="ax-align-left" style="width: 40%;padding-left: 3%;">名称</th>
+                <th style="width: 30%">排序</th>
+                <th style="width: 30%">操作</th>
+            </tr>
+            </thead>
+            <tbody>
 
-        {volist name="navs" id='vo'}
+            {volist name="navs" id='vo'}
+            <tr height="50px">
+                <td  style="cursor: pointer;font-weight: bolder;padding-left: 3%;"  class="ax-align-left">
+                    <span class="rm-next">
+                   {notempty name="$vo.sunList"}
+                   <em class="jiaj_{$vo.id}" onclick="showIt('{$vo.id}',this)"><img src="/static/rmtop/images/lit-more.png"></em>
+                   {/notempty}
+                   {empty name="$vo.sunList"}
+                   <em class="jiaj_{$vo.id}" ><img src="/static/rmtop/images/lit-cle.png"></em>
+                   {/empty}
+                   {$vo.title}
+                    </span>
+                </td>
+                <td>{$vo.sort}</td>
+                <td>
+                    <div class="ax-operate">
+                       --
+                    </div>
+                </td>
+            </tr>
 
-        <tr height="50px">
-            <td><input name="" type="checkbox" value=""></td>
-            <td>{$vo.id}</td>
-           <td>{$vo.title}</td>
-           <td>{$vo.groupName} (组ID:{$vo.group_id})</td>
-            <td>{$vo.target}</td>
-            <td>
-                <div class="ax-operate">
-                    <a data-url="/rmtop/edit_nav?id={$vo.id}" class="ax-iconfont ax-icon-editing-fill rm-model" title="编辑"></a>
-                    <a href="/rmtop/delete_nav?id={$vo.id}" class="ax-iconfont ax-icon-trash-alt-fill" title="删除"></a>
-                </div>
-            </td>
-        </tr>
-        {/volist}
+            {volist name="vo.sunList" id="sun"}
+            <tr class="child erlist{$vo.id}"  height="50px" style="display: none">
+                <td width="20%" style="cursor: pointer;padding-left: 3%;" class="ax-align-left rm-next">└ {$sun.title}</td>
+                <td>{$sun.sort}</td>
+                <td>
+                    <div class="ax-operate">
+                        <a data-url="/rmtop/edit_nav?id={$sun.id}" class="ax-iconfont ax-icon-editing-fill rm-model" title="编辑"></a>
+                        <a href="/rmtop/delete_nav?id={$sun.id}" class="ax-iconfont ax-icon-trash-alt-fill" title="删除"></a>
+                    </div>
+                </td>
+            </tr>
+            {/volist}
 
-        </tbody>
-    </table>
+            {/volist}
 
+            </tbody>
+        </table>
 
-    <div class="ax-pagination">
-        {$navs->render()|raw}
+        <div class="ax-pagination">
+            {$navs->render()|raw}
+        </div>
     </div>
 
-    </div>
+    <style>
+        .ax-table td .rm-next em img{width: 15px;height: 15px;}
+    </style>
 
     <script>
+        function showIt(id,obj)
+        {
+            if($(".erlist"+id).css("display")=="none") {
+                $(".erlist" + id).show(100);
+                $(".jiaj_"+id).html('<img src="/static/rmtop/images/lit-cle.png">')
+            }else {
+                $(obj).html("");
+                $(".erlist" + id).hide(100);
+                $(".jiaj_"+id).html('<img src="/static/rmtop/images/lit-more.png">')
+            }
+        }
+
         $('.addgroup').click(function (){
             $('body').append('<div id="overlay"></div>');
             $('#overlay').height($(document).height()).css({
@@ -83,10 +112,16 @@
         });
 
 
-        $('.ax-pagination .pagination li a').click(function (evt){
-            evt.preventDefault();
-            $("#page").html()
-            $("#page").load($(this).attr('href'))
-        });
+    </script>
 
+
+    <script type="text/javascript">
+        function Fcheck() {
+            if($('#title').val() == '') {
+                layer.tips('请输入导航名称', '#title', {tips: [2, '#4ea1f5'], tipsMore: false, time:1500});
+                $('#title').focus();
+                return false;
+            }
+            return true;
+        }
     </script>

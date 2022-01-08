@@ -11,7 +11,7 @@
             <div class="ax-form-group">
                 <div class="ax-flex-row">
                     <div class="ax-form-label">名称：</div>
-                    <div class="ax-form-input"><input type="text" name="title" value="" placeholder=""></div>
+                    <div class="ax-form-input"><input type="text" name="title" value="" placeholder="请输入名称"></div>
                 </div>
             </div>
             <div class="ax-break-lg"></div>
@@ -19,7 +19,15 @@
                 <div class="ax-flex-row">
                     <div class="ax-form-label">父级分类：</div>
                     <div class="ax-form-input">
-                        <input type="text" name="pid" value="" placeholder="">
+
+                        <select name="pid">
+                            <option value="0" >无上级</option>
+                            {volist name="parent_list" id="vo"}
+                            <option value="{$vo.id}" >{$vo.title}</option>
+                            {/volist}
+                        </select>
+
+<!--                        <input type="text" name="pid" value="" placeholder="请输入父级分类">-->
                     </div>
                 </div>
             </div>
@@ -35,7 +43,7 @@
                 </div>
             </div>
 
-            <input type="hidden" name="col_id" value="{$col_id}" placeholder="">
+            <input type="hidden" name="col_id" value="{$col_id}">
         </div>
 
     </form>

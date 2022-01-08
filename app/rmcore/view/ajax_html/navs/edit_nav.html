@@ -3,7 +3,7 @@
         <div class="newhredup">添加导航</div>
         <div class="closeup  ax-iconfont ax-icon-close-t"></div>
     </div>
-    <form action="{$action}"  method="post">
+    <form action="{$action}"  method="post" onsubmit="return Fcheck();">
         <div class="item show herf-main">
             <div class="ax-break-lg"></div>
             <div class="ax-form-group">
@@ -42,14 +42,14 @@
             <div class="ax-form-group">
                 <div class="ax-flex-row">
                     <div class="ax-form-label">导航名称：</div>
-                    <div class="ax-form-input"><input type="text" name="title" value="{$navInfo.title}" placeholder=""></div>
+                    <div class="ax-form-input"><input type="text" name="title" id="title" value="{$navInfo.title}" placeholder="请输入导航名称"></div>
                 </div>
             </div>
             <div class="ax-break-lg"></div>
             <div class="ax-form-group">
                 <div class="ax-flex-row">
                     <div class="ax-form-label">排序：</div>
-                    <div class="ax-form-input"><input type="text" value="{$navInfo.sort}" name="sort" placeholder=""></div>
+                    <div class="ax-form-input"><input type="text" value="{$navInfo.sort}" name="sort" placeholder="0"></div>
                 </div>
             </div>
             <div class="ax-break-lg"></div>
@@ -61,8 +61,8 @@
                     <div class="ax-form-con">
                         <div class="ax-form-input">
                             <select name="target" id="skip_type">
-                                <option value="1" selected="selected">内部栏目</option>
-                                <option value="2">网址链接</option>
+                                <option value="1"  {if $navInfo.url == "" }selected{/if}  >内部栏目</option>
+                                <option value="2"  {if $navInfo.url != "" }selected{/if}>网址链接</option>
                             </select>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
             <div class="ax-break-lg"></div>
 
             <!--if内部栏目-->
-            <div class="ax-form-group" id="interior" style="margin-bottom: 18px">
+            <div class="ax-form-group" id="interior" style="margin-bottom: 18px; {if $navInfo.url != '' } display: none{/if} "  >
                 <div class="ax-flex-row">
                     <div class="ax-form-label">内部栏目：</div>
                     <div class="ax-form-con">
@@ -87,10 +87,10 @@
             </div>
 
             <!--if网站地址-->
-            <div class="ax-form-group" id="exterior" style="margin-bottom: 18px;display: none">
+            <div class="ax-form-group" id="exterior" style="margin-bottom: 18px; {if $navInfo.url == '' } display: none{/if} ">
                 <div class="ax-flex-row">
                     <div class="ax-form-label">网站地址：</div>
-                    <div class="ax-form-input"><input type="text" name="url" placeholder=""></div>
+                    <div class="ax-form-input"><input type="text" name="url" value="{$navInfo.url}" placeholder="请输入网站地址"></div>
                 </div>
             </div>
 
@@ -153,3 +153,15 @@
         })
     });
 </script>
+
+<script type="text/javascript">
+    function Fcheck() {
+        if($('#title').val() == '') {
+            layer.tips('请输入导航名称', '#title', {tips: [2, '#4ea1f5'], tipsMore: false, time:1500});
+            $('#title').focus();
+            return false;
+        }
+        return true;
+    }
+</script>
+<script charset="utf-8" src="/static/layer/layer.js"></script>

@@ -3,13 +3,13 @@
         <div class="newhredup">编辑管理员</div>
         <div class="closeup ax-iconfont ax-icon-close-t"></div>
     </div>
-    <form action="/rmtop/edit_admin"  method="post">
+    <form action="/rmtop/edit_admin"  method="post" onsubmit="return Fcheck();">
         <div id="tab1" class="item show">
             <div class="ax-break-lg"></div>
             <div class="ax-form-group">
                 <div class="ax-flex-row">
                     <div class="ax-form-label">登录账户：</div>
-                    <div class="ax-form-input"><input type="text" value="{$admin.username}" name="username"></div>
+                    <div class="ax-form-input"><input type="text" value="{$admin.username}" name="username" id="username" placeholder="请输入账户号"></div>
                 </div>
             </div>
 
@@ -17,7 +17,7 @@
             <div class="ax-form-group">
                 <div class="ax-flex-row">
                     <div class="ax-form-label">登录密码：</div>
-                    <div class="ax-form-input"><input type="text"  name="password"></div>
+                    <div class="ax-form-input"><input type="text"  name="password" id="password" placeholder="请输入密码"></div>
                 </div>
             </div>
 
@@ -25,14 +25,14 @@
             <div class="ax-form-group">
                 <div class="ax-flex-row">
                     <div class="ax-form-label">手机号：</div>
-                    <div class="ax-form-input"><input type="text" value="{$admin.mobile}" name="mobile"></div>
+                    <div class="ax-form-input"><input type="text" value="{$admin.mobile}" name="mobile" id="mobile" placeholder="请输入手机号码"></div>
                 </div>
             </div>
             <div class="ax-break-lg"></div>
             <div class="ax-form-group">
                 <div class="ax-flex-row">
                     <div class="ax-form-label">Email：</div>
-                    <div class="ax-form-input"><input type="text" name="email" value="{$admin.email}"></div>
+                    <div class="ax-form-input"><input type="text" name="email" value="{$admin.email}" placeholder="请输入Email"></div>
                 </div>
             </div>
             <div class="ax-break-lg"></div>
@@ -63,6 +63,7 @@
                     </div>
                 </div>
             </div>
+            <div class="ax-break-lg"></div>
 
         </div>
 

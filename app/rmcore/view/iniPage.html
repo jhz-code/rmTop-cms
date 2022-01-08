@@ -21,11 +21,13 @@
             <div class="ax-row ax-panel-body ">
 
                 {volist name="models" id="vo"}
+                {if $vo.count > 0 }
                 <div class="ax-col ax-col-4 ax-bg-info ax-align-center ax-radius-sm" >
                     <p>{$vo.title}</p>
                     <h3>{$vo.count}</h3>
                 </div>
                 <span class="ax-gutter"></span>
+                {/if}
                 {/volist}
 
             </div>
@@ -33,73 +35,43 @@
         </div>
 
         <div class="ax-break"></div>
-        <div class="ax-break"></div>
-        <div class="ax-break"></div>
+
+    <div class="ax-flex-block  ax-shadow-border ax-radius" style="padding: 0 15px 15px;">
+        <div class="">
+            <h5  style="margin: 10px 0 20px;padding-top: 10px;border-bottom: 1px solid #eee;padding-bottom: 8px;">系统信息</h5>
+        </div>
+
+        <div class="ax-panel-body ">
+            <div class="xisr-list"><h2>商业授权：</h2><p><img src="/static/rmtop/images/shouq-xion.png"> 标准授权版</p></div>
+            <div class="xisr-list"><h2>当前版本：</h2><p>{$sys.Version}</p></div>
+<!--            <div class="xisr-list"><h2>新版本检测：</h2><p><img src="/static/rmtop/images/shenj-ioxn.png"> 点击在线升级</p></div>-->
+            <div class="xisr-list"><h2>网站框架：</h2><p><a href="https://rmsf.top/" target="_blank"  style="color: #198cff;font-weight: bolder">{$sys.Name}</a></p></div>
+            <div class="xisr-list"><h2>运行环境：</h2><p>{$system.env}</p></div>
+            <div class="xisr-list"><h2>运行目录：</h2><p>{$system.service_path}</p></div>
+            <div class="xisr-list"><h2>解译引擎：</h2><p>{$system.service_engine}</p></div>
+            <div class="xisr-list"><h2>服务器IP：</h2><p>{$system.service_ip}</p></div>
+            <div class="xisr-list"><h2>开发团队：</h2><p><a target="_blank" href="https://support.qq.com/products/371968"  style="color: #198cff;font-weight: bolder">RmTop-CMS项目组</a> </p></div>
+            <div class="xisr-list"><h2>运行时间：</h2><p>{$system.service_time}</p></div>
+
+
+        </div>
+
+    </div>
+
 
         <div class="ax-panel   ax-shadow-border ax-radius">
-            <div class="ax-panel-header"><h5 style="margin: 10px 0 18px;">访客详情：</h5></div>
-            <div class="ax-panel-body" style="    padding: 0 10px">
-                <div id="line" style="height:200px;width: 100%;"></div>
 
-            </div>
-            <div class="ax-panel-close"></div>
         </div>
 
     <div class="ax-break"></div>
-    <div class="ax-break"></div>
-    <div class="ax-break"></div>
-    <div class="ax-break"></div>
-    <div class="ax-break"></div>
-    <div class="ax-break"></div>
+
 
 </div>
 </body>
 
-<script type="text/javascript" src="/static/ax_v1.0.2/plugins/baidu/echarts.min.js"></script>
-<script type='text/javascript'>
-    //折线图
-    optionLine = {
-        title: {
-            text: ''
-        },
-        legend: {
-            data: ['本周客流', '上周客流'],
-            align: 'left',
-            top:'4'
-        },
-        xAxis: {
-            type: 'category',
-            data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-        },
-        yAxis: {
-            name: '单位(万)',
-            type: 'value',
-        },
-        series: [{
-            name:'本周客流',
-            data: [2.2, 2.5, 3.5, 2.8, 2.0, 4.5, 5.2],
-            type: 'line'
-        },{
-            name:'上周客流',
-            data: [1.2, 2.1, 2.9, 3.5, 2.4, 5.6, 4.8],
-            type: 'line'
-        }],
-        tooltip: {
-            trigger: 'axis'
-        },
-        grid: {
-            show: false,
-            borderColor: '#ebebeb',
-            x: 22,
-            x2: 0,
-            y: 36,
-            y2:0,
-            height: 128//170-100(198-128)
-        },
-
-    };
-    var domLine = document.getElementById("line");
-    var chartLine = echarts.init(domLine, 'theme-ax');
-    chartLine.setOption(optionLine, true);
-
-</script>
+<style>
+    .xisr-list{display: flex;align-items: center;position: relative}
+    .xisr-list h2{letter-spacing:1px;font-size: 13px;color: #555;width: 150px;padding: 0;margin: 0;font-weight: normal}
+    .xisr-list p{position: relative;flex: 1;color: #666;font-size:13px;}
+    .xisr-list p img{width: 18px;height: 18px;cursor: pointer;position: relative;margin-top: -3px;}
+</style>

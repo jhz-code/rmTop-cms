@@ -3,7 +3,7 @@
         <div class="newhredup">编辑配置项</div>
         <div class="closeup ax-iconfont ax-icon-close-t"></div>
     </div>
-    <form action="/rmtop/editConfig"  method="post">
+    <form action="/rmtop/editConfig"  method="post" onsubmit="return Fcheck();">
         <div class="item show herf-main">
             <div class="ax-break-lg"></div>
             <div class="ax-form-group">
@@ -25,7 +25,7 @@
                 <div class="ax-flex-row">
                     <div class="ax-form-label">配置名称：</div>
                     <div class="ax-form-input"  style="width: 360px !important;">
-                        <input type="text" name="zh_name" value="{$config.zh_name}" placeholder="">
+                        <input type="text" name="zh_name" id="zhname" value="{$config.zh_name}" placeholder="请输入配置名称">
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                 <div class="ax-flex-row">
                     <div class="ax-form-label">配置字段：</div>
                     <div class="ax-form-input"  style="width: 360px !important;">
-                        <input type="text" name="en_name" value="{$config.en_name}"  placeholder="">
+                        <input type="text" name="en_name" id="paramKey" value="{$config.en_name}" placeholder="请输入配置字段">
                     </div>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                 <div class="ax-flex-row">
                     <div class="ax-form-label">排序：</div>
                     <div class="ax-form-input"  style="width: 360px !important;">
-                        <input type="text" name="sort" value="{$config.sort}"  placeholder="">
+                        <input type="text" name="sort" value="{$config.sort}" placeholder="0">
                     </div>
                 </div>
             </div>

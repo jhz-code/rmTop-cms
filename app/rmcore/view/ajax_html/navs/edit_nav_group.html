@@ -3,20 +3,20 @@
         <div class="newhredup">添加分组</div>
         <div class="closeup ax-iconfont ax-icon-close-t"></div>
     </div>
-    <form action="{$action}"  method="post">
+    <form action="{$action}"  method="post"  onsubmit="return Fcheck();">
         <div class="item show herf-main">
             <div class="ax-break-lg"></div>
             <div class="ax-form-group">
                 <div class="ax-flex-row">
                     <div class="ax-form-label">分组名称：</div>
-                    <div class="ax-form-input"><input type="text" name="title" value="{$navGroupInfo.title}" placeholder=""></div>
+                    <div class="ax-form-input"><input type="text" name="title" id="title" value="{$navGroupInfo.title}" placeholder="请输入分组名称"></div>
                 </div>
             </div>
             <div class="ax-break-lg"></div>
             <div class="ax-form-group">
                 <div class="ax-flex-row">
                     <div class="ax-form-label">排序：</div>
-                    <div class="ax-form-input"><input type="text" name="sort" value="{$navGroupInfo.sort}" placeholder=""></div>
+                    <div class="ax-form-input"><input type="text" name="sort" value="{$navGroupInfo.sort}" placeholder="0"></div>
                 </div>
             </div>
             <div class="ax-break-lg"></div>

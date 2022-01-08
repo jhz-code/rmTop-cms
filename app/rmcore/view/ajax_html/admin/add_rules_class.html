@@ -1,0 +1,73 @@
+<div class="buy_content ax-radius">
+    <div class="open-head">
+        <div class="newhredup">创建权限</div>
+        <div class="closeup ax-iconfont ax-icon-close-t"></div>
+    </div>
+    <form action="/rmtop/addRulesClass"  method="post" onsubmit="return Fcheck();">
+        <div id="tab1" class="item show">
+            <div class="ax-break-lg"></div>
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label">权限名称：</div>
+                    <div class="ax-form-input"><input type="text" value="" name="title" id="title" placeholder="请输入权限名称"></div>
+                </div>
+            </div>
+            <div class="ax-break-lg"></div>
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label">选择父级：</div>
+                    <div class="ax-form-con">
+                        <div class="ax-form-input">
+                            <select name="pid">
+                                <option value="0" >作为父级</option>
+                                {volist name="parent_rules" id='vo'}
+                                <option value="{$vo.id}" >{$vo.title}</option>
+                                {/volist}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ax-break-lg"></div>
+
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label">权限URL：</div>
+                    <div class="ax-form-input">
+                        <input type="text" value="" name="url" id="url" placeholder="请输入权限URL"></div>
+                </div>
+            </div>
+
+            <div class="ax-break-lg"></div>
+
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label">排序：</div>
+                    <div class="ax-form-input">
+                        <input type="text" value="" name="sort" placeholder="0"></div>
+                </div>
+            </div>
+            <div class="ax-break-lg"></div>
+            <div class="ax-break-lg"></div>
+
+            <div class="ax-form-group">
+                <div class="ax-flex-row">
+                    <div class="ax-form-label"></div>
+                    <div class="ax-flex-block">
+                        <div class="ax-form-input"><button type="submit" class="ax-btn ax-primary ax-full">确认提交</button></div>
+                    </div>
+                </div>
+            </div>
+            <div class="ax-break-lg"></div>
+
+        </div>
+
+    </form>
+</div>
+
+<script>
+    $(".closeup").click(function () {
+        $('#overlay').hide();
+        $("#ajax").empty();
+    })
+</script>

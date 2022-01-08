@@ -6,7 +6,7 @@
   <div class="ax-flex-row">
     <span class="ax-form-label">{$vo.title}({$vo.key})：</span>
     <div class="ax-form-input">
-      <input name="{$vo.key}" value="{$list[$vo.key]}" type="text">
+      <input name="{$vo.key}" value="{$list[$vo.key]??''}" type="text">
     </div>
   </div>
 </div>
@@ -18,7 +18,7 @@
   <div class="ax-flex-row">
     <span class="ax-form-label">{$vo.title}({$vo.key})：</span>
     <div class="ax-form-input">
-      <textarea name="{$vo.key}" cols="" rows="" placeholder="写内容">{$list[$vo.key]}</textarea>
+      <textarea name="{$vo.key}" cols="" rows="" placeholder="写内容">{$list[$vo.key]??''}</textarea>
     </div>
 
   </div>
@@ -32,7 +32,7 @@
     <span class="ax-form-label">{$vo.title}({$vo.key})：</span>
     <div class="ax-form-input">
       <input id="{$vo.key}" class="ax-input-file" onchange=handleFile("{$vo.key}") type="file">
-      <input name="{$vo.key}" value="{$list[$vo.key]}"  placeholder="请上传文件" id="org_img_{$vo.key}" type="text">
+      <input name="{$vo.key}" value="{$list[$vo.key]??''}"  placeholder="请上传文件" id="org_img_{$vo.key}" type="text">
       <span  class="ax-file-btn" >选择图片</span>
     </div>
 
@@ -46,7 +46,7 @@
   <div class="ax-flex-row">
     <span class="ax-form-label">{$vo.title}({$vo.key})：</span>
     <div class="ax-form-input">
-      <div class="ax-form-input"><input name="{$vo.key}" value="{$list[$vo.key]}" type="text"></div>
+      <div class="ax-form-input"><input name="{$vo.key}" value="{$list[$vo.key]??''}" type="text"></div>
     </div>
   </div>
 </div>

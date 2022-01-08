@@ -2,20 +2,19 @@
 <div id="page">
 
     <div class="ax-row">
-        <a class="addgroup ax-btn ax-sm ax-iconfont ax-icon-plus-t ax-primary lj-a-btn"  data-url="/rmtop/add_source"
-           style="margin-top: 0 !important;"> 静态资源</a>
+        <a class="addgroup ax-btn ax-sm ax-iconfont ax-icon-plus-t ax-primary lj-a-btn"  data-url="/rmtop/add_source" style="margin-top: 0 !important;"> 静态资源</a>
     </div>
 
-    <div style="height: 1px;margin-bottom: 10px;"></div>
+<!--    <div style="height: 1px;margin-bottom: 10px;"></div>-->
     <table class="ax-table">
         <thead>
         <tr style="background-color: #efefef">
-            <th style="width:50px;"><input name="" type="checkbox" value=""></th>
-            <th class=" ax-margin-lr">ID</th>
-            <th class=" ax-margin-lr">储存类型</th>
-            <th><div class="ax-align-left">资源预览</div></th>
-            <th><div class="ax-align-left">资源Key值</div></th>
-            <th><div class="ax-align-left">操作</div></th>
+<!--            <th style="width:50px;"><input name="" type="checkbox" value=""></th>-->
+            <th width="8%" class=" ax-margin-lr">ID</th>
+            <th width="20%" class=" ax-margin-lr">储存类型</th>
+            <th width="15%"><div class="ax-align-left">资源预览</div></th>
+            <th width="47%"><div class="ax-align-left">资源Key值</div></th>
+            <th width="10%"><div class="ax-align-left">操作</div></th>
         </tr>
         </thead>
         <tbody>
@@ -23,16 +22,17 @@
         {volist name="list" id='vo'}
 
         <tr height="50px">
-            <td><input name="" type="checkbox" value=""></td>
+<!--            <td><input name="" type="checkbox" value=""></td>-->
             <td>{$vo.id}</td>
             <td>{$vo.type_name}({$vo.img_type})</td>
-            <td><div class="ax-align-left">
-                {if $vo.is_img == 1}
-                <img src="{$vo.img_path}" style="width: auto;max-height: 30px;">
-                {else/}
-                <a href="{$vo.img_path}" TARGET="_blank" style="width: auto;">下载文件{$vo.key}</a>
-                {/if}
-            </div>
+            <td>
+                <div class="ax-align-left">
+                    {if $vo.is_img == 1}
+                    <img src="{$vo.img_path??'/static/rmtop/images/no-Img.png'}" onerror="this.src='/static/rmtop/images/no-Img.png'" style="width: 35px;height: 35px;">
+                    {else/}
+                    <a href="{$vo.img_path}" TARGET="_blank" style="width: auto;">下载文件{$vo.key}</a>
+                    {/if}
+                </div>
             </td>
             <td><div class="ax-align-left">{$vo.key}</div></td>
             <td>
@@ -96,4 +96,15 @@
         $("#page").load($(this).attr('href'))
     });
 
+</script>
+
+<script type="text/javascript">
+    function Fcheck() {
+        if($('#file').val() == '') {
+            layer.tips('请上传资源', '#file', {tips: [2, '#4ea1f5'], tipsMore: false, time:1500});
+            $('#file').focus();
+            return false;
+        }
+        return true;
+    }
 </script>

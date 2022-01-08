@@ -20,7 +20,7 @@
                 <div class="ax-form-group">
                     <div class="ax-flex-row">
                         <div class="ax-form-label">标题：</div>
-                        <div class="ax-form-input"><input type="text" name="title"></div>
+                        <div class="ax-form-input"><input type="text" name="title" placeholder="请输入标题"></div>
                     </div>
                 </div>
 
@@ -113,7 +113,7 @@
                 <div class="ax-form-group">
                     <div class="ax-flex-row">
                         <span class="ax-form-label">作者：</span>
-                        <div class="ax-form-input"><input type="text"></div>
+                        <div class="ax-form-input"><input type="text" placeholder="请输入作者"></div>
                     </div>
                 </div>
 
@@ -121,7 +121,7 @@
                 <div class="ax-form-group">
                     <div class="ax-flex-row">
                         <span class="ax-form-label">访问量：</span>
-                        <div class="ax-form-input"><input type="text"></div>
+                        <div class="ax-form-input"><input type="text" placeholder="0"></div>
                     </div>
                 </div>
 
@@ -165,7 +165,7 @@
                 <div class="ax-form-group">
                     <div class="ax-flex-row">
                         <span class="ax-form-label">TGA标签：</span>
-                        <div class="ax-form-input"><input type="text"></div>
+                        <div class="ax-form-input"><input type="text" placeholder="请输入TGA标签"></div>
                     </div>
                 </div>
                 <div class="ax-break-lg"></div>
@@ -173,7 +173,7 @@
                 <div class="ax-form-group">
                     <div class="ax-flex-row">
                         <span class="ax-form-label">SEO标题：</span>
-                        <div class="ax-form-input"><input type="text"></div>
+                        <div class="ax-form-input"><input type="text" placeholder="请输入SEO标题"></div>
                     </div>
                 </div>
                 <div class="ax-break-lg"></div>
@@ -181,7 +181,7 @@
                 <div class="ax-form-group">
                     <div class="ax-flex-row">
                         <span class="ax-form-label">SEO关键词：</span>
-                        <div class="ax-form-input"><input type="text"></div>
+                        <div class="ax-form-input"><input type="text" placeholder="请输入SEO关键词"></div>
                     </div>
                 </div>
                 <div class="ax-break-lg"></div>
@@ -190,7 +190,7 @@
                     <div class="ax-flex-row">
                         <span class="ax-form-label">SEO描述：</span>
                         <div class="ax-form-input">
-                            <textarea name="" cols="" rows="" placeholder="写评论"></textarea>
+                            <textarea name="" cols="" rows="" placeholder="请简单描述一下"></textarea>
                         </div>
                     </div>
                 </div>
@@ -212,20 +212,8 @@
 </div>
 
 </body>
-<style>
-    #tabs {  overflow: hidden;  width: 80%;  margin: 0;  padding: 0;  list-style: none;  }
-    #tabs li {  float: left;  margin-left: 14px;  height: 40px;  line-height: 40px;  width: 100px;cursor: pointer  }
-    li span {  position: relative;  font-size: 16px;  }
-    .current li{  outline: 0;  color: #3398cc;  border-bottom: 1px solid #3398cc;    }
-    .current span{  outline: 0;  color: #3398cc;  border-bottom: 1px solid #3398cc;  }
-    .current span:before{content: '';position: absolute;bottom: 0;left: 2px;width: 95%;
-        height: 2px;background: #3398cc;border-radius: 30px;}
-    #contents {  background: #fff;  padding: 30px 0 25px;  position: relative;  }
-    .item{  display: none;  }
-    .show{  display: block;  }
 
-</style>
-
+<link href="/static/rmtop/css/jtstyle.css" rel="stylesheet" type="text/css" >
 <script type="text/javascript">
     $(function(){
         $('#tabs span').click(function(e) {

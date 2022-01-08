@@ -5,21 +5,15 @@
     {include file="/app/rmcore/view/public/bana_nav" /}
 
     <div class="ax-margin ax-col " >
-        <div class="ax-row">
-            <div class="ax-row-2 list-tlea"><h4>管理日志</h4></div>
-            <!--<a href="/rmtop/addAdminer" class="ax-btn ax-sm ax-iconfont ax-icon-plus-t ax-primary lj-a-btn"> 新增管理员</a>-->
-        </div>
-        <div style="height: 1px;margin-bottom: 10px;background-color: gainsboro"></div>
-
         <div class="ax-form-group">
             <div class="ax-flex-row">
                 <div class="ax-form-con">
                     <div class="ax-form-input">
                         <div class="ax-row ax-input-group">
                             <div class="ax-flex-block">
-                                <input name="username" placeholder="请输入需要检索的关键字" type="text">
+                                <input id="username" name="username" placeholder="请输入需要检索的关键字" type="text">
                             </div>
-                            <a href="##" class="ax-operate ax-btn ax-primary">搜索</a>
+                            <a onclick="searchLog()" class="ax-operate ax-btn ax-primary">搜索</a>
                         </div>
                     </div>
                 </div>
@@ -31,20 +25,20 @@
         <table class="ax-table">
             <thead>
             <tr style="background-color:#efefef " class="ax-shadow-border ax-radius">
-                <th>操作员</th>
-                <th>操作内容</th>
-                <th>操作IP</th>
-                <th>操作时间</th>
+                <th style="width: 15%" class="ax-padd-lf">操作员</th>
+                <th style="width: 45%"><div class="ax-align-left">操作内容</div></th>
+                <th style="width: 20%">操作IP</th>
+                <th style="width: 20%">操作时间</th>
 
             </tr>
             </thead>
             <tbody>
             {volist name="list" id="vo"}
-            <tr style="height: 55px">
-                <td><div class="ax-align-center">{$vo.admin_id}</div></td>
-                <td><div class="ax-align-center">{$vo.content}</div></td>
-                <td><div class="ax-align-center">{$vo.client_ip}</div></td>
-                <td><div class="ax-align-center">{$vo.create_time}</div></td>
+            <tr style="height: 50px">
+                <td  class="ax-padd-lf">{$vo.admin_id|get_admin_name}</td>
+                <td style="word-break:break-all; word-wrap: break-word;"><div class="ax-align-left" style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 3;overflow: hidden;">{$vo.content}</div></td>
+                <td>{$vo.client_ip}</td>
+                <td>{$vo.create_time}</td>
             </tr>
             {/volist}
 
@@ -57,17 +51,11 @@
     </div>
 </div>
 <script>
-    var app = new Vue({
-        el: '#main',
-        data: {
-            message: 'Hello Vue!'
-        },
-        methods:{
-            hello(){
-                alert(111);
-            }
-        }
-    })
+    function searchLog(){
+        let username = $("#username").val();
+        location.href = "/rmtop/oprateLog?keyword="+username
+
+    }
 </script>
 </body>
 </html>

@@ -1,0 +1,56 @@
+{include file="/app/rmcore/view/public/hearder" /}
+
+
+<body  style="background-color:#F4F4F4;margin: 6px; overflow: auto;border-radius: 3px">
+
+<div class="page"  style="box-shadow:none;height: 97%">
+
+    {include file="/app/rmcore/view/public/bana_nav" /}
+
+    <div class="tab-contain" style="margin-top: 10px;">
+        <!-- tab栏 -->
+        <ul id="tabs">
+            <li class="current" ><span data-url="/rmtop/myTemp" title="tab1">我的模板</span></li>
+            <li style="margin-left:30px "><span  title="tab2" data-url="/rmtop/templateIndex">导入新模板</span></li>
+        </ul>
+        <div style="height: 1px;background-color: gainsboro"></div>
+        <div id="content"> </div>
+    </div>
+</div>
+
+<link href="/static/rmtop/css/jtstyle.css" rel="stylesheet" type="text/css" >
+
+<script type="text/javascript">
+    if ($.cookie('temp_tab_current')!= null){
+        let num = $.cookie("temp_tab_current");
+        $('#tabs li').removeClass("current").removeClass("hoverItem");
+        $("#tabs li ").find("span").eq(num).parent().addClass("current");
+        $("#content").load($("#tabs li").find("span").eq(num).attr('data-url'))
+    }else{
+        $('#content').load($("#tabs li span:first").attr('data-url'));//初始化加载页面
+    }
+
+    $('#tabs li span').click(function(e) {
+        e.preventDefault();
+        $('#tabs li').removeClass("current").removeClass("hoverItem");
+        $(this).parent().addClass("current");
+        let index = $("#tabs li ").find("span").index(this);
+        $.cookie('temp_tab_current',index);
+        $("#content").load($(this).attr('data-url'))
+    });
+</script>
+
+<script type="text/javascript">
+    function Fcheck() {
+        if($('#org_img_file').val() == '') {
+            layer.tips('上传文件', '#org_img_file', {tips: [2, '#4ea1f5'], tipsMore: false, time:1500});
+            $('#org_img_file').focus();
+            return false;
+        }
+        return true;
+    }
+</script>
+
+</body>
+
+</html>

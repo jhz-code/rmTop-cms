@@ -3,7 +3,7 @@
             <div class="newhredup">添加配置项</div>
             <div class="closeup ax-iconfont ax-icon-close-t"></div>
         </div>
-        <form action="/rmtop/ajaxAddAutoConfig"  method="post">
+        <form action="/rmtop/ajaxAddAutoConfig"  method="post" onsubmit="return Fcheck();">
             <div class="item show herf-main">
                 <div class="ax-break-lg"></div>
                 <div class="ax-form-group">
@@ -25,7 +25,7 @@
                     <div class="ax-flex-row">
                         <div class="ax-form-label">配置名称：</div>
                         <div class="ax-form-input"  style="width: 360px !important;">
-                            <input type="text" name="zh_name" placeholder="">
+                            <input type="text" name="zh_name" id="zhname" placeholder="请输入配置名称">
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                     <div class="ax-flex-row">
                         <div class="ax-form-label">配置字段：</div>
                         <div class="ax-form-input"  style="width: 360px !important;">
-                            <input type="text" id="paramKey" name="en_name" placeholder="">
+                            <input type="text" name="en_name" id="paramKey" placeholder="请输入配置字段">
                             <label id="tips" style="color: red"></label>
                         </div>
                     </div>
@@ -43,8 +43,8 @@
                 <div class="ax-form-group">
                     <div class="ax-flex-row">
                         <div class="ax-form-label">排序：</div>
-                        <div class="ax-form-input"  style="width: 360px !important;">
-                            <input type="text" name="sort" placeholder="">
+                        <div class="ax-form-input" style="width: 360px !important;">
+                            <input type="text" name="sort"  placeholder="0">
                         </div>
                     </div>
                 </div>

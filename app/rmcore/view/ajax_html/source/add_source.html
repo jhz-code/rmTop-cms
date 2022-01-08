@@ -3,7 +3,7 @@
     <div class="newhredup">添加资源</div>
     <div class="closeup  ax-iconfont ax-icon-close-t"></div>
   </div>
-  <form action="{$action}"  method="post">
+  <form action="{$action}"  method="post"  onsubmit="return Fcheck();">
     <div class="item show herf-main">
       <div class="ax-break-lg"></div>
 
@@ -13,15 +13,16 @@
           <div class="ax-form-label">上传资源：</div>
           <div class="ax-form-con">
             <div class="ax-form-input">
-              <input id="file" onchange=handleFile("file") class="ax-input-file" type="file">
+              <input id="file" onchange=handleFile("file") class="ax-input-file showImg" type="file">
               <input name="org_img" value="" placeholder="上传资源" id="org_img_file" type="text">
               <span  class="ax-file-btn">选择资源</span>
             </div>
+            <div class="large"></div>
           </div>
+
         </div>
       </div>
 
-      <div class="ax-break-lg"></div>
       <div class="ax-break-lg"></div>
       <div class="ax-break-lg"></div>
 
@@ -39,10 +40,24 @@
   </form>
 </div>
 
-
 <script>
   $(".closeup").click(function () {
     $('#overlay').hide();
     $("#ajax").empty();
   })
 </script>
+
+<script>
+  //鼠标移动到上传图片输入框预览图片
+  $(function(){
+    var ei = $(".large");
+    ei.hide();
+    $(".showImg").mousemove(function(e){
+      var UpsImg = $('#org_img_file').val()
+      ei.html('<img src=" '+ UpsImg +' " />').show();
+    }).mouseout( function(){
+      ei.hide();
+    })
+  });
+</script>
+

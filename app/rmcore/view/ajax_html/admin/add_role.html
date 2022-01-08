@@ -3,24 +3,24 @@
 <style>
     .admin_poplistdiv {  background: #f9f9f9;  padding: 5px 8px;  border: 1px solid #eee;  margin: 0px 0px 8px;  }
     .admin_poplistdiv h2 {  font-size: 14px;  cursor: default;padding: 0;  margin: 0;  }
+    .ax-checkbox {width: 230px!important;}
 </style>
 
 <body  style="background-color:#F4F4F4;margin: 6px; overflow: auto;border-radius: 3px">
 
 <div class="page"  style="box-shadow:none;height: 97%">
 
-    <div class="tab-contain" style="margin-top: 10px;">
-        <!-- tab栏 -->
-        <ul id="tabs">
-            <li class="current"><span title="tab1">新增权限组</span></li>
-            <!--<li><span  title="tab2">高级设置</span></li>-->
-        </ul>
+    <div class="ax-flex-block" style="flex: 1">
+        <div class="ax-breadcrumb sote-lew">
+            <a>新增权限组</a>
+            <a onclick="window.history.go(-1);" class="ax-btn ax-sm  ax-primary bi bi-arrow-left-short" style="margin-right: 10px"> 返回</a>
+        </div>
+    </div>
+    <div class="tab-contain">
 
-        <div style="height: 1px;background-color: gainsboro"></div>
-        <!-- 对应显示内容 -->
 
-        <div id="content">
-            <form action=""  method="post">
+        <div id="content" style="padding-top: 5px">
+            <form action=""  method="post"  onsubmit="return Fcheck();">
                 <div id="tab1" class="item show">
                     <div class="ax-form-group">
                         <div class="ax-flex-row">
@@ -31,92 +31,59 @@
                     <div class="ax-form-group">
                         <div class="ax-flex-row">
                             <div class="ax-form-label">角色名称：</div>
-                            <div class="ax-form-input"><input type="text" name="title"></div>
+                            <div class="ax-form-input"><input type="text" name="title" id="title" placeholder="请输入角色名称"></div>
                         </div>
                     </div>
-                    <div class="ax-break-lg"></div>
-                    <div class="ax-form-group">
-                        <div class="ax-flex-row">
-                            <div class="ax-form-label" style="font-size: 15px;font-weight: bold">权限设置</div>
-                        </div>
-                    </div>
+<!--                    <div class="ax-break-lg"></div>-->
+<!--                    <div class="ax-form-group">-->
+<!--                        <div class="ax-flex-row">-->
+<!--                            <div class="ax-form-label" style="font-size: 15px;font-weight: bold">权限设置</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+                    <div class="ax-break-md"></div>
+
+<!--                    <div class="ax-form-group">-->
+<!--                        <div class="ax-flex-row">-->
+<!--                            <div class="ax-form-label">文档权限：</div>-->
+<!--                            <div class="ax-flex-block">-->
+<!--                                <label class="ax-checkbox"><input name="free-orange2" value="0" type="checkbox"><span>只允许查看自己发布的文档</span></label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="ax-break-md"></div>-->
+<!--                    <div class="ax-form-group">-->
+<!--                        <div class="ax-flex-row">-->
+<!--                            <div class="ax-form-label">操作权限：</div>-->
+<!--                            <div class="ax-flex-block" style="flex: 1">-->
+<!--                                <label class="ax-checkbox"><input name="free-orange3" value="0" type="checkbox"><span>完全控制</span></label>-->
+<!--                                <label class="ax-checkbox"><input name="free-orange3" value="1" type="checkbox"><span>新增信息</span></label>-->
+<!--                                <label class="ax-checkbox"><input name="free-orange3" value="2" type="checkbox"><span>编辑信息</span></label>-->
+<!--                                <label class="ax-checkbox"><input name="free-orange3" value="3" type="checkbox"><span>删除信息</span></label>-->
+<!--                                <label class="ax-checkbox"><input name="free-orange3" value="4" type="checkbox"><span>审核信息</span></label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
                     <div class="ax-break-md"></div>
                     <div class="ax-form-group">
                         <div class="ax-flex-row">
-                            <div class="ax-form-label">文档权限：</div>
-                            <div class="ax-flex-block">
-                                <label class="ax-checkbox"><input name="free-orange2" value="0" type="checkbox"><span>只允许查看自己发布的文档</span></label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ax-break-md"></div>
-                    <div class="ax-form-group">
-                        <div class="ax-flex-row">
-                            <div class="ax-form-label">操作权限：</div>
-                            <div class="ax-flex-block">
-                                <label class="ax-checkbox"><input name="free-orange3" value="0" type="checkbox"><span>完全控制</span></label>
-                                <label class="ax-checkbox"><input name="free-orange3" value="1" type="checkbox"><span>新增信息</span></label>
-                                <label class="ax-checkbox"><input name="free-orange3" value="2" type="checkbox"><span>编辑信息</span></label>
-                                <label class="ax-checkbox"><input name="free-orange3" value="3" type="checkbox"><span>删除信息</span></label>
-                                <label class="ax-checkbox"><input name="free-orange3" value="4" type="checkbox"><span>审核信息</span></label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ax-break-md"></div>
-                    <div class="ax-form-group">
-                        <div class="ax-flex-row">
                             <div class="ax-form-label" style="font-weight: bold">功能权限：</div>
-                            <div class="ax-flex-block">
-                                <div class="ax-col">
-                                    <label class="ax-checkbox"><input name="" value="0" checked="" type="checkbox"><span>全部选择</span></label>
-                                </div>
+                            <div class="ax-flex-block" style="flex: 1">
+
+                                {volist name="rules" id="vo"}
+
                                 <div class="admin_poplistdiv">
-                                    <h2>栏目管理</h2>
+                                    <h2>{$vo.title}</h2>
                                     <p>
-                                        <label class="ax-checkbox"><input name="" value="0" checked="" type="checkbox"><span>栏目管理</span></label>
+                                        {volist name="vo.sunList" id="sun"}
+                                        <label class="ax-checkbox"><input name="rule_method[]" value="{$sun.id}" type="checkbox"><span>{$sun.title}</span></label>
+                                        {/volist}
                                     </p>
                                 </div>
-                                <div class="admin_poplistdiv">
-                                    <h2>内容管理</h2>
-                                    <p>
-                                        <label class="ax-checkbox"><input name="rules_id" value="0" type="checkbox"><span>文章编辑</span></label>
-                                        <label class="ax-checkbox"><input name="rules_id" value="1" type="checkbox"><span>产品管理</span></label>
-                                        <label class="ax-checkbox"><input name="rules_id" value="2" type="checkbox"><span>图集管理</span></label>
-                                        <label class="ax-checkbox"><input name="rules_id" value="3" type="checkbox"><span>视频管理</span></label>
-                                        <label class="ax-checkbox"><input name="rules_id" value="4" type="checkbox"><span>下载管理</span></label>
-                                        <label class="ax-checkbox"><input name="rules_id" value="3" type="checkbox"><span>留言管理</span></label>
-                                        <label class="ax-checkbox"><input name="rules_id" value="4" type="checkbox"><span>招聘管理</span></label>
-                                    </p>
-                                </div>
-                                <div class="admin_poplistdiv">
-                                    <h2>配置管理</h2>
-                                    <p>
-                                        <label class="ax-checkbox"><input name="rules_id" value="0" type="checkbox"><span>管理角色</span></label>
-                                        <label class="ax-checkbox"><input name="rules_id" value="0" type="checkbox"><span>管理权限</span></label>
-                                    </p>
-                                </div>
-                                <div class="admin_poplistdiv">
-                                    <h2>系统管理</h2>
-                                    <p>
-                                        <label class="ax-checkbox"><input name="rules_id" value="0" type="checkbox"><span>系统配置</span></label>
-                                        <label class="ax-checkbox"><input name="rules_id" value="0" type="checkbox"><span>自主配置</span></label>
-                                    </p>
-                                </div>
-                                <div class="admin_poplistdiv">
-                                    <h2>Top应用</h2>
-                                    <p>
-                                        <label class="ax-checkbox"><input name="rules_id" value="0" type="checkbox"><span>允许操作</span></label>
-                                    </p>
-                                </div>
-                                <div class="admin_poplistdiv">
-                                    <h2>系统日志</h2>
-                                    <p>
-                                        <label class="ax-checkbox"><input name="rules_id" value="0" type="checkbox"><span>日志管理</span></label>
-                                        <label class="ax-checkbox"><input name="rules_id" value="0" type="checkbox"><span>运行日志</span></label>
-                                        <label class="ax-checkbox"><input name="rules_id" value="0" type="checkbox"><span>访客日志</span></label>
-                                    </p>
-                                </div>
+                                {/volist}
+
+
                             </div>
                         </div>
 
@@ -133,27 +100,15 @@
                             </div>
                         </div>
                     </div>
+                    <div class="ax-break-lg"></div>
                 </div>
             </form>
         </div>
     </div>
 </div>
 </body>
-<style>
 
-    #tabs {  overflow: hidden;  width: 100%;  margin: 0;  padding: 0;  list-style: none;  }
-    #tabs li {  float: left;  margin-left: 14px;  height: 40px;  line-height: 40px;cursor: pointer ;width: 100px;  }
-    li span {  position: relative;  font-size: 16px;  }
-    .current li{  outline: 0;  color: #3398cc;  border-bottom: 1px solid #3398cc;    }
-    .current span{  outline: 0;  color: #3398cc;  border-bottom: 1px solid #3398cc;  }
-    .current span:before{content: '';position: absolute;bottom: 0;left: 2px;width: 95%;
-        height: 2px;background: #3398cc;border-radius: 30px;}
-    #content {  background: #fff;  padding: 30px 0 25px;  position: relative;  }
-    .item{  display: none;  }
-    .show{  display: block;  }
-
-</style>
-
+<link href="/static/rmtop/css/jtstyle.css" rel="stylesheet" type="text/css" >
 <script type="text/javascript">
     $(function(){
         $('#tabs span').click(function(e) {
@@ -172,6 +127,17 @@
             $(this).parent().removeClass("hoverItem");
         });
     });
+</script>
+
+<script type="text/javascript">
+    function Fcheck() {
+        if($('#title').val() == '') {
+            layer.tips('请输入角色名称', '#title', {tips: [2, '#4ea1f5'], tipsMore: false, time:1500});
+            $('#title').focus();
+            return false;
+        }
+        return true;
+    }
 </script>
 
 

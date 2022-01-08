@@ -12,18 +12,18 @@
         <table class="ax-table">
             <thead>
             <tr style="background-color:#efefef " class="ax-shadow-border ax-radius">
-                <th>访客</th>
-                <th><div class="ax-align-left">入口页面</div></th>
-                <th>访问设备</th>
-                <th>访问ip</th>
-                <th>访问时间</th>
+                <th width="10%" class="ax-padd-lf">访客</th>
+                <th width="25%"><div class="ax-align-left">入口页面</div></th>
+                <th width="20%">访问设备</th>
+                <th width="25%">访问ip</th>
+                <th width="20%">访问时间</th>
             </tr>
             </thead>
             <tbody>
 
             {volist name="list" id="vo"}
             <tr style="height: 55px">
-                <td><div class="ax-align-center">{$vo.bot}</div></td>
+                <td class="ax-padd-lf">{$vo.bot}</td>
                 <td><div class="ax-align-left" style="max-width: 550px">{$vo.from_page}</div></td>
                 <td><div class="ax-align-center">{$vo.agent}</div></td>
                 <td><div class="ax-align-center">{$vo.client_ip}</div></td>

@@ -1,0 +1,49 @@
+{include file="/app/rmcore/view/public/hearder" /}
+
+<body  style="overflow: auto;border-radius: 3px;">
+
+
+<div class="tab-contain" style="margin-top: 10px;">
+
+    <!-- 对应显示内容 -->
+    <div class="Temp-s-main">
+        {volist name="tpl" id="vo"}
+        <div class="Temp-s-list">
+            {if $vo.name === $config.tmp_path}
+            <img class="Temp-uing" src="/static/rmtop/images/rongs-da.png">
+            {/if}
+            <p class="Temp-s-tit">{$vo.name}</p>
+            <div class="Temp-s-img"><img src="{$vo.image}"></div>
+            <div class="Temp-s-down">
+                {if $vo.name === $config.tmp_path}
+                <a style="background: #43c1b6d9">当前模板</a>
+                {else/}
+                <a style="background: #3cb2ef" onclick='setTpl("{$vo.name}")'>设置模板</a>
+                {/if}
+            </div>
+        </div>
+        {/volist}
+        <div class="clear"></div>
+    </div>
+
+
+</div>
+
+</body>
+
+
+<link href="/static/rmtop/css/jtstyle.css" rel="stylesheet" type="text/css" >
+
+<script type="text/javascript">
+    /**
+     *
+     * @param tpl
+     */
+    function setTpl(tpl) {
+        $.post("/rmtop/systemTmp",{'tmp_path':tpl},function (data) {
+            window.location.href = '';
+        })
+    }
+</script>
+
+

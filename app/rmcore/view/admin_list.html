@@ -8,18 +8,15 @@
 <div class="page"  style="box-shadow:none;height: 100%">
     {include file="/app/rmcore/view/public/bana_nav" /}
     <div class="ax-margin ax-col ">
-        <div class="ax-row rm-add">
-            <div class="ax-row-2 list-tlea"><h4>管理员列表</h4></div>
-            <a  data-url="/rmtop/addAdmin" class="ax-btn ax-sm ax-iconfont ax-icon-plus-t ax-primary lj-a-btn"> 新增管理员</a>
+
+        <div class="ax-margin-tb rm-add">
+            <a  data-url="/rmtop/addAdmin" class="ax-btn ax-sm ax-iconfont ax-icon-plus-t ax-primary"> 新增管理员</a>
         </div>
-        <div style="height: 1px;margin-bottom: 10px;background-color: gainsboro"></div>
 
         <table class="ax-table">
             <thead>
             <tr style="background-color:#efefef " class="ax-shadow-border ax-radius">
-                <th style="width:50px;">
-                    <input name="" type="checkbox" value="">
-                </th>
+<!--                <th style="width:50px;"><input name="" type="checkbox" value=""></th>-->
                 <th>ID</th>
                 <th>用户名</th>
                 <th>角色名称</th>
@@ -30,7 +27,7 @@
             <tbody>
             {volist name="lists" id="vo"}
             <tr style="height: 60px">
-                <td><input name="" type="checkbox" value=""></td>
+<!--                <td><input name="" type="checkbox" value=""></td>-->
                 <td><div class="ax-align-center">{$vo.id}</div></td>
                 <td><div class="ax-align-center">{$vo.username}</div></td>
                 <td><div class="ax-align-center">{$vo.role_name}</div></td>
@@ -93,22 +90,33 @@
     });
 </script>
 
-<style>
-    .buy_content {  position: absolute;  top: 15%;  left:28%;  width:575px;  height:auto;background: #fff;
-        z-index:1002;  overflow: auto;padding: 15px;  text-align: left;  }
-    .herf-main{background: #fff;padding: 10px;position: relative}
-    .open-head{display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;
-        position: relative;padding-bottom: 10px;}
-    .newhredup{font-size: 15px;color: #333}
-    .closeup{position:relative;font-size: 23px;line-height: 23px;color: #333;cursor: pointer}
-    .closePz{position:relative;font-size: 23px;line-height: 23px;color: #333;cursor: pointer}
-    .tab-ligh{width: 120px;height: 28px;line-height: 28px;display: flex;align-items: center;
-        border: 1px solid #ddd;margin-top: 3px;  background-color: #f8f8f8;  padding: 0;border-radius: 0 4px 4px 0;}
-    .tab-ligh li{width: 50%;text-align: center;cursor: pointer}
-    .lighten{background: #198cff;color: #fff}
+<script type="text/javascript">
+    function Fcheck() {
+        if($('#username').val() == '') {
+            layer.tips('请输入账户号', '#username', {tips: [2, '#4ea1f5'], tipsMore: false, time:1500});
+            $('#username').focus();
+            return false;
+        }
+        if($('#password').val() == '') {
+            layer.tips('请输入密码', '#password', {tips: [2, '#4ea1f5'], tipsMore: false, time:1500});
+            $('#password').focus();
+            return false;
+        }
+        if($('#mobile').val() == '') {
+            layer.tips('请输入手机号码', '#mobile', {tips: [2, '#4ea1f5'], tipsMore: false, time:1500});
+            $('#mobile').focus();
+            return false;
+        }
+        return true;
+    }
+</script>
 
+<style>
     .ax-menu-page .ax-item{padding: 0 30px !important;background-color: #eee;color: #666}
     .ax-menu-page .ax-item.ax-active {  color: #333 !important;background: #fff  }
 </style>
+
+<link href="/static/rmtop/css/jtstyle.css" rel="stylesheet" type="text/css" >
+
 </body>
 </html>

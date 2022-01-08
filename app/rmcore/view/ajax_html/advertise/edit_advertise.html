@@ -3,7 +3,7 @@
     <div class="newhredup">编辑广告</div>
     <div class="closeup  ax-iconfont ax-icon-close-t"></div>
   </div>
-  <form action="{$action}"  method="post">
+  <form action="{$action}"  method="post" onsubmit="return Fcheck();">
     <div class="item show herf-main">
       <div class="ax-break-lg"></div>
       <div class="ax-form-group">
@@ -27,7 +27,7 @@
       <div class="ax-form-group">
         <div class="ax-flex-row">
           <div class="ax-form-label">广告名称：</div>
-          <div class="ax-form-input"><input type="text" name="title" value="{$info.title}"  placeholder=""></div>
+          <div class="ax-form-input"><input type="text" name="title" id="title" value="{$info.title}"  placeholder="请输入广告名称"></div>
         </div>
       </div>
       <div class="ax-break-lg"></div>
@@ -39,10 +39,11 @@
           <div class="ax-form-label">广告图：</div>
           <div class="ax-form-con">
             <div class="ax-form-input">
-              <input id="file" onchange=handleFile("file") class="ax-input-file" type="file">
+              <input id="file" onchange=handleFile("file") class="ax-input-file showImg" type="file">
               <input name="org_img" value="{$info.org_img}" placeholder="上传图片" id="org_img_file" type="text">
               <span  class="ax-file-btn">选择图片</span>
             </div>
+            <div class="large"></div>
           </div>
         </div>
       </div>
@@ -68,7 +69,7 @@
       <div class="ax-form-group" id="shouhou2">
         <div class="ax-flex-row">
           <div class="ax-form-label">广告链接：</div>
-          <div class="ax-form-input"><input type="text" name="url" value="{$info.url}"  placeholder=""></div>
+          <div class="ax-form-input"><input type="text" name="url" value="{$info.url}"  placeholder="请输入广告链接"></div>
         </div>
       </div>
 
@@ -79,7 +80,7 @@
       <div class="ax-form-group">
         <div class="ax-flex-row">
           <div class="ax-form-label">排序：</div>
-          <div class="ax-form-input"><input type="text" name="sort"  value="{$info.sort}" placeholder=""></div>
+          <div class="ax-form-input"><input type="text" name="sort"  value="{$info.sort}"  placeholder="0"></div>
         </div>
       </div>
 
@@ -106,4 +107,18 @@
     $('#overlay').hide();
     $("#ajax").empty();
   })
+</script>
+
+<script>
+  //鼠标移动到上传图片输入框预览图片
+  $(function(){
+    var ei = $(".large");
+    ei.hide();
+    $(".showImg").mousemove(function(e){
+      var UpsImg = $('#org_img_file').val()
+      ei.html('<img src=" '+ UpsImg +' " />').show();
+    }).mouseout( function(){
+      ei.hide();
+    })
+  });
 </script>

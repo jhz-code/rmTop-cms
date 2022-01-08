@@ -4,14 +4,14 @@
         <div class="newhredup">编辑分组</div>
         <div class="closeup ax-iconfont ax-icon-close-t"></div>
     </div>
-    <form action="/rmtop/editConfigGroup"  method="post">
+    <form action="/rmtop/editConfigGroup"  method="post" onsubmit="return Fcheck();">
         <div class="item show herf-main">
             <div class="ax-break-lg"></div>
             <div class="ax-form-group">
                 <div class="ax-flex-row">
                     <div class="ax-form-label">分组名称：</div>
                     <div class="ax-form-input"  style="width: 360px !important;">
-                        <input type="text" name="title" value="{$group.title}" placeholder="">
+                        <input type="text" name="title" value="{$group.title}" id="title" placeholder="请输入分组名称">
                     </div>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                 <div class="ax-flex-row">
                     <div class="ax-form-label">分组标识：</div>
                     <div class="ax-form-input"  style="width: 360px !important;">
-                        <input type="text" value="{$group.ident}"  name="ident" placeholder="">
+                        <input type="text" value="{$group.ident}"  name="ident" id="ident" placeholder="请输入分组标识">
                     </div>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                 <div class="ax-flex-row">
                     <div class="ax-form-label">分组排序：</div>
                     <div class="ax-form-input"  style="width: 360px !important;">
-                        <input type="text" value="{$group.sort}" name="sort" placeholder="">
+                        <input type="text" value="{$group.sort}" name="sort" placeholder="0">
                     </div>
                 </div>
             </div>

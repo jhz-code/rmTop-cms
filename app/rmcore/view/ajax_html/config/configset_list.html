@@ -8,7 +8,7 @@
 <table class="ax-table">
     <thead>
     <tr style="background-color:#efefef " class="ax-shadow-border ax-radius">
-        <th style="width:50px;"><input name="" type="checkbox" value=""></th>
+<!--        <th style="width:50px;"><input name="" type="checkbox" value=""></th>-->
         <th>ID</th>
         <th>排序</th>
         <th><div class="ax-align-left">配置名称</div></th>
@@ -21,7 +21,7 @@
 
     {volist name="config" id="vo"}
     <tr style="height: 60px">
-        <td><input name="" type="checkbox" value=""></td>
+<!--        <td><input name="" type="checkbox" value=""></td>-->
         <td><div class="ax-align-center">{$vo.id}</div></td>
         <td><div class="ax-align-center">{$vo.sort}</div></td>
         <td><div class="ax-align-left">{$vo.zh_name}</div></td>
@@ -99,3 +99,20 @@
 
 
 </script>
+
+<script type="text/javascript">
+    function Fcheck() {
+        if($('#zhname').val() == '') {
+            layer.tips('请输入配置名称', '#zhname', {tips: [2, '#4ea1f5'], tipsMore: false, time:1500});
+            $('#zhname').focus();
+            return false;
+        }
+        if($('#paramKey').val() == '') {
+            layer.tips('请输入配置字段', '#paramKey', {tips: [2, '#4ea1f5'], tipsMore: false, time:1500});
+            $('#paramKey').focus();
+            return false;
+        }
+        return true;
+    }
+</script>
+<script charset="utf-8" src="/static/layer/layer.js"></script>

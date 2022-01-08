@@ -1,0 +1,149 @@
+
+<div id="ajax" class="ajax"></div>
+<div class="ax-row">
+    <a class="addgroup ax-btn ax-sm ax-iconfont ax-icon-plus-t ax-primary lj-a-btn" data-url="/rmtop/addRulesClass" style="margin-top: 0 !important;cursor:pointer"> 添加权限</a>
+</div>
+<div style="height: 1px;margin-bottom: 10px;background-color: gainsboro"></div>
+<!--加载图层-->
+<table class="ax-table">
+    <thead>
+    <tr style="background-color:#efefef " class="ax-shadow-border ax-radius">
+        <th width="40%" class="ax-padd-lf">权限</th>
+        <th width="30%">URl</th>
+        <th width="20%">排序</th>
+        <th width="10%">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+
+
+    {volist name="rule_list" id="vo"}
+    <tr height="50px">
+        <td style="cursor: pointer;font-weight: bolder"><div class="ax-align-left">
+            <span class="rm-next">
+                   {notempty name="$vo.sunList"}
+                   <em class="jiaj_{$vo.id}" onclick="showIt('{$vo.id}',this)"><img src="/static/rmtop/images/lit-more.png"></em>
+                   {/notempty}
+                   {empty name="$vo.sunList"}
+                   <em class="jiaj_{$vo.id}" ><img src="/static/rmtop/images/lit-cle.png"></em>
+                   {/empty}
+                   {$vo.title}</span>
+        </div>
+        </td>
+        <td>--</td>
+        <td>{$vo.sort}</td>
+        <td>
+             <div class="ax-operate">
+                 {if $vo.system != 1}
+                        <a data-url="/rmtop/editRulesClass?id={$vo.id}"  class="ax-iconfont ax-icon-editing-fill rm-model" title="编辑"></a>
+                        <a href="/rmtop/deleteRulesClass?id={$vo.id}" class="ax-iconfont ax-icon-trash-alt-fill" title="删除"></a>
+                 {else/}
+                 系统权限
+                 {/if}
+             </div>
+        </td>
+    </tr>
+
+    {volist name="vo.sunList" id="sun"}
+    <tr class="child erlist{$vo.id}"  height="50px" style="display: none">
+        <td  style="cursor: pointer" class="ax-align-left rm-next"><div class="ax-align-left">└ {$sun.title}</div></td>
+        <td><div class="ax-align-left">{$sun.url}</div></td>
+        <td  class="ax-align-left"><div class="ax-align-left">{$sun.sort}</div></td>
+        <td>
+            <div class="ax-operate ax-align-left">
+                {if $sun.system != 1}
+                <a data-url="/rmtop/editRulesClass?id={$sun.id}"  class="ax-iconfont ax-icon-editing-fill rm-model" title="编辑"></a>
+                  <a href="/rmtop/deleteRulesClass?id={$sun.id}" class="ax-iconfont ax-icon-trash-alt-fill" title="删除"></a>
+                {else/}
+                系统权限
+                {/if}
+            </div>
+        </td>
+    </tr>
+    {/volist}
+
+    {/volist}
+
+    </tbody>
+</table>
+
+<div class="ax-pagination">
+    {$rule_list->render()|raw}
+</div>
+
+<style>
+    .ax-table td .rm-next em img{width: 15px;height: 15px;}
+</style>
+
+<script>
+
+    function showIt(id,obj)
+    {
+        if($(".erlist"+id).css("display")=="none") {
+            $(".erlist" + id).show(100);
+            $(".jiaj_"+id).html('<img src="/static/rmtop/images/lit-cle.png">')
+        }else {
+            $(obj).html("");
+            $(".erlist" + id).hide(100);
+            $(".jiaj_"+id).html('<img src="/static/rmtop/images/lit-more.png">')
+        }
+    }
+
+
+    $('.addgroup').click(function (){
+        $('body').append('<div id="overlay"></div>');
+        $(".buy_content").show()
+        $('#overlay').height($(document).height()).css({
+            'opacity': .6, //透明度
+            'position': 'absolute',
+            'top': 0,
+            'left': 0,
+            'background-color': 'black',
+            'width': '100%',
+            'z-index': 9 //保证这个悬浮层位于其它内容之上
+
+        }).fadeIn('slow');
+        $("#ajax").load($(".addgroup").attr('data-url'))
+        $("#ajax").css({'z-index':10})
+    });
+
+
+    $(".closeup").click(function () {
+        $('#overlay').hide();
+        $("#ajax").empty();
+    })
+
+
+    $('.ax-operate .rm-model').click(function (){
+        $('body').append('<div id="overlay"></div>');
+        $(".buy_content").show()
+        $('#overlay').height($(document).height()).css({
+            'opacity': .6, //透明度
+            'position': 'absolute',
+            'top': 0,
+            'left': 0,
+            'background-color': 'black',
+            'width': '100%',
+            'z-index': 9 //保证这个悬浮层位于其它内容之上
+
+        }).fadeIn('slow');
+        $("#ajax").load($(this).attr('data-url'))
+        $("#ajax").css({'z-index':10})
+    });
+</script>
+
+<script type="text/javascript">
+    function Fcheck() {
+        if($('#title').val() == '') {
+            layer.msg('请输入权限名称！', {time:1500});
+            $('#title').focus();
+            return false;
+        }
+        if($('#url').val() == '') {
+            layer.msg('请输入权限URL！', {time:1500});
+            $('#url').focus();
+            return false;
+        }
+        return true;
+    }
+</script>
