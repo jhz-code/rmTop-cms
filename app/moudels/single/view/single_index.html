@@ -65,7 +65,7 @@
                 <div class="ax-form-group">
                     <div class="ax-flex-row">
                         <span class="ax-form-label">TGA标签：</span>
-                        <div class="ax-form-input"><input name="tags" value="{$list.tags}" type="text"></div>
+                        <div class="ax-form-input"><input name="tags" value="{$list.tags}" type="text" placeholder="请输入TGA标签"></div>
                     </div>
                 </div>
 
@@ -75,7 +75,7 @@
                 <div class="ax-form-group">
                     <div class="ax-flex-row">
                         <span class="ax-form-label">SEO标题：</span>
-                        <div class="ax-form-input"><input name="seo_title" value="{$list.seo_title}" type="text"></div>
+                        <div class="ax-form-input"><input name="seo_title" value="{$list.seo_title}" type="text" placeholder="请输入SEO标题"></div>
                     </div>
                 </div>
                 <div class="ax-break-lg"></div>
@@ -83,7 +83,7 @@
                 <div class="ax-form-group">
                     <div class="ax-flex-row">
                         <span class="ax-form-label">SEO关键词：</span>
-                        <div class="ax-form-input"><input name="seo_key" value="{$list.seo_key}" type="text"></div>
+                        <div class="ax-form-input"><input name="seo_key" value="{$list.seo_key}" type="text" placeholder="请输入SEO关键词"></div>
                     </div>
                 </div>
                 <div class="ax-break-lg"></div>
@@ -92,7 +92,7 @@
                     <div class="ax-flex-row">
                         <span class="ax-form-label">SEO描述：</span>
                         <div class="ax-form-input">
-                            <textarea name="seo_des" cols="" rows="" placeholder="写评论">{$list.seo_des}</textarea>
+                            <textarea name="seo_des" cols="" rows="" placeholder="请简单描述一下">{$list.seo_des}</textarea>
                         </div>
                     </div>
                 </div>
@@ -118,16 +118,12 @@
                 </div>
                 <div class="ax-break-lg"></div>
 
-                <div class="ax-break-lg"></div>
-                <div class="ax-break-lg"></div>
-
                 <input name="col_id" value="{$column_id}" type="hidden">
 
             </div>
 
 
             <div class="ax-break-lg"></div>
-
             <div class="ax-break-lg"></div>
 
             <div class="ax-form-group">
@@ -145,44 +141,13 @@
 </div>
 </body>
 <style>
-
-    #tabs {  overflow: hidden;  width: 100%;  margin: 0;  padding: 0;  list-style: none;  }
-    #tabs li {  float: left;  margin-left: 14px;  height: 40px;  line-height: 40px;cursor: pointer ;width: 100px;  }
-    #contents {  background: #fff;  padding: 30px 0 25px;  position: relative;  }
-
-    li span {  position: relative;  font-size: 16px;  }
-    .current li{  outline: 0;  color: #3398cc;  border-bottom: 1px solid #3398cc;    }
-    .current span{  outline: 0;  color: #3398cc;  border-bottom: 1px solid #3398cc;  }
-    .current span:before{content: '';position: absolute;bottom: 0;left: 2px;width: 95%;
-        height: 2px;background: #3398cc;border-radius: 30px;}
-    #content {  background: #fff;  padding: 30px 0 25px;  position: relative;  }
-    .item{  display: none;  }
-    .show{  display: block;  }
     .ax-form-label{width: 95px !important;justify-content: flex-start !important;padding-left: 0;}
     .ax-form-input{width: 700px !important;}
-    /*.ax-flex-block, .ax-flex-block-1{flex: 0.23}*/
-    /*.label-name{flex: 1 !important;}*/
-
-    .buy-bg{  position: absolute;  top: 0%;  left: 0%;  width:100%;  height: 100%;
-        background-color: black;  z-index:1001;  -moz-opacity: 0.8;  opacity:.50;  filter: alpha(opacity=50);  }
-    .buy_content {  position: absolute;  top: 15%;  left:28%;  width:575px;  height:auto;background: #fff;
-        z-index:1002;  overflow: auto;padding: 15px;  text-align: left;  }
-    .herf-main{background: #fff;padding: 10px;position: relative}
-    .open-head{display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;
-        position: relative;padding-bottom: 10px;}
-    .newhredup{font-size: 15px;color: #333}
-    .closeup{position:relative;font-size: 23px;line-height: 23px;color: #333;cursor: pointer}
-    .closePz{position:relative;font-size: 23px;line-height: 23px;color: #333;cursor: pointer}
-    .tab-ligh{width: 120px;height: 28px;line-height: 28px;display: flex;align-items: center;
-        border: 1px solid #ddd;margin-top: 3px;  background-color: #f8f8f8;  padding: 0;border-radius: 0 4px 4px 0;}
-    .tab-ligh li{width: 50%;text-align: center;cursor: pointer}
-    .lighten{background: #198cff;color: #fff}
-
     .ax-menu-page .ax-item{padding: 0 30px !important;background-color: #eee;color: #666}
     .ax-menu-page .ax-item.ax-active {  color: #333 !important;background: #fff  }
 </style>
 
-
+<link href="/static/rmtop/css/jtstyle.css" rel="stylesheet" type="text/css" >
 <script type="text/javascript">
 
     if ($.cookie('single_tab_current')!= null){

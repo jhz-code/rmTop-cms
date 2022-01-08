@@ -25,7 +25,7 @@ class Install
     function index(Request $request){
         $step = input('step');
         if($step){
-          return   $this->$step($request);
+            return   $this->$step($request);
         }else{
             if ($this->check($request) !== true) {
                 return $this->check($request);
@@ -113,6 +113,7 @@ class Install
      */
     function test(){
         $param = \request()->param();
+        $param['charset'] = $param['charset']??'UTF-8';
         // 创建数据连接
         $testDbConn = RmDb::get_mysql_conn($param);
         // 判断连接是否有效
@@ -152,6 +153,7 @@ class Install
         $res['status'] = $status;
         $step = 0 ;
         $m = 0;
+        $param['charset'] = $param['charset']??'UTF-8';
 
         //第一步数据初始化处理
         if ($s[0] == ++$step && !intval($s[3])) {
@@ -167,87 +169,88 @@ class Install
         }
 
 //        第二步创建数据库
-        if ($s[0] == ++$step && !intval($s[3])) {
-            if ($s[1] == $m++) {
-                $s = [$step, $m, '', '0'];
-                $res['status'] = 0;
-                $res['s'] = $s;
-                $res['msg'] = RmDb::resMsg($s, '创建数据库', '判断是否安装PDO_MYSQL扩展');
-                return json($res);
-            }
-            if ($s[1] == $m++) {
-                if (!extension_loaded('pdo_mysql')) {
-                    $s = [$step, $m, '', '0'];
-                    $res['status'] = -2;
-                    $res['s'] = $s;
-                    $res['msg'] = RmDb::resMsg($s, '创建数据库', '请安装 pdo_mysql 扩展!', 0);
-                    return json($res);
-                }
-                $s = [$step, $m, '', '0'];
-                $res['status'] = 0;
-                $res['s'] = $s;
-                $res['msg'] = RmDb::resMsg($s, '创建数据库', 'PDO_MYSQL扩展存在，准备采集处理数据库预定义参数!');
-                return json($res);
-            }
-            //执行数据库操作
-            if ($s[1] == $m++) {
-                $conn = new \PDO("mysql:host=" . $param['host'] . ";port=" . $param['port'] . "", $param['user'], $param['password']);
-                $connStatus = RmDb::pdo_ping($conn);
-                if ($connStatus) {
-                    $db_isCreated = $conn->prepare("SHOW TABLES FROM `" . $param['dbname'] . "`")->execute();
-                    if ($db_isCreated) {
-                        $delDb = $conn->prepare("DROP DATABASE IF  EXISTS  `" . $param['dbname'] . "`")->execute();
-                        if ($delDb) {
-                            $s = [$step, $m - 1, 'createDB_' . $param['dbname'] . '_delok', '0'];
-                            $res['status'] = 0;
-                            $res['s'] = $s;
-                            $res['msg'] = RmDb::resMsg($s, '创建数据库', '{' . $param['dbname'] . '}数据库删除成功，准备执行创建{' . $param['dbname'] . '}数据库!');
-                            return json($res);
-                        } else {
-                            $s = [$step, $m - 1, 'createDB_' . $param['dbname'] . '_delfail', '0'];
-                            $res['status'] = -2;
-                            $res['s'] = $s;
-                            $res['msg'] = RmDb::resMsg($s, '创建数据库', '{' . $param['dbname'] . '}数据库删除失败，终止运行!', 0);
-                            return json($res);
-                        }
-
-                    } else {//不存在
-                        $createDB = $conn->prepare("CREATE DATABASE IF NOT EXISTS  `" . $param['dbname'] . "`")->execute();
-                        if ($createDB) {
-                            $s = [$step, $m, 'createDB_' . $param['dbname'] . '_end', '0'];
-                            $res['status'] = 0;
-                            $res['s'] = $s;
-                            $res['msg'] = RmDb::resMsg($s, '创建数据库', '创建数据库{' . $param['dbname'] . '}成功!');
-                            return json($res);
-                        } else {
-                            $s = [$step, $m, 'createDB__' . $param['dbname'] . '_fail', '0'];
-                            $res['status'] = -2;
-                            $res['s'] = $s;
-                            $res['msg'] = RmDb::resMsg($s, '创建数据库', '创建数据库{' . $param['dbname'] . '}失败，不能连接数据库!', 0);
-                            return json($res);
-
-                        }
-
-                    }
-                } else {
-                    $s = [$step, $m, 'createDB__' . $param['dbname'] . '_fail', '0'];
-                    $res['status'] = -2;
-                    $res['s'] = $s;
-                    $res['msg'] = RmDb::resMsg($s, '创建数据库', '创建数据库{' . $param['dbname'] . '}失败，不能连接数据库!', 0);
-                    return json($res);
-                }
-            }
-
-            if ($s[1] == $m++) {
-                $s = [$step, $m, '', '0'];
-                $res['status'] = 0;
-                $res['msg'] = RmDb::resMsg($s, '创建数据库', '完成第' . $step . '步所有数据库创建！准备第' . ($step + 1) . '步的数据表创建!');
-                $s = [++$step, 0, '', '0'];
-                $res['s'] = $s;
-                return json($res);
-            }
-
-        }
+//        if ($s[0] == ++$step && !intval($s[3])) {
+//            if ($s[1] == $m++) {
+//                $s = [$step, $m, '', '0'];
+//                $res['status'] = 0;
+//                $res['s'] = $s;
+//                $res['msg'] = RmDb::resMsg($s, '创建数据库', '判断是否安装PDO_MYSQL扩展');
+//                return json($res);
+//            }
+//            if ($s[1] == $m++) {
+//                if (!extension_loaded('pdo_mysql')) {
+//                    $s = [$step, $m, '', '0'];
+//                    $res['status'] = -2;
+//                    $res['s'] = $s;
+//                    $res['msg'] = RmDb::resMsg($s, '创建数据库', '请安装 pdo_mysql 扩展!', 0);
+//                    return json($res);
+//                }
+//                $s = [$step, $m, '', '0'];
+//                $res['status'] = 0;
+//                $res['s'] = $s;
+//                $res['msg'] = RmDb::resMsg($s, '创建数据库', 'PDO_MYSQL扩展存在，准备采集处理数据库预定义参数!');
+//                return json($res);
+//            }
+//            //执行数据库操作
+//            if ($s[1] == $m++) {
+//                $conn = new \PDO("mysql:host=" . $param['host'] . ";port=" . $param['port'] . "", $param['user'], $param['password']);
+//                $connStatus = RmDb::pdo_ping($conn);
+//                if ($connStatus) {
+//                    $db_isCreated = $conn->prepare("SHOW TABLES FROM `" . $param['dbname'] . "`")->execute();
+//                    if ($db_isCreated) {
+//                        $delDb = $conn->prepare("DROP DATABASE IF  EXISTS  `" . $param['dbname'] . "`")->execute();
+//                        if ($delDb) {
+//                            $s = [$step, $m - 1, 'createDB_' . $param['dbname'] . '_delok', '0'];
+//                            $res['status'] = 0;
+//                            $res['s'] = $s;
+//                            $res['msg'] = RmDb::resMsg($s, '创建数据库', '{' . $param['dbname'] . '}数据库删除成功，准备执行创建{' . $param['dbname'] . '}数据库!');
+//                            return json($res);
+//                        } else {
+//                            $s = [$step, $m - 1, 'createDB_' . $param['dbname'] . '_delfail', '0'];
+//                            $res['status'] = -2;
+//                            $res['s'] = $s;
+//                            $res['msg'] = RmDb::resMsg($s, '创建数据库', '{' . $param['dbname'] . '}数据库删除失败，终止运行!', 0);
+//                            return json($res);
+//                        }
+//
+//                    } else {//不存在
+//
+//                        $createDB = $conn->prepare("CREATE DATABASE IF NOT EXISTS  `" . $param['dbname'] . "`")->execute();
+//                        if ($createDB) {
+//                            $s = [$step, $m, 'createDB_' . $param['dbname'] . '_end', '0'];
+//                            $res['status'] = 0;
+//                            $res['s'] = $s;
+//                            $res['msg'] = RmDb::resMsg($s, '创建数据库', '创建数据库{' . $param['dbname'] . '}成功!');
+//                            return json($res);
+//                        } else {
+//                            $s = [$step, $m, 'createDB__' . $param['dbname'] . '_fail', '0'];
+//                            $res['status'] = -2;
+//                            $res['s'] = $s;
+//                            $res['msg'] = RmDb::resMsg($s, '创建数据库', '创建数据库{' . $param['dbname'] . '}失败，不能连接数据库!', 0);
+//                            return json($res);
+//
+//                        }
+//
+//                    }
+//                } else {
+//                    $s = [$step, $m, 'createDB__' . $param['dbname'] . '_fail', '0'];
+//                    $res['status'] = -2;
+//                    $res['s'] = $s;
+//                    $res['msg'] = RmDb::resMsg($s, '创建数据库', '创建数据库{' . $param['dbname'] . '}失败，不能连接数据库!', 0);
+//                    return json($res);
+//                }
+//            }
+//
+//            if ($s[1] == $m++) {
+//                $s = [$step, $m, '', '0'];
+//                $res['status'] = 0;
+//                $res['msg'] = RmDb::resMsg($s, '创建数据库', '完成第' . $step . '步所有数据库创建！准备第' . ($step + 1) . '步的数据表创建!');
+//                $s = [++$step, 0, '', '0'];
+//                $res['s'] = $s;
+//                return json($res);
+//            }
+//
+//        }
 
 
 
@@ -260,78 +263,78 @@ class Install
                 $res['msg'] = RmDb::resMsg($s, '创建数据表', '采集的数据库预定义参数已载入，准备获取数据表安装目录!');
                 return json($res);
             }
-                // 数据库设定
-                if ($s[1] == $m++) {
-                    $conn = RmDb::get_mysql_conn($param);
-                    $connStatus = RmDb::pdo_ping($conn);
-                    if ($connStatus) {
-                        $sqlFile = 'rmtop.sql';
-                        $sqldata = file_get_contents(root_path() . '/install/data/' . $sqlFile);
-                        $sqlFormat = $this->sql_split($sqldata, $param['prefix']);
-                        //创建写入sql数据库文件到库中 结束
-                        // 获取错误信息
-                        $counts = count($sqlFormat);
-                        for ($n = $ss; $n < $counts; $n++) {
-                            $sql = trim($sqlFormat[$n]);
-                            if (strstr($sql, 'CREATE TABLE IF NOT EXISTS')) {
-                                preg_match('/CREATE TABLE IF NOT EXISTS `([A-Za-z0-9]+)_([^ ]*)`/is', $sql, $matches);
-                                $sql = str_replace('`' . $matches[1] . '_', '`' . $param['prefix'], $sql);//替换表前缀
-                                $ret = $conn->prepare($sql)->execute();
-                                if ($ret) {
-                                    $s = [$step, $m - 1, 'CREATE_TABLE_' . $matches[2] . '_OK', '0'];
-                                    $res['status'] = 0;
-                                    $res['s'] = $s;
-                                    $res['ss'] = ++$n;
-                                    $res['msg'] = RmDb::resMsg($s, '创建数据表' . $matches[1] . '_' . $matches[2] . ':', '-第' . $n . '条SQL语句:创建数据表' . $matches[1] . '_' . $matches[2] . '------执行SQL创建成功！-');
-                                    return json($res);
-                                } else {
-                                    $s = [$step, $m - 1, 'CREATE_TABLE_' . $matches[1] . '_fail', '0'];
-                                    $res['status'] = -2;
-                                    $res['s'] = $s;
-                                    $res['ss'] = ++$n;
-                                    $res['msg'] = RmDb::resMsg($s, '创建数据表' . $matches[1] . '_' . $matches[2] . ':', '-第' . $n . '条SQL语句:创建数据表' . $matches[1] . '_' . $matches[2] . '------执行SQL创建失败！-', 0);
-                                    return json($res);
-                                }
+            // 数据库设定
+            if ($s[1] == $m++) {
+                $conn = RmDb::get_mysql_conn($param);
+                $connStatus = RmDb::pdo_ping($conn);
+                if ($connStatus) {
+                    $sqlFile = 'rmtop.sql';
+                    $sqldata = file_get_contents(root_path() . '/install/data/' . $sqlFile);
+                    $sqlFormat = $this->sql_split($sqldata, $param['prefix']);
+                    //创建写入sql数据库文件到库中 结束
+                    // 获取错误信息
+                    $counts = count($sqlFormat);
+                    for ($n = $ss; $n < $counts; $n++) {
+                        $sql = trim($sqlFormat[$n]);
+                        if (strstr($sql, 'CREATE TABLE IF NOT EXISTS')) {
+                            preg_match('/CREATE TABLE IF NOT EXISTS `([A-Za-z0-9]+)_([^ ]*)`/is', $sql, $matches);
+                            $sql = str_replace('`' . $matches[1] . '_', '`' . $param['prefix'], $sql);//替换表前缀
+                            $ret = $conn->prepare($sql)->execute();
+                            if ($ret) {
+                                $s = [$step, $m - 1, 'CREATE_TABLE_' . $matches[2] . '_OK', '0'];
+                                $res['status'] = 0;
+                                $res['s'] = $s;
+                                $res['ss'] = ++$n;
+                                $res['msg'] = RmDb::resMsg($s, '创建数据表' . $matches[1] . '_' . $matches[2] . ':', '-第' . $n . '条SQL语句:创建数据表' . $matches[1] . '_' . $matches[2] . '------执行SQL创建成功！-');
+                                return json($res);
                             } else {
-                                if (trim($sql) == '') continue;
-                                if (strstr($sql, 'DROP TABLE')) {
-                                    preg_match('/DROP TABLE IF EXISTS `([A-Za-z0-9]+)_([^ ]*)`/is', $sql, $matches);
-                                } elseif (strstr($sql, 'INSERT INTO')) {
-                                    preg_match('/INSERT INTO `([A-Za-z0-9]+)_([^ ]*)`/is', $sql, $matches);
-                                } else {
-                                    continue;
-                                }
-                                $sql = str_replace('`' . trim($matches[1]) . '_', '`' . $param['dbPrefix'], $sql);//替换表前缀
-                                $ret = $conn->prepare($sql)->execute();
-                                if ($ret) {
-                                    $s = [$step, $m - 1, 'ExecuteSQL_ _fail', '0'];
-                                    $res['status'] = 0;
-                                    $res['s'] = $s;
-                                    $res['ss'] = ++$n;
-                                    $res['msg'] = RmDb::resMsg($s, '创建数据表' . $matches[1] . '_' . $matches[2] . ':', '-第' . $n . '条SQL语句:`' . mb_substr($sql, 0, 12) . '...`------执行SQL失败！-', 0);
-                                    return json($res);
-                                }
-
+                                $s = [$step, $m - 1, 'CREATE_TABLE_' . $matches[1] . '_fail', '0'];
+                                $res['status'] = -2;
+                                $res['s'] = $s;
+                                $res['ss'] = ++$n;
+                                $res['msg'] = RmDb::resMsg($s, '创建数据表' . $matches[1] . '_' . $matches[2] . ':', '-第' . $n . '条SQL语句:创建数据表' . $matches[1] . '_' . $matches[2] . '------执行SQL创建失败！-', 0);
+                                return json($res);
                             }
+                        } else {
+                            if (trim($sql) == '') continue;
+                            if (strstr($sql, 'DROP TABLE')) {
+                                preg_match('/DROP TABLE IF EXISTS `([A-Za-z0-9]+)_([^ ]*)`/is', $sql, $matches);
+                            } elseif (strstr($sql, 'INSERT INTO')) {
+                                preg_match('/INSERT INTO `([A-Za-z0-9]+)_([^ ]*)`/is', $sql, $matches);
+                            } else {
+                                continue;
+                            }
+                            $sql = str_replace('`' . trim($matches[1]) . '_', '`' . $param['prefix'], $sql);//替换表前缀
+                            $ret = $conn->prepare($sql)->execute();
+                            if ($ret) {
+                                $s = [$step, $m - 1, 'ExecuteSQL_ _fail', '0'];
+                                $res['status'] = 0;
+                                $res['s'] = $s;
+                                $res['ss'] = ++$n;
+                                $res['msg'] = RmDb::resMsg($s, '创建数据表' . $matches[1] . '_' . $matches[2] . ':', '-第' . $n . '条SQL语句:`' . mb_substr($sql, 0, 12) . '...`------执行SQL失败！-', 0);
+                                return json($res);
+                            }
+
                         }
-                        //创建成功
-                        $s = [$step, $m, 'createTable_' . $param['dbname'] . '_end', '0'];
-                        $res['status'] = 0;
-                        $res['s'] = $s;
-                        $res['ss'] = 0;
-                        $res['msg'] = RmDb::resMsg($s, '创建数据表:', '创建{' . $param['dbname'] . '}数据库的数据表全部创建成功!');
-                        return json($res);
-
-
-                    } else {
-                        $s = [$step, $m, 'createTable_fail', '0'];
-                        $res['status'] = -2;
-                        $res['s'] = $s;
-                        $res['ss'] = 0;
-                        $res['msg'] = RmDb::resMsg($s, '创建数据表:', '创建数据库{' . $param['dbName'] . '}的数据表失败，不能连接数据库!', 0);
-                        return json($res);
                     }
+                    //创建成功
+                    $s = [$step, $m, 'createTable_' . $param['dbname'] . '_end', '0'];
+                    $res['status'] = 0;
+                    $res['s'] = $s;
+                    $res['ss'] = 0;
+                    $res['msg'] = RmDb::resMsg($s, '创建数据表:', '创建{' . $param['dbname'] . '}数据库的数据表全部创建成功!');
+                    return json($res);
+
+
+                } else {
+                    $s = [$step, $m, 'createTable_fail', '0'];
+                    $res['status'] = -2;
+                    $res['s'] = $s;
+                    $res['ss'] = 0;
+                    $res['msg'] = RmDb::resMsg($s, '创建数据表:', '创建数据库{' . $param['dbName'] . '}的数据表失败，不能连接数据库!', 0);
+                    return json($res);
                 }
+            }
 
             if ($s[1] == $m++) {
                 $s = [$step, $m, '', '0'];
@@ -420,6 +423,7 @@ class Install
                     ');";
                 @chmod(root_path() . '/config/', 0777); //数据库配置文件的地址
                 @file_put_contents(root_path() . '/config/' . '.constant', $str_constant);
+
                 if (@touch(root_path() . '/config/install.lock')) {
                     $s = [$step, $m, 'create_lock', '0'];
                     $res['status'] = 0;
@@ -455,24 +459,24 @@ class Install
                 $strRoute = file_get_contents(root_path() . '/install/data/' . $routeFile);
                 $strRoute = str_replace('#dmain#', $param['domain'], $strRoute);
                 if (@file_put_contents(root_path() . '/route/rm.php', $strRoute)){
-                $s = [$step, $m, 'create_lock', '0'];
-                $res['status'] = 0;
-                $res['type'] = "install.lock";
-                $res['msg'] = RmDb::resMsg($s, '创建路由文件:', '路由配置文件创建成功！');
-                $res['ss'] = 0;
-                $res['s'] = $s;
-                return json($res);
-              } else {
-                $s = [$step, $m, 'create_lock', '0'];
-                $res['status'] = -2;
-                $res['type'] = "install.lock";
-                $res['msg'] = RmDb::resMsg($s, '创建路由文件失败:', '请确保目录【route】可写权限');
-                $res['ss'] = 0;
-                $res['s'] = $s;
-                return json($res);
-            }
+                    $s = [$step, $m, 'create_lock', '0'];
+                    $res['status'] = 0;
+                    $res['type'] = "install.lock";
+                    $res['msg'] = RmDb::resMsg($s, '创建路由文件:', '路由配置文件创建成功！');
+                    $res['ss'] = 0;
+                    $res['s'] = $s;
+                    return json($res);
+                } else {
+                    $s = [$step, $m, 'create_lock', '0'];
+                    $res['status'] = -2;
+                    $res['type'] = "install.lock";
+                    $res['msg'] = RmDb::resMsg($s, '创建路由文件失败:', '请确保目录【route】可写权限');
+                    $res['ss'] = 0;
+                    $res['s'] = $s;
+                    return json($res);
+                }
 
-           }
+            }
 
 
             if ($s[1] == $m++) {
@@ -484,7 +488,7 @@ class Install
                 return json($res);
             }
 
-      }
+        }
 
 
         if ($s[0] == ++$step && !intval($s[3])) {
@@ -541,8 +545,9 @@ class Install
 
 
             if ($s[1] == $m++) {
-//                self::deldir(root_path().'/install/');
-//                rmdir(root_path().'/install/');
+                unlink(root_path().'/route/app.php');
+                self::deldir(root_path().'/install/');
+                rmdir(root_path().'/install/');
                 $s = [$step, $m, '', '0'];
                 $res['status'] = 0;
                 $res['msg'] = RmDb::resMsg($s, '移除安装文件', '移除相关冗余文件!');
@@ -550,7 +555,7 @@ class Install
                 return json($res);
             }
 
-               if ($s[1] == $m++) {
+            if ($s[1] == $m++) {
                 $s = [$step, $m, '', '0'];
                 $res['status'] = 0;
                 $res['msg'] = RmDb::resMsg($s, '移除安装文件', '完成第' . $step . '成功移除安装文件!');

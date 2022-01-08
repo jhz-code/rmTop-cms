@@ -8,18 +8,19 @@
     <ul id="tabs">
         <li class="current"><span title="tab1">常规选项</span></li>
         <li><span  title="tab2">其他选项</span></li>
+        <a onclick="window.history.go(-1);" class="ax-btn ax-sm  ax-primary bi bi-arrow-left-short" style="position: absolute;right: 35px; width: 60px;height: 33px;"> 返回</a>
     </ul>
 
     <div style="height: 1px;background-color: gainsboro"></div>
     <!-- 对应显示内容 -->
 
     <div id="contents">
-        <form action="{$actions.recruitment_request_add}"  method="post">
+        <form action="{$actions.recruitment_request_add}"  method="post" onsubmit="return Fcheck();">
             <div id="tab1" class="item show">
                 <div class="ax-form-group">
                     <div class="ax-flex-row">
                         <div class="ax-form-label">标题：</div>
-                        <div class="ax-form-input"><input type="text" name="title"  ></div>
+                        <div class="ax-form-input"><input type="text" name="title" id="title" placeholder="请输入标题"></div>
                     </div>
                 </div>
                 <div class="ax-break-lg"></div>
@@ -39,42 +40,42 @@
                 <div class="ax-form-group">
                     <div class="ax-flex-row">
                         <div class="ax-form-label">工作地点：</div>
-                        <div class="ax-form-input"><input type="text" name="jod_place"></div>
+                        <div class="ax-form-input"><input type="text" name="jod_place" id="jod_place" placeholder="请输入工作地点"></div>
                     </div>
                 </div>
                 <div class="ax-break-lg"></div>
                 <div class="ax-form-group">
                     <div class="ax-flex-row">
                         <div class="ax-form-label">学历要求：</div>
-                        <div class="ax-form-input"><input type="text" name="edu"></div>
+                        <div class="ax-form-input"><input type="text" name="edu" id="edu" placeholder="请输入学历"></div>
                     </div>
                 </div>
                 <div class="ax-break-lg"></div>
                 <div class="ax-form-group">
                     <div class="ax-flex-row">
                         <div class="ax-form-label">薪资待遇：</div>
-                        <div class="ax-form-input"><input type="text" name="salary"></div>
+                        <div class="ax-form-input"><input type="text" name="salary" id="salary" placeholder="3000-6000"></div>
                     </div>
                 </div>
                 <div class="ax-break-lg"></div>
                 <div class="ax-form-group">
                     <div class="ax-flex-row">
                         <div class="ax-form-label">工作性质：</div>
-                        <div class="ax-form-input"><input type="text" name="jod_nature"></div>
+                        <div class="ax-form-input"><input type="text" name="jod_nature" id="jod_nature" placeholder="请输入工作性质"></div>
                     </div>
                 </div>
                 <div class="ax-break-lg"></div>
                 <div class="ax-form-group">
                     <div class="ax-flex-row">
                         <div class="ax-form-label">工作年限：</div>
-                        <div class="ax-form-input"><input type="text" name="jod_years"></div>
+                        <div class="ax-form-input"><input type="text" name="jod_years" id="jod_years" placeholder="1"></div>
                     </div>
                 </div>
                 <div class="ax-break-lg"></div>
                 <div class="ax-form-group">
                     <div class="ax-flex-row">
                         <div class="ax-form-label">招聘人数：</div>
-                        <div class="ax-form-input"><input type="text" name="people"></div>
+                        <div class="ax-form-input"><input type="text" name="people" id="people" placeholder="1"></div>
                     </div>
                 </div>
 
@@ -82,7 +83,7 @@
                 <div class="ax-form-group">
                     <div class="ax-flex-row">
                         <div class="ax-form-label">排序：</div>
-                        <div class="ax-form-input"><input type="text" name="sort"></div>
+                        <div class="ax-form-input"><input type="text" name="sort" placeholder="0"></div>
                     </div>
                 </div>
 
@@ -116,7 +117,7 @@
                 <div class="ax-form-group">
                     <div class="ax-flex-row">
                         <span class="ax-form-label">TGA标签：</span>
-                        <div class="ax-form-input"><input type="text" name="tags"></div>
+                        <div class="ax-form-input"><input type="text" name="tags" placeholder="请输入TGA标签"></div>
                     </div>
                 </div>
                 <div class="ax-break-lg"></div>
@@ -124,7 +125,7 @@
                 <div class="ax-form-group">
                     <div class="ax-flex-row">
                         <span class="ax-form-label">SEO标题：</span>
-                        <div class="ax-form-input"><input type="text"  name="seo_title"></div>
+                        <div class="ax-form-input"><input type="text"  name="seo_title" placeholder="请输入SEO标题"></div>
                     </div>
                 </div>
                 <div class="ax-break-lg"></div>
@@ -132,7 +133,7 @@
                 <div class="ax-form-group">
                     <div class="ax-flex-row">
                         <span class="ax-form-label">SEO关键词：</span>
-                        <div class="ax-form-input"><input type="text" name="seo_key"></div>
+                        <div class="ax-form-input"><input type="text" name="seo_key" placeholder="请输入SEO关键词"></div>
                     </div>
                 </div>
                 <div class="ax-break-lg"></div>
@@ -141,7 +142,7 @@
                     <div class="ax-flex-row">
                         <span class="ax-form-label">SEO描述：</span>
                         <div class="ax-form-input">
-                            <textarea name="seo_des" cols="" rows="" placeholder="描述"></textarea>
+                            <textarea name="seo_des" cols="" rows="" placeholder="请简单描述一下"></textarea>
                         </div>
                     </div>
                 </div>
@@ -149,7 +150,7 @@
                 <div class="ax-form-group">
                     <div class="ax-flex-row">
                         <span class="ax-form-label">浏览量：</span>
-                        <div class="ax-form-input"><input type="text"></div>
+                        <div class="ax-form-input"><input type="text" placeholder="0"></div>
                     </div>
                 </div>
                 <!--                <div class="ax-break-lg"></div>-->
@@ -209,19 +210,7 @@
 </div>
 
 </body>
-<style>
-    #tabs {  overflow: hidden;  width: 80%;  margin: 0;  padding: 0;  list-style: none;  }
-    #tabs li {  float: left;  margin-left: 14px;  height: 40px;  line-height: 40px;  width: 100px;cursor: pointer  }
-    li span {  position: relative;  font-size: 16px;  }
-    .current li{  outline: 0;  color: #3398cc;  border-bottom: 1px solid #3398cc;    }
-    .current span{  outline: 0;  color: #3398cc;  border-bottom: 1px solid #3398cc;  }
-    .current span:before{content: '';position: absolute;bottom: 0;left: 2px;width: 95%;
-        height: 2px;background: #3398cc;border-radius: 30px;}
-    #contents {  background: #fff;  padding: 30px 0 25px;  position: relative;  }
-    .item{  display: none;  }
-    .show{  display: block;  }
-
-</style>
+<link href="/static/rmtop/css/jtstyle.css" rel="stylesheet" type="text/css" >
 
 <script type="text/javascript">
     if ($.cookie('rec_edit_tab_current')!= null){
@@ -277,6 +266,42 @@
         initialFrameHeight:400,
         initialFrameWidth:window.screen.width/2.2,
     });
+</script>
+
+<script type="text/javascript">
+    function Fcheck() {
+        if($('#title').val() == '') {
+            layer.tips('请输入标题', '#title', {tips: [2, '#4ea1f5'], tipsMore: false, time:1500});
+            $('#title').focus();
+            return false;
+        }
+        if($('#jod_place').val() == '') {
+            layer.tips('请输入工作地点', '#jod_place', {tips: [2, '#4ea1f5'], tipsMore: false, time:1500});
+            $('#jod_place').focus();
+            return false;
+        }
+        if($('#edu').val() == '') {
+            layer.tips('请输入学历', '#edu', {tips: [2, '#4ea1f5'], tipsMore: false, time:1500});
+            $('#edu').focus();
+            return false;
+        }
+        if($('#salary').val() == '') {
+            layer.tips('请输入薪资待遇', '#salary', {tips: [2, '#4ea1f5'], tipsMore: false, time:1500});
+            $('#salary').focus();
+            return false;
+        }
+        if($('#jod_nature').val() == '') {
+            layer.tips('请输入工作性质', '#jod_nature', {tips: [2, '#4ea1f5'], tipsMore: false, time:1500});
+            $('#jod_nature').focus();
+            return false;
+        }
+        if($('#jod_years').val() == '') {
+            layer.tips('请输入工作年限', '#jod_years', {tips: [2, '#4ea1f5'], tipsMore: false, time:1500});
+            $('#jod_years').focus();
+            return false;
+        }
+        return true;
+    }
 </script>
 
 

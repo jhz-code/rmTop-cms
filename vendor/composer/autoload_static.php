@@ -7,11 +7,11 @@ namespace Composer\Autoload;
 class ComposerStaticInitc48faec6aa23ccfe986e210f9a0d0f7d
 {
     public static $files = array (
+        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
+        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
-        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         '9b552a3cc426e3287cc811caefa3cf53' => __DIR__ . '/..' . '/topthink/think-helper/src/helper.php',
-        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
@@ -24,6 +24,7 @@ class ComposerStaticInitc48faec6aa23ccfe986e210f9a0d0f7d
         'cd5441689b14144e5573bf989ee47b34' => __DIR__ . '/..' . '/qcloud/cos-sdk-v5/src/Common.php',
         '841780ea2e1d6545ea3a253239d59c05' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/functions.php',
         'dc1275c308c5b416beb314b6317daca2' => __DIR__ . '/..' . '/overtrue/pinyin/src/const.php',
+        '1cfd2761b63b0a29ed23657ea394cb2d' => __DIR__ . '/..' . '/topthink/think-captcha/src/helper.php',
         '1321e588482ab4f62b9b60af70c4918e' => __DIR__ . '/..' . '/xiaodi/think-pullword/src/helper.php',
     );
 
@@ -33,6 +34,7 @@ class ComposerStaticInitc48faec6aa23ccfe986e210f9a0d0f7d
             'think\\view\\driver\\' => 18,
             'think\\trace\\' => 12,
             'think\\migration\\' => 16,
+            'think\\captcha\\' => 14,
             'think\\' => 6,
             'thans\\filesystem\\' => 17,
             'tauthz\\' => 7,
@@ -67,6 +69,7 @@ class ComposerStaticInitc48faec6aa23ccfe986e210f9a0d0f7d
         'R' => 
         array (
             'RmTop\\RmUpload\\' => 15,
+            'RmTop\\RmSpider\\' => 15,
             'RmTop\\RmCmsService\\' => 19,
             'RmTop\\' => 6,
         ),
@@ -142,12 +145,16 @@ class ComposerStaticInitc48faec6aa23ccfe986e210f9a0d0f7d
         array (
             0 => __DIR__ . '/..' . '/topthink/think-migration/src',
         ),
+        'think\\captcha\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/topthink/think-captcha/src',
+        ),
         'think\\' => 
         array (
-            0 => __DIR__ . '/..' . '/topthink/framework/src/think',
+            0 => __DIR__ . '/..' . '/topthink/think-template/src',
             1 => __DIR__ . '/..' . '/topthink/think-helper/src',
             2 => __DIR__ . '/..' . '/topthink/think-orm/src',
-            3 => __DIR__ . '/..' . '/topthink/think-template/src',
+            3 => __DIR__ . '/..' . '/topthink/framework/src/think',
         ),
         'thans\\filesystem\\' => 
         array (
@@ -220,6 +227,10 @@ class ComposerStaticInitc48faec6aa23ccfe986e210f9a0d0f7d
         'RmTop\\RmUpload\\' => 
         array (
             0 => __DIR__ . '/..' . '/rmtop/rmsf-cloud-upload/src',
+        ),
+        'RmTop\\RmSpider\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rmtop/rmsf-spider-service/src',
         ),
         'RmTop\\RmCmsService\\' => 
         array (

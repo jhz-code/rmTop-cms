@@ -21,8 +21,9 @@ try {
         ),
         'Conf' => array(
             'DetectType' => 'Porn,Terrorism,Politics,Ads',
-            'Callback' => 'https://example.com/callback',
-            'BizType' => '',
+//            'Callback' => 'https://example.com/callback',
+//            'CallbackVersion' => '',
+//            'BizType' => '',
         ),
     ));
     // 请求成功
@@ -37,8 +38,9 @@ try {
         ),
         'Conf' => array(
             'DetectType' => 'Porn,Terrorism,Politics,Ads',
-            'Callback' => 'https://example.com/callback',
-            'BizType' => '',
+//            'Callback' => 'https://example.com/callback',
+//            'CallbackVersion' => '',
+//            'BizType' => '',
         ),
     ));
     // 请求成功

@@ -15,7 +15,6 @@ use app\rmcore\funcs\TopDispatch;
  *请求数据调度
  */
 
-
 Route::rule('/',"/entrance/Install/index");
 Route::rule('install/[:step]/[:type]', '/entrance/Install/index'); // 首页访问路由
 

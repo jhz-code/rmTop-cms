@@ -27,6 +27,23 @@ use think\Model;
 trait ResultOperation
 {
     /**
+     * 设置数据处理
+     * @access public
+     * @param callable $filter 数据处理Callable
+     * @param string   $index  索引（唯一）
+     * @return $this
+     */
+    public function filter(callable $filter, string $index = null)
+    {
+        if ($index) {
+            $this->options['filter'][$index] = $filter;
+        } else {
+            $this->options['filter'][] = $filter;
+        }
+        return $this;
+    }
+
+    /**
      * 是否允许返回空数据（或空模型）
      * @access public
      * @param bool $allowEmpty 是否允许为空
@@ -62,62 +79,27 @@ trait ResultOperation
             $this->jsonResult($result, $this->options['json'], true);
         }
 
-        if (!empty($this->options['with_attr'])) {
-            $this->getResultAttr($result, $this->options['with_attr']);
+        foreach ($this->options['filter'] as $filter) {
+            $result = call_user_func($filter, $result);
         }
-
-        $this->filterResult($result);
     }
 
     /**
      * 处理数据集
      * @access public
      * @param array $resultSet 数据集
+     * @param bool  $toCollection 是否转为对象
      * @return void
      */
-    protected function resultSet(array &$resultSet): void
+    protected function resultSet(array &$resultSet, bool $toCollection = true): void
     {
-        if (!empty($this->options['json'])) {
-            foreach ($resultSet as &$result) {
-                $this->jsonResult($result, $this->options['json'], true);
-            }
-        }
-
-        if (!empty($this->options['with_attr'])) {
-            foreach ($resultSet as &$result) {
-                $this->getResultAttr($result, $this->options['with_attr']);
-            }
-        }
-
-        if (!empty($this->options['visible']) || !empty($this->options['hidden'])) {
-            foreach ($resultSet as &$result) {
-                $this->filterResult($result);
-            }
+        foreach ($resultSet as &$result) {
+            $this->result($result);
         }
 
         // 返回Collection对象
-        $resultSet = new Collection($resultSet);
-    }
-
-    /**
-     * 处理数据的可见和隐藏
-     * @access protected
-     * @param array $result 查询数据
-     * @return void
-     */
-    protected function filterResult(&$result): void
-    {
-        $array = [];
-        if (!empty($this->options['visible'])) {
-            foreach ($this->options['visible'] as $key) {
-                $array[] = $key;
-            }
-            $result = array_intersect_key($result, array_flip($array));
-        } elseif (!empty($this->options['hidden'])) {
-            foreach ($this->options['hidden'] as $key) {
-                $array[] = $key;
-            }
-            $result = array_diff_key($result, array_flip($array));
+        if ($toCollection) {
+            $resultSet = new Collection($resultSet);
         }
     }
 
@@ -126,9 +108,9 @@ trait ResultOperation
      * @access protected
      * @param array $result   查询数据
      * @param array $withAttr 字段获取器
-     * @return void
+     * @return array
      */
-    protected function getResultAttr(array &$result, array $withAttr = []): void
+    protected function getResultAttr(array $result, array $withAttr = []): array
     {
         foreach ($withAttr as $name => $closure) {
             $name = Str::snake($name);
@@ -144,6 +126,8 @@ trait ResultOperation
                 $result[$name] = $closure($result[$name] ?? null, $result);
             }
         }
+
+        return $result;
     }
 
     /**
@@ -167,7 +151,7 @@ trait ResultOperation
      * 查找单条记录 不存在返回空数据（或者空模型）
      * @access public
      * @param mixed $data 数据
-     * @return array|Model|static
+     * @return array|Model|static|mixed
      */
     public function findOrEmpty($data = null)
     {
@@ -239,7 +223,7 @@ trait ResultOperation
      * 查找单条记录 如果不存在则抛出异常
      * @access public
      * @param array|string|Query|Closure $data 数据
-     * @return array|Model|static
+     * @return array|Model|static|mixed
      * @throws ModelNotFoundException
      * @throws DataNotFoundException
      */

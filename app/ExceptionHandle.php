@@ -89,9 +89,9 @@ class ExceptionHandle extends Handle
         }
 
 
-        if(Config::get_value_for_enName('developer') == 2){
-             die('forbidden');
-        }
+//        if(Config::get_value_for_enName('developer') == 2){
+//             die('forbidden');
+//        }
 
        // return parent::render($request, $e);
 

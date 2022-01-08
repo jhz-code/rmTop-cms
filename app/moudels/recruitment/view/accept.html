@@ -11,14 +11,14 @@
 <table class="ax-table ax-margin-top">
     <thead>
     <tr style="background-color:gainsboro " class="ax-shadow-border ax-radius">
-        <th style="width:50px;"><input name="" type="checkbox" value=""></th>
+<!--        <th style="width:50px;"><input name="" type="checkbox" value=""></th>-->
         <th>ID</th><th>申请职位</th><th>姓名</th><th>性别</th><th>手机号</th><th>所属栏目</th><th>投递时间</th><th>状态</th><th>操作</th>
     </tr>
     </thead>
     <tbody>
     {volist name="lists" id="vo"}
     <tr style="height: 60px">
-        <td><input name="" type="checkbox" value=""></td>
+<!--        <td><input name="" type="checkbox" value=""></td>-->
         <td><div class="ax-align-center">{$vo.id}</div></td>
         <td><div class="ax-align-center">{$vo.title}</div></td>
         <td><div class="ax-align-center">{$vo.column_title}</div></td>
@@ -36,17 +36,17 @@
     </tr>
     {/volist}
     </tbody>
-    <tfoot>
-    <tr>
-        <td colspan="13">
-            <div class="ax-flex-row">
-                <!--<div class="ax-flex-block ax-align-left">选择全部</div>-->
-                <div class="ax-flex-block ax-align-right"><a href="##" class="ax-btn ax-primary ax-xs">批量删除</a></div>
-                <span class="ax-gutter"></span>
-            </div>
-        </td>
-    </tr>
-    </tfoot>
+<!--    <tfoot>-->
+<!--    <tr>-->
+<!--        <td colspan="13">-->
+<!--            <div class="ax-flex-row">-->
+<!--                &lt;!&ndash;<div class="ax-flex-block ax-align-left">选择全部</div>&ndash;&gt;-->
+<!--                <div class="ax-flex-block ax-align-right"><a href="##" class="ax-btn ax-primary ax-xs">批量删除</a></div>-->
+<!--                <span class="ax-gutter"></span>-->
+<!--            </div>-->
+<!--        </td>-->
+<!--    </tr>-->
+<!--    </tfoot>-->
 </table>
 
 
@@ -81,16 +81,8 @@
 
 </div>
 
-<style>
-    .buy-bg{  position: absolute;  top: 0%;  left: 0%;  width:100%;  height: 100%;
-        background-color: black;  z-index:1001;  -moz-opacity: 0.8;  opacity:.50;  filter: alpha(opacity=50);  }
-    .buy_content {  position: absolute;  top: 25%;  left:25%;  width:50%;  height:auto;background: #fff;
-        z-index:1002;  overflow: auto;padding: 25px;  text-align: left;  }
-    .tplName{display: flex;align-items: center;padding: 15px 0;}
-    .tplName-lf{width: 10%;min-width: 60px;}
-    .tplName-rt{width: 90%;    padding-left: 10px;  color: #555;}
-    .closeup{position: absolute;  right: 10px;  top: 5px;  font-size: 23px;  line-height: 23px;  color: #333;  cursor: pointer                  }
-</style>
+<link href="/static/rmtop/css/jtstyle.css" rel="stylesheet" type="text/css" >
+
 <!--<script>-->
     <!--var app = new Vue({-->
         <!--el: '#main',-->

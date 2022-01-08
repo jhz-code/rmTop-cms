@@ -70,7 +70,7 @@ class Atlas implements RmtopBusiness
      */
     static  function add_edit_atlas(string $type,$data){
         $data['content'] = $data['editorValue'];
-        if($data['imglist']){$data['img_lists'] = implode(',',$data['imglist']);}
+        if(!empty($data['imglist'])){$data['img_lists'] = implode(',',$data['imglist']);}
         if($type == 'add'){
             $data['uqid'] = getUniqid();
             return  AtlasModel::create($data);

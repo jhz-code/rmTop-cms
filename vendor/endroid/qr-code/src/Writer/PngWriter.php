@@ -12,6 +12,7 @@ use Endroid\QrCode\Label\Alignment\LabelAlignmentRight;
 use Endroid\QrCode\Label\LabelInterface;
 use Endroid\QrCode\Logo\LogoInterface;
 use Endroid\QrCode\QrCodeInterface;
+use Endroid\QrCode\RoundBlockSizeMode\RoundBlockSizeModeNone;
 use Endroid\QrCode\Writer\Result\PngResult;
 use Endroid\QrCode\Writer\Result\ResultInterface;
 use Zxing\QrReader;
@@ -21,17 +22,17 @@ final class PngWriter implements WriterInterface, ValidatingWriterInterface
     public function write(QrCodeInterface $qrCode, LogoInterface $logo = null, LabelInterface $label = null, array $options = []): ResultInterface
     {
         if (!extension_loaded('gd')) {
-            throw new \Exception('Unable to generate image: check your GD installation');
+            throw new \Exception('Unable to generate image: please check if the GD extension is enabled and configured correctly');
         }
 
         $matrixFactory = new MatrixFactory();
         $matrix = $matrixFactory->create($qrCode);
 
-        $baseBlockSize = 50;
+        $baseBlockSize = $qrCode->getRoundBlockSizeMode() instanceof RoundBlockSizeModeNone ? 50 : intval($matrix->getBlockSize());
         $baseImage = imagecreatetruecolor($matrix->getBlockCount() * $baseBlockSize, $matrix->getBlockCount() * $baseBlockSize);
 
         if (!$baseImage) {
-            throw new \Exception('Unable to generate image: check your GD installation');
+            throw new \Exception('Unable to generate image: please check if the GD extension is enabled and configured correctly');
         }
 
         /** @var int $foregroundColor */
@@ -80,7 +81,7 @@ final class PngWriter implements WriterInterface, ValidatingWriterInterface
         $targetImage = imagecreatetruecolor($targetWidth, $targetHeight);
 
         if (!$targetImage) {
-            throw new \Exception('Unable to generate image: check your GD installation');
+            throw new \Exception('Unable to generate image: please check if the GD extension is enabled and configured correctly');
         }
 
         /** @var int $backgroundColor */

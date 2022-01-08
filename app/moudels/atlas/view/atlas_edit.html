@@ -10,13 +10,14 @@
         <li class="current"><span title="tab1">图片集</span></li>
         <li><span title="tab2">内容项</span></li>
         <li><span  title="tab3">基础配置项</span></li>
+        <a onclick="window.history.go(-1);" class="ax-btn ax-sm  ax-primary bi bi-arrow-left-short" style="position: absolute;right: 35px; width: 60px;height: 33px;"> 返回</a>
     </ul>
 
     <div style="height: 1px;background-color: gainsboro"></div>
     <!-- 对应显示内容 -->
 
     <div id="contents">
-        <form action="{$actions.atlas_request_add}"  method="post">
+        <form action="{$actions.atlas_request_add}"  method="post" onsubmit="return Fcheck();">
 
 
             <div id="tab1" class="item show">
@@ -59,7 +60,7 @@
                 <div class="ax-form-group">
                     <div class="ax-flex-row">
                         <div class="ax-form-label">标题：</div>
-                        <div class="ax-form-input"><input type="text" name="title" value="{$list.title}"></div>
+                        <div class="ax-form-input"><input type="text" name="title" id="title" value="{$list.title}" placeholder="请输入标题"></div>
                     </div>
                 </div>
 
@@ -71,19 +72,33 @@
                         <div class="ax-form-label">封面图：</div>
                         <div class="ax-form-con">
                             <div class="ax-form-input">
-                                <input id="file" onchange=handleFile("file") class="ax-input-file" type="file">
+                                <input id="file" onchange=handleFile("file") class="ax-input-file showImg" type="file">
                                 <input name="org_img" value="{$list.org_img}" placeholder="上传图片" id="org_img_file" type="text">
                                 <span  class="ax-file-btn">选择图片</span>
                             </div>
+                            <div class="large"></div>
                         </div>
                     </div>
+                    <script>
+                        //鼠标移动到上传图片输入框预览图片
+                        $(function(){
+                            var ei = $(".large");
+                            ei.hide();
+                            $(".showImg").mousemove(function(e){
+                                var UpsImg = $('#org_img_file').val()
+                                ei.html('<img src=" '+ UpsImg +' " />').show();
+                            }).mouseout( function(){
+                                ei.hide();
+                            })
+                        });
+                    </script>
                 </div>
 
                 <div class="ax-break-lg"></div>
                 <div class="ax-form-group">
                     <div class="ax-flex-row">
                         <div class="ax-form-label">跳转链接：</div>
-                        <div class="ax-form-input"><input type="text" value="{$list.turl}"  name="turl"></div>
+                        <div class="ax-form-input"><input type="text" value="{$list.turl}"  name="turl" placeholder="请输入跳转链接"></div>
                     </div>
                 </div>
 
@@ -105,7 +120,7 @@
                 <div class="ax-form-group">
                     <div class="ax-flex-row">
                         <span class="ax-form-label">SEO标题：</span>
-                        <div class="ax-form-input"><input name="seo_title" value="{$list.seo_title}" type="text"></div>
+                        <div class="ax-form-input"><input name="seo_title" value="{$list.seo_title}" type="text" placeholder="请输入SEO标题"></div>
                     </div>
                 </div>
                 <div class="ax-break-lg"></div>
@@ -113,7 +128,7 @@
                 <div class="ax-form-group">
                     <div class="ax-flex-row">
                         <span class="ax-form-label">SEO关键词：</span>
-                        <div class="ax-form-input"><input name="seo_key"  value="{$list.seo_key}" type="text"></div>
+                        <div class="ax-form-input"><input name="seo_key"  value="{$list.seo_key}" type="text" placeholder="请输入SEO关键词"></div>
                     </div>
                 </div>
                 <div class="ax-break-lg"></div>
@@ -122,7 +137,7 @@
                     <div class="ax-flex-row">
                         <span class="ax-form-label">SEO描述：</span>
                         <div class="ax-form-input">
-                            <textarea name="seo_des" cols="" rows="" placeholder="描述">{$list.seo_des}</textarea>
+                            <textarea name="seo_des" cols="" rows="" placeholder="请简单描述一下">{$list.seo_des}</textarea>
                         </div>
                     </div>
                 </div>
@@ -131,7 +146,7 @@
                 <div class="ax-form-group">
                     <div class="ax-flex-row">
                         <span class="ax-form-label">TGA标签：</span>
-                        <div class="ax-form-input"><input  name="tags" value="{$list.tags}" type="text"></div>
+                        <div class="ax-form-input"><input  name="tags" value="{$list.tags}" type="text" placeholder="请输入TGA标签"></div>
                     </div>
                 </div>
 
@@ -140,7 +155,7 @@
                 <div class="ax-form-group">
                     <div class="ax-flex-row">
                         <span class="ax-form-label">浏览量：</span>
-                        <div class="ax-form-input"><input type="text"></div>
+                        <div class="ax-form-input"><input type="text" placeholder="0"></div>
                     </div>
                 </div>
                 <div class="ax-break-lg"></div>
@@ -195,19 +210,7 @@
 </div>
 
 </body>
-<style>
-    #tabs {  overflow: hidden;  width: 80%;  margin: 0;  padding: 0;  list-style: none;  }
-    #tabs li {  float: left;  margin-left: 14px;  height: 40px;  line-height: 40px;  width: 100px;cursor: pointer  }
-    li span {  position: relative;  font-size: 16px;  }
-    .current li{  outline: 0;  color: #3398cc;  border-bottom: 1px solid #3398cc;    }
-    .current span{  outline: 0;  color: #3398cc;  border-bottom: 1px solid #3398cc;  }
-    .current span:before{content: '';position: absolute;bottom: 0;left: 2px;width: 95%;
-        height: 2px;background: #3398cc;border-radius: 30px;}
-    #contents {  background: #fff;  padding: 30px 0 25px;  position: relative;  }
-    .item{  display: none;  }
-    .show{  display: block;  }
-
-</style>
+<link href="/static/rmtop/css/jtstyle.css" rel="stylesheet" type="text/css" >
 <script src="/static/rmtop/js/TopUpload.js"></script>
 
 <script type="text/javascript">
@@ -296,4 +299,18 @@
 
 </script>
 
-
+<script type="text/javascript">
+    function Fcheck() {
+        if($('#title').val() == '') {
+            layer.tips('请输入标题', '#title', {tips: [2, '#4ea1f5'], tipsMore: false, time:1500});
+            $('#title').focus();
+            return false;
+        }
+        if($('#org_img_file').val() == '') {
+            layer.tips('请上传封面图', '#org_img_file', {tips: [2, '#4ea1f5'], tipsMore: false, time:1500});
+            $('#org_img_file').focus();
+            return false;
+        }
+        return true;
+    }
+</script>

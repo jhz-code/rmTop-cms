@@ -6,6 +6,7 @@ use Psr\Http\Message\RequestInterface;
 use GuzzleHttp\Command\CommandInterface;
 use GuzzleHttp\Psr7\Uri;
 use InvalidArgumentException;
+use Psr\Http\Message\UriInterface;
 
 class CommandToRequestTransformer {
     private $config;
@@ -96,7 +97,7 @@ class CommandToRequestTransformer {
         }
         $uri = $uri->withQuery( $query );
         $request = $request->withUri( $uri );
-//        $request = $request->withHeader( 'Host', $origin_host );
+        $request = $request->withHeader( 'Host', $origin_host );
         return $request;
     }
 
@@ -201,13 +202,17 @@ class CommandToRequestTransformer {
         public function ciParamTransformer( CommandInterface $command, $request ) {
             $action = $command->getName();
             if ( $action == 'GetObject' ) {
+                if(str_contains($uri = $request->getUri(), '%21') ) {
+                    $uri = new Uri( str_replace('%21', '!', $uri) );
+                    $request = $request->withUri( $uri );
+                }
                 if(isset($command['ImageHandleParam']) && $command['ImageHandleParam']){
                     $uri = $request->getUri();
                     $query = $uri->getQuery();
                     if($query){
-                        $query .= "&" . $command['ImageHandleParam'];
+                        $query .= "&" . urlencode($command['ImageHandleParam']);
                     }else{
-                        $query .= $command['ImageHandleParam'];
+                        $query .= urlencode($command['ImageHandleParam']);
                     }
                     $uri = $uri->withQuery($query);
                     $request = $request->withUri( $uri );
@@ -234,6 +239,7 @@ class CommandToRequestTransformer {
                 'DescribeDocProcessQueues' => 1,
                 'DescribeDocProcessJob' => 1,
                 'GetDescribeDocProcessJobs' => 1,
+                'DetectImages' => 1,
             );
             if (key_exists($action, $ciActions)) {
                 $bucketname = $command['Bucket'];

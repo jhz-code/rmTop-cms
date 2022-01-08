@@ -1,5 +1,7 @@
 <?php
 // 应用公共文件
+use app\rmcore\business\AdminBusiness;
+use app\rmcore\funcs\TopDispatch;
 use app\rmcore\funcs\TopFuncs;
 use app\rmcore\model\SystemRunLog;
 use think\db\exception\DataNotFoundException;
@@ -97,16 +99,15 @@ function content_redirect(string $state,string $params): string
 
 /**
  * @param $model
+ * @param string $alias
  * @param $action
  * @param $cid
+ * @param string $title
  * @return string
- * @throws DataNotFoundException
- * @throws DbException
- * @throws ModelNotFoundException
  */
 function TopUrl($model,$alias="",$action,$cid,$title=""): string
 {
-    return \app\rmcore\funcs\TopDispatch::makeRouteUrl($model,$alias,$action,$cid,$title);
+    return TopDispatch::makeRouteUrl($model,$alias,$action,$cid,$title);
 }
 
 
@@ -188,4 +189,14 @@ function pushSearch(array $Url){
     }else{
         return   writeSysRunLog("$info,推送至搜索引擎失败,剩余次数".$return['remain'],);
     }
+}
+
+
+/**
+ * @throws ModelNotFoundException
+ * @throws DataNotFoundException
+ * @throws DbException
+ */
+function get_admin_name($uid){
+    return AdminBusiness::admin_info($uid)['mobile'];
 }

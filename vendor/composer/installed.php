@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'f3de38f75773303278b469d229afe79cc820c75d',
+    'reference' => 'bf7c80b84fd3e41291588fedf69b7e011d8e6708',
     'name' => 'topthink/think',
   ),
   'versions' => 
@@ -31,12 +31,12 @@
     ),
     'casbin/casbin' => 
     array (
-      'pretty_version' => 'v3.18.6',
-      'version' => '3.18.6.0',
+      'pretty_version' => 'v3.20.0',
+      'version' => '3.20.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '88994ef80890b9acd9dd94aefb5f18c86f42deae',
+      'reference' => 'f433e3d6dd5d803d0e19c088b6bf6c9262b645c1',
     ),
     'casbin/psr3-bridge' => 
     array (
@@ -67,12 +67,12 @@
     ),
     'endroid/qr-code' => 
     array (
-      'pretty_version' => '4.4.1',
-      'version' => '4.4.1.0',
+      'pretty_version' => '4.4.4',
+      'version' => '4.4.4.0',
       'aliases' => 
       array (
       ),
-      'reference' => '963d88b6c6dca7145beaa53ad1d4c0cbe2c39c22',
+      'reference' => '361b43bbdfa4360442369d0a236e7d8756160523',
     ),
     'guzzlehttp/command' => 
     array (
@@ -121,12 +121,12 @@
     ),
     'league/flysystem' => 
     array (
-      'pretty_version' => '1.1.7',
-      'version' => '1.1.7.0',
+      'pretty_version' => '1.1.9',
+      'version' => '1.1.9.0',
       'aliases' => 
       array (
       ),
-      'reference' => '3ca8f158ee21efa4bbd4f74bea5730c9b9261e2d',
+      'reference' => '094defdb4a7001845300334e7c1ee2335925ef99',
     ),
     'league/flysystem-cached-adapter' => 
     array (
@@ -250,12 +250,12 @@
     ),
     'qcloud/cos-sdk-v5' => 
     array (
-      'pretty_version' => 'v2.4.2',
-      'version' => '2.4.2.0',
+      'pretty_version' => 'v2.4.4',
+      'version' => '2.4.4.0',
       'aliases' => 
       array (
       ),
-      'reference' => '899cf8987fae0402c5db1863c302805715444107',
+      'reference' => '2862ce2c9244eb12f099483db578910bde9b045a',
     ),
     'qiniu/php-sdk' => 
     array (
@@ -286,12 +286,21 @@
     ),
     'rmtop/rmsf-cms-service' => 
     array (
-      'pretty_version' => '1.3.8',
-      'version' => '1.3.8.0',
+      'pretty_version' => '1.5.1',
+      'version' => '1.5.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '6f42922e6733021662b2f6078b0cdc81e2a25f29',
+      'reference' => '56dad92db5fd2c41599bd56987d6b5e80f568fa2',
+    ),
+    'rmtop/rmsf-spider-service' => 
+    array (
+      'pretty_version' => '1.0.1',
+      'version' => '1.0.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'ba77c618fb910860502705bcdc5b6cdfeda1bd9e',
     ),
     'rmtop/rmsf-system-rules' => 
     array (
@@ -313,12 +322,12 @@
     ),
     'symfony/cache' => 
     array (
-      'pretty_version' => 'v5.3.12',
-      'version' => '5.3.12.0',
+      'pretty_version' => 'v5.4.2',
+      'version' => '5.4.2.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'fe05bcb21c1287401d96d066ada7ed881418c6a1',
+      'reference' => '8aad4b69a10c5c51ab54672e78995860f5e447ec',
     ),
     'symfony/cache-contracts' => 
     array (
@@ -347,12 +356,12 @@
     ),
     'symfony/expression-language' => 
     array (
-      'pretty_version' => 'v5.3.11',
-      'version' => '5.3.11.0',
+      'pretty_version' => 'v5.4.0',
+      'version' => '5.4.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '652b72882caddcbfa68754a31b7baf0e4a84cddd',
+      'reference' => 'aff6ee3cf4ac1f37f5c7dad3f89f439dbe0893f2',
     ),
     'symfony/polyfill-intl-idn' => 
     array (
@@ -419,21 +428,21 @@
     ),
     'symfony/var-dumper' => 
     array (
-      'pretty_version' => 'v4.4.34',
-      'version' => '4.4.34.0',
+      'pretty_version' => 'v4.4.36',
+      'version' => '4.4.36.0',
       'aliases' => 
       array (
       ),
-      'reference' => '2d0c056b2faaa3d785bdbd5adecc593a5be9c16e',
+      'reference' => '02685c62fcbc4262235cc72a54fbd45ab719ce3c',
     ),
     'symfony/var-exporter' => 
     array (
-      'pretty_version' => 'v5.3.11',
-      'version' => '5.3.11.0',
+      'pretty_version' => 'v5.4.2',
+      'version' => '5.4.2.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'b16fcf355b810bcbccc2c6eac1d016725dbf9002',
+      'reference' => '2360c8525815b8535caac27cbc1994e2fa8644ba',
     ),
     'thans/thinkphp-filesystem-cloud' => 
     array (
@@ -446,12 +455,12 @@
     ),
     'topthink/framework' => 
     array (
-      'pretty_version' => 'v6.0.9',
-      'version' => '6.0.9.0',
+      'pretty_version' => 'v6.0.10',
+      'version' => '6.0.10.0',
       'aliases' => 
       array (
       ),
-      'reference' => '0b5fb453f0e533de3af3a1ab6a202510b61be617',
+      'reference' => 'd9cadb6971ae92ff85ba5f2be77a40b0ad5718fb',
     ),
     'topthink/think' => 
     array (
@@ -460,16 +469,25 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'f3de38f75773303278b469d229afe79cc820c75d',
+      'reference' => 'bf7c80b84fd3e41291588fedf69b7e011d8e6708',
     ),
-    'topthink/think-helper' => 
+    'topthink/think-captcha' => 
     array (
-      'pretty_version' => 'v3.1.5',
-      'version' => '3.1.5.0',
+      'pretty_version' => 'v3.0.3',
+      'version' => '3.0.3.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'f98e3ad44acd27ae85a4d923b1bdfd16c6d8d905',
+      'reference' => '1eef3717c1bcf4f5bbe2d1a1c704011d330a8b55',
+    ),
+    'topthink/think-helper' => 
+    array (
+      'pretty_version' => 'v3.1.6',
+      'version' => '3.1.6.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '769acbe50a4274327162f9c68ec2e89a38eb2aff',
     ),
     'topthink/think-migration' => 
     array (
@@ -482,12 +500,12 @@
     ),
     'topthink/think-orm' => 
     array (
-      'pretty_version' => 'v2.0.44',
-      'version' => '2.0.44.0',
+      'pretty_version' => 'v2.0.47',
+      'version' => '2.0.47.0',
       'aliases' => 
       array (
       ),
-      'reference' => '5d3d5c1ebf8bfccf34bacd90edb42989b16ea409',
+      'reference' => 'e69151fba9dd21f86e392a0ae208825904d6d49a',
     ),
     'topthink/think-template' => 
     array (

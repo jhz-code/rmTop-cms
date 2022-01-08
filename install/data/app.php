@@ -19,6 +19,7 @@ Route::domain('#dmain#', function () {
     // 动态注册域名的路由规则
     Route::rule('rmtop/[:qs]', '/entrance/Admin/index'); // 首页访问路由
     Route::rule('/login', '/entrance/Login/index'); // 首页访问路由
+    Route::get('/verify','/entrance/Login/verify');
     Route::rule('/', '/entrance/Login/index'); // 首页访问路由
 
 });
@@ -26,4 +27,6 @@ Route::domain('#dmain#', function () {
 Route::rule('/[:qs]/[:action]/[:param]', function () {
    TopDispatch::routeDispatch();
 });
+
+
 

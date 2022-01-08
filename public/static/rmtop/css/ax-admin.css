@@ -33,7 +33,7 @@
 i.fa-mobile{ font-size:26px!important; top:4px!important;}
 .eycms_cont_left dl i.fa-plus{ color:#2c3138!important;}
 .eycms_cont_left dl i.fa-cube{ color:#ff80ad!important;}
-
+.delete_param{border: 1px solid #eee;border-radius: 10px;height: 25px;line-height: 25px;padding: 0 10px;margin: 5px 10px;font-size: 12px !important;color: #666;cursor: pointer}
 
 .page { background-color: #FFF; min-width: 1000px; padding: 8px 1% 1% 1%; text-align: left; overflow: hidden;
 overflow-y: auto;}
@@ -194,7 +194,7 @@ overflow-y: auto;}
   display: -moz-box;
   display: -webkit-box;
   display: -ms-flexbox;
-  display: box;
+  display: initial;
 }
 .ax-admin aside .ax-aside-header {
   border-bottom: 1px solid #ebebeb;
@@ -351,3 +351,52 @@ overflow-y: auto;}
     z-index: 3;
   }
 }
+.wen-label{    line-height: 38px;font-size: 14px;}
+.ax-form-border-r{border: 1px solid #e0e0e0;padding-left: 10px;border-radius: 3px}
+
+/*多图上传*/
+.z_photo{position: relative;display: flex;flex-wrap: wrap}
+.z_photo .z_file{position: relative;cursor: pointer}
+.z_file  .file{width: 100%;height: 100%;opacity: 0;position: absolute;top: 0px;left: 0px;z-index: 100;}
+.z_photo .up-section{position: relative;margin-right: 13px;margin-bottom: 13px;}
+.up-section .close-upimg{position: absolute;top: 2px;right: 2px;display: none;z-index: 10;width: 22px;cursor: pointer}
+.up-section .up-span{display: block;width:100%;height:100%;visibility:hidden;position:absolute;top:0px;left:0px;z-index:9;background: rgba(0,0,0,.5);}
+.up-section:hover .close-upimg{display: block;}
+.up-section:hover .up-span{visibility: visible;}
+.z_photo .up-img{display: block;width: 100%;height: 100%;}
+.loading{border: 1px solid #D1D1D1;background:url(../images/loading.gif) no-repeat center;}
+.up-opcity{opacity: 0;}
+/*.fl {float: left;}*/
+.img-name-p{display: none;}
+.upimg-div .up-section {width: 100px;height: 100px;}
+.img-box .upimg-div .z_file {width: 100px;height: 100px;}
+.z_file .add-img {display: block;width: 100px;height: 100px;cursor: pointer}
+.mask{z-index: 99999;display: none;position: fixed;top: 0px;left: 0px;width: 100%;height: 100%;background: rgba(0,0,0,.4);}
+.mask .mask-content{width: 300px;position: absolute;top:40%;left: 50%;margin-left: -250px;margin-top: -80px;background: white;height: 100px;
+  text-align: center;border-radius: 4px;}
+.mask .mask-content .del-p{color: #666;height: 60px;line-height:60px;font-size: 14px;border-bottom: 1px solid #eee;margin-bottom: 0;padding: 0}
+.mask-content .check-p{height: 33px;line-height: 33px;position: absolute;bottom: 0px;left: 0px;width: 100%;margin-bottom: 0;cursor: pointer;}
+.mask-content .check-p span{width: 49%;display:inline-block;text-align: center;color:#398fec ;font-size: 14px;}
+.check-p .del-com{border-right: 1px solid #eee;}
+.wsdel-no{color: #888 !important}
+.add-goods{width: 100%;margin-top: 30px;}
+.add-goods .input-w{min-width: 500px !important;max-width: 60%;}
+.add-goods .form-group{margin-bottom: 40px}
+.up-p{margin-bottom: 0;margin-top: 7px;font-size: 12px;color: #999;}
+.up-p span{color: #398fec;margin-left: 12px}
+.new-tag{    width: 70px;text-align: right;margin: 0;}
+.goods-whith {padding-left: 30px;width: 115px;text-align: left;}
+
+.soured-t{position: relative;display: flex;}
+.soured-t p{flex: 1;margin-right: 20px;word-wrap: break-word;word-break: break-all;}
+.soured-t img{width:111px;height: 111px }
+.copy-success{display: none;padding: 9px 30px;text-align: center;background-color: #75d1fb;color: #fbf8f8;border-radius: 4px;position: fixed;top: 40%;left: 37%;
+  box-shadow: 0px 0px 6px 0px rgb(0 0 014%);}
+.qif-te{height: 30px !important;margin-top: 5px!important;}
+
+.large{position: fixed;max-width: 380px;max-height: 400px;z-index: 9999;margin-top: 10px;background: #fff}
+.large img{width: 100%;height: auto;object-fit: cover;}
+.large2{position: fixed;max-width: 380px;max-height: 400px;z-index: 9999;margin-top: 10px;background: #fff}
+.large2 img{width: 100%;height: auto;object-fit: cover;}
+.large3{position: fixed;max-width: 380px;max-height: 400px;z-index: 9999;margin-top: 10px;background: #fff}
+.large3 img{width: 100%;height: auto;object-fit: cover;}

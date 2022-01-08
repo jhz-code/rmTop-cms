@@ -13,7 +13,6 @@ use think\db\exception\PDOException;
  */
 class RmDb
 {
-
     // 保存数据库连接
     private static $mysql_instance = null;
 
@@ -114,8 +113,8 @@ class RmDb
      * @return Boolean
      */
 
-   static  function pdo_ping($dbconn): bool
-   {
+    static  function pdo_ping($dbconn): bool
+    {
         try {
             $dbconn->getAttribute(PDO::ATTR_SERVER_INFO);
         } catch (PDOException $e) {
